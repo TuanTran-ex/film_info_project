@@ -9,12 +9,16 @@ class FilmRepo {
    * @returns Film model
    */
   async getListFilm() {
+    const films = [];
     const [rows, fields] = await pool.query(query.qGetAllFilm());
-    const film = new Film(rows);
-    if (!film) {
+    if (!rows) {
       throw new CustomError(6, 400, 'Film is not exists');
     }
-    return film;
+    rows.map((item) => {
+      const film = new Film(item);
+      films.push(film);
+    });
+    return films;
   }
 }
 

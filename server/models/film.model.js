@@ -1,6 +1,6 @@
 // Domain model for Film
 class Film {
-  constructor(
+  constructor({
     id,
     name,
     englishName,
@@ -13,9 +13,9 @@ class Film {
     imdbPoint,
     categoryId,
     isProcessing,
-    createdAt,
-    updateAt
-  ) {
+    created_at,
+    updated_at,
+  }) {
     this.id = id;
     this.name = name;
     this.englishName = englishName;
@@ -28,8 +28,8 @@ class Film {
     this.imdbPoint = imdbPoint;
     this.categoryId = categoryId;
     this.isProcessing = isProcessing;
-    this.createdAt = createdAt;
-    this.updateAt = updateAt;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }
 

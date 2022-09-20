@@ -1,9 +1,9 @@
 class Category {
-  constructor(id, name, updateAt, createdAt) {
+  constructor({ id, name, updated_at, created_at }) {
     this.id = id;
     this.name = name;
-    this.updateAt = updateAt;
-    this.createdAt = createdAt;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }
 
