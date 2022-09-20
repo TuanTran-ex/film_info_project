@@ -7,7 +7,7 @@ class CustomError extends Error {
   }
 }
 
-module.exports = function errorHandling(error, res) {
+function errorHandling(error, res) {
   if (error instanceof CustomError) {
     switch (error.code) {
       case 1:
@@ -66,4 +66,6 @@ module.exports = function errorHandling(error, res) {
       message: 'Error from server ' + error,
     });
   }
-};
+}
+
+module.exports = { CustomError, errorHandling };
