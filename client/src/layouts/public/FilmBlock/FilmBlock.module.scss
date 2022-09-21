@@ -1,0 +1,75 @@
+//wrapper
+.film-block {
+    margin-bottom: 30px;
+}
+
+// --Title--
+.film-title {
+    display: flex;
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+    color: #b1a21e;
+    font-family: 'Oswald', 'sans - serif';
+    p {
+        flex: 1;
+        border-bottom: 1px solid rgb(27, 60, 93);
+    }
+}
+
+// --List film--
+
+.list {
+    width: 100%;
+    margin: 0 !important; // bo margin cua row
+    .item {
+        height: var(--item-height);
+        padding: 8px;
+        background-color: rgb(23, 31, 39);
+        transition: transform ease-in 0.1s;
+        will-change: transform;
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+    }
+
+    .avata {
+        // the a
+        height: 380px;
+        width: 100%;
+
+        .image {
+            display: block;
+            width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            background-size: contain;
+        }
+    }
+
+    .film-name {
+        display: block;
+        margin-top: 16px;
+        font-size: 1.6rem;
+        min-width: 48px;
+
+        .name {
+            color: #fff;
+        }
+
+        .English-name {
+            color: var(--text-color);
+        }
+    }
+}
+
+.name,
+.English-name {
+    overflow: hidden;
+    // Ba cham sau chu
+    display: block;
+    /* tác động lên số dòng bn -> dòng bn thì có 3 chấm */
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    white-space: nowrap; // (*)
+}

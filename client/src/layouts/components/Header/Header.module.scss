@@ -1,0 +1,115 @@
+:root {
+    --brand-width: 200px;
+    --red-btn: #c41f20;
+}
+
+.test {
+    background-color: #428bca;
+}
+
+.wrapper {
+    // max-width: var(--home-max-width);
+    height: var(--default-header-height);
+    display: flex;
+    align-items: center;
+    background-color: var(--main-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+}
+
+::-webkit-scrollbar {
+    background-color: #fff;
+}
+.nav-brand {
+    height: 100%;
+    display: flex;
+    min-width: var(--brand-width);
+    position: relative;
+    align-items: center;
+    margin: 0;
+
+    .brand {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #dc1a28;
+        margin: 0 0 0 48px;
+    }
+
+    .film-icon {
+        position: absolute;
+        top: 11px; //(+): chua toi uu
+        padding: 5px;
+        margin: 0 6px;
+    }
+    .icon {
+        font-size: 2.6rem; //(+)
+        color: #fff;
+    }
+}
+
+.nav-menu {
+    height: 100%;
+    color: #fff;
+    width: calc(100% - var(--brand-width));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+
+    .nav-list {
+        height: 100%;
+        display: flex;
+        list-style-type: none;
+        text-decoration: none;
+
+        .item {
+            line-height: 56px;
+            padding: 0 12px;
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+        :hover {
+            background-color: #102c48;
+            color: #428bca;
+            cursor: pointer;
+        }
+    }
+
+    .item:first-child {
+        display: flex;
+        align-items: center;
+        .search-icon {
+            font-size: 2rem;
+            margin-right: 6px;
+            color: #fff;
+            :hover {
+                color: #fff;
+            }
+        }
+    }
+
+    .nav-use {
+        margin-right: 20px;
+
+        :hover {
+            background-color: var(--red-btn);
+            border-color: transparent;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    .btn-user {
+        padding: 9px 16px;
+        font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
+            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,
+            Arial, sans-serif;
+        font-size: 1.6rem;
+        color: #fff;
+        background-color: #dc1a28;
+        border-radius: 4px;
+    }
+}

@@ -1,0 +1,17 @@
+/* mobile and tablet  */
+@media (max-width: 1023px) {
+}
+
+/* only tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    .wrapper {
+        /* display: inline-block; */
+    }
+
+    .control {
+    }
+}

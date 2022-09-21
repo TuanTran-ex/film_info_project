@@ -1,0 +1,13 @@
+Phân tích:
+
+1. Header: có Navbar
++ Logo: nav-brand;
++ menu: nav__type và nav__use
+
+2. Body:
+2.1. Header
+2.2: Title-film
+2.3 List film
+2.4 New film:
+
+3. Footer
