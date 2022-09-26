@@ -6,7 +6,7 @@
     --gray-rgba-color: #b5b5b5;
 
     --default-header-height: 56px;
-    --home-max-width: 1340px;
+    --home-max-width: 1360px;
     --home-min-height: 1000px;
     --home-height-header: 96px;
     --home-content-width: 1320px;
@@ -25,10 +25,10 @@ html {
 
 body {
     background-color: var(--main-color);
-    overflow-y: overlay; //scroll
+    // overflow-y: overlay; //scroll
 }
 
-//Scrollbar css; cop tiktok
+//Scrollbar css;
 html *::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;

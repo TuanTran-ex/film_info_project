@@ -1,25 +1,54 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
-import Footer from '../../layouts/components/Footer/Footer';
-
 // --- LIBRARY --
 
+import homePageApi from '../../api/homeApi';
 import './14_LIBRARY.css';
 import Header from '../../layouts/public/Header';
-import FilmBlock from '../../layouts/public/FilmBlock/FilmBlock';
+import FilmHome from '../../layouts/public/FilmHome';
+import Type from '../../layouts/public/TypeFilm';
 
 const cx = classNames.bind(styles);
 function Home() {
-    const [category, setCategory] = useState(['Phim bộ', 'Phim lẻ']);
+    const [listCategory, setListCategory] = useState([]);
+    const [listFilm, setListFilm] = useState([]);
+    const [listGender, setListGenre] = useState([]);
+    const [listCountry, setlistCountry] = useState([]);
+
+    useEffect(() => {
+        const fetchHomeApi = async () => {
+            try {
+                const params = {};
+                const response = await homePageApi.getAll(params);
+                console.log('Fetch products successfully: ', response);
+                const { categories, films, countries, genres } = response.data;
+                setListCategory(categories);
+                setListFilm(films);
+                setListGenre(genres);
+                setlistCountry(countries);
+            } catch (error) {
+                console.log('Failed to fetch product list: ', error);
+            }
+        };
+        fetchHomeApi();
+    }, []);
 
     return (
         <div className={cx('wrapper')}>
-            <Header category={category} />
+            <Header
+                listCategory={listCategory}
+                listGender={listGender}
+                listCountry={listCountry}
+            />
             <div className={cx('content')}>
-                <FilmBlock />
-                <FilmBlock />
-                <FilmBlock />
+                <Type />
+                <FilmHome />
+                <Type />
+                <FilmHome />
+                <Type />
+                <FilmHome />
             </div>
             <div className={cx('new-film')}>
                 <div className={cx('title')}>Phim mới đăng (chờ xử lý)</div>

@@ -9,7 +9,8 @@ import './Responsive.css';
 
 const cx = classNames.bind(styles);
 
-function Header({ category }) {
+function Header({ listCategory, listGender, listCountry }) {
+    
     return (
         <div className={cx('wrapper', 'grid')}>
             <div className={cx('row', 'block')}>
@@ -18,103 +19,98 @@ function Header({ category }) {
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {category.map((item, index) => (
+                            {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
                                     value={publicRoutes[2].path}
                                     key={index}
                                 >
-                                    {item}
+                                    {item.name}
                                 </option>
                             ))}
                         </select>
                     </div>
                 </div>
-
                 <div className={cx('column', 'l-2', 'm-4', 'c-6', 'type')}>
-                    <label className={cx('title')}>Loại phim</label>
+                    <label className={cx('title')}>Thể loại</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {category.map((item, index) => (
+                            {listGender.map((item, index) => (
                                 <option
                                     className={cx('item')}
                                     value={publicRoutes[2].path}
                                     key={index}
                                 >
-                                    {item}
+                                    {item.name}
                                 </option>
                             ))}
                         </select>
                     </div>
                 </div>
-
                 <div className={cx('column', 'l-2', 'm-4', 'c-6', 'type')}>
-                    <label className={cx('title')}>Loại phim</label>
+                    <label className={cx('title')}>Quốc gia</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {category.map((item, index) => (
+                            {listCountry.map((item, index) => (
                                 <option
                                     className={cx('item')}
                                     value={publicRoutes[2].path}
                                     key={index}
                                 >
-                                    {item}
+                                    {item.name}
                                 </option>
                             ))}
                         </select>
                     </div>
                 </div>
-
                 <div className={cx('column', 'l-2', 'm-4', 'c-6', 'type')}>
-                    <label className={cx('title')}>Loại phim</label>
+                    <label className={cx('title')}>Năm</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {category.map((item, index) => (
+                            {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
                                     value={publicRoutes[2].path}
                                     key={index}
                                 >
-                                    {item}
+                                    {item.name}
                                 </option>
                             ))}
                         </select>
                     </div>
                 </div>
-
                 <div className={cx('column', 'l-2', 'm-4', 'c-6', 'type')}>
-                    <label className={cx('title')}>Loại phim</label>
+                    <label className={cx('title')}>Thời lượng</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {category.map((item, index) => (
+                            {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
                                     value={publicRoutes[2].path}
                                     key={index}
                                 >
-                                    {item}
+                                    {item.name}
                                 </option>
                             ))}
                         </select>
                     </div>
                 </div>
-
                 <div className={cx('column', 'l-2', 'm-4', 'c-6', 'type')}>
-                    <label className={cx('title')}>Loại phim</label>
+                    <label className={cx('title')}>Sắp xếp</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {category.map((item, index) => (
+                            {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
                                     value={publicRoutes[2].path}
                                     key={index}
                                 >
-                                    {item}
+                                    {item.name}
                                 </option>
                             ))}
                         </select>

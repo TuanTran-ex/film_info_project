@@ -10,22 +10,24 @@
     min-height: var(--home-height-header);
     border-radius: var(--box-radius);
     position: relative;
-    overflow-y: overlay;
 }
+
 .block {
     width: 100%; //set width
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .type {
     margin: 0;
     margin: auto;
+    padding: 0 10px;
 }
 
 .title {
     display: block;
     font-size: 1.7rem;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 700;
     color: #fff;
 }
@@ -34,8 +36,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 10px;
-    width: var(--width-item);
+    // margin-left: 10px;
+    // width: var(--width-item);
+    // width: calc(100% - 10px);
+    width: 100%;
+
     min-height: var(--height-item);
     line-height: var(--height-item);
     background-color: #fff;
@@ -55,9 +60,27 @@
     }
 }
 
-.choose {
-    font-size: 1.6rem;
-    margin-left: 14px;
+.control .list {
+    //select
+    width: 100%;
+    display: block;
+    height: var(--height-item);
+    // width: var(--width-item);
+    margin: 0;
+    padding: 7px 40px 7px 12px;
+    -webkit-appearance: none; //none - select
+    cursor: pointer;
+    border-color: transparent;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    white-space: pre;
+    border-width: 0px;
+}
+
+.list:focus {
+    border-radius: 5px;
+    border-color: #fff;
+    box-shadow: 0 0 0 0.125em rgba(66, 139, 202, 0.25);
 }
 
 .control::after,
@@ -95,31 +118,5 @@
     right: 16px;
 }
 
-// Khối select
-.control .list {
-    //select
-    width: 100%;
-    display: block;
-    height: var(--height-item);
-    width: var(--width-item);
-    margin: 0;
-    padding: 7px 40px 7px 12px;
-    -webkit-appearance: none; //none - select
-    cursor: pointer;
-    border-color: transparent;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
-    white-space: pre;
-}
-
-select option {
-    display: block;
-    width: 100%;
-    height: 40px;
-}
-
-.list:focus {
-    border-radius: 5px;
-    border-color: #fff;
-    box-shadow: 0 0 0 0.125em rgba(66, 139, 202, 0.25);
+@media (max-width: 739px) {
 }

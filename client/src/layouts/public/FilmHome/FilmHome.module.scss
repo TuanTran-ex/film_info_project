@@ -1,6 +1,6 @@
+//wrapper
 .film-block {
     margin-bottom: 20px;
-    // padding: 0 6px;
 }
 
 // --List film--
@@ -10,7 +10,8 @@
     margin: 0 !important; // bo margin cua row
     .item {
         height: var(--item-height);
-        padding: 10px;
+        padding: 8px;
+        background-color: rgb(23, 31, 39);
         transition: transform ease-in 0.1s;
         will-change: transform;
 
@@ -72,5 +73,3 @@
 //div: 346px
 
 //330 - 496; 256 - 384
-
-//322 - 482px

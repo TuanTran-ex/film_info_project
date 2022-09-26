@@ -1,47 +1,31 @@
-import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './FilmBlock.module.scss';
-import WebFont from 'webfontloader';
-import Picture2 from '../../../components/image/picture2.jpg';
-import Picture3 from '../../../components/image/picture3.jpg';
-import Image from '../../../components/image/Images';
-
 // --- LIBRARY --
 
+import Image from '../../../components/image/Images';
 import './14_LIBRARY.css';
 
 const cx = classNames.bind(styles);
 
 function FilmBlock() {
-    useEffect(() => {
-        WebFont.load({
-            google: {
-                families: ['Oswald', 'sans - serif'],
-            },
-        });
-    }, []);
     return (
         <div className={cx('film-block', 'grid')}>
-            <div className={cx('film-title')}>
-                <p>PHIM ĐỀ CỬ</p>
-            </div>
-            {/* <div className={cx('row', 'block')}> */}
             <div className={cx('row', 'list')}>
                 <div className={cx('column', 'l-2-4', 'm-4', 'c-6')}>
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/gJDvYUJcPEDJzB3SnQokifPUtRF.jpg"
+                                src="https://image.tmdb.org/t/p/w342/uU3YoLSaVBOaMryzhuiiRWDFbIw.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
                         </a>
                         <span className={cx('film-name')}>
                             <a href="/" className={cx('name')}>
-                                Sự trỗi dậy của Gru
+                                Bodies Bodies Bodies
                             </a>
                             <a href="/" className={cx('English-name')}>
-                                English
+                                Bodies Bodies Bodies
                             </a>
                         </span>
                     </div>
@@ -108,24 +92,122 @@ function FilmBlock() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/gJDvYUJcPEDJzB3SnQokifPUtRF.jpg"
+                                src="https://image.tmdb.org/t/p/w342/h7kaQG5MbraSLibOuTpo0gtMxRz.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
                         </a>
                         <span className={cx('film-name')}>
                             <a href="/" className={cx('name')}>
-                                Adventure Vũ Điệu Dòng Sông: Cuộc Phiêu Lưu Hoạt
-                                Hình (2021)
+                                Hạ Cánh Khẩn Cấp
                             </a>
                             <a href="/" className={cx('English-name')}>
-                                Riverdance: The Animated Adventure
+                                Emergency Declaration
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div className={cx('column', 'l-2-4', 'm-4', 'c-6')}>
+                    <div className={cx('item')}>
+                        <a href="/" className={cx('avata')}>
+                            <Image
+                                src="https://image.tmdb.org/t/p/w342/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg"
+                                alt="image"
+                                className={cx('image')}
+                            />
+                        </a>
+                        <span className={cx('film-name')}>
+                            <a href="/" className={cx('name')}>
+                                Thực thi công lý
+                            </a>
+                            <a href="/" className={cx('English-name')}>
+                                The Enfocer
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div className={cx('column', 'l-2-4', 'm-4', 'c-6')}>
+                    <div className={cx('item')}>
+                        <a href="/" className={cx('avata')}>
+                            <Image
+                                src="https://image.tmdb.org/t/p/w342/yzkgx79vj1KsZBzxFBIsQBwBkPE.jpg"
+                                alt="image"
+                                className={cx('image')}
+                            />
+                        </a>
+                        <span className={cx('film-name')}>
+                            <a href="/" className={cx('name')}>
+                                The Movie Chú thuật hồi chiến
+                            </a>
+                            <a href="/" className={cx('English-name')}>
+                                Jujutsu Kaisen 0: The Movie
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div className={cx('column', 'l-2-4', 'm-4', 'c-6')}>
+                    <div className={cx('item')}>
+                        <a href="/" className={cx('avata')}>
+                            <Image
+                                src="https://image.tmdb.org/t/p/w342/yzkgx79vj1KsZBzxFBIsQBwBkPE.jpg"
+                                alt="image"
+                                className={cx('image')}
+                            />
+                        </a>
+                        <span className={cx('film-name')}>
+                            <a href="/" className={cx('name')}>
+                                The Movie Chú thuật hồi chiến
+                            </a>
+                            <a href="/" className={cx('English-name')}>
+                                Jujutsu Kaisen 0: The Movie
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div className={cx('column', 'l-2-4', 'm-4', 'c-6')}>
+                    <div className={cx('item')}>
+                        <a href="/" className={cx('avata')}>
+                            <Image
+                                src="https://image.tmdb.org/t/p/w342/qJD1kg5vrKKllZaZWyELVdxdbid.jpg"
+                                alt="image"
+                                className={cx('image')}
+                            />
+                        </a>
+                        <span className={cx('film-name')}>
+                            <a href="/" className={cx('name')}>
+                                Cang giả kim thuật sư: Chuyển hóa cuối cùng
+                            </a>
+                            <a href="/" className={cx('English-name')}>
+                                Fullmetal Alchemist: Final Transmutation / The
+                                Final Alchemy
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div className={cx('column', 'l-2-4', 'm-4', 'c-6')}>
+                    <div className={cx('item')}>
+                        <a href="/" className={cx('avata')}>
+                            <Image
+                                src=" https://image.tmdb.org/t/p/w342/lmGRZEuIQtArmyGjt6Ay5Y74hk2.jpg"
+                                alt="image"
+                                className={cx('image')}
+                            />
+                        </a>
+                        <span className={cx('film-name')}>
+                            <a href="/" className={cx('name')}>
+                                Một chuyện riêng tư
+                            </a>
+                            <a href="/" className={cx('English-name')}>
+                                A Private Affair
                             </a>
                         </span>
                     </div>
                 </div>
             </div>
-            {/* </div> */}
         </div>
     );
 }
