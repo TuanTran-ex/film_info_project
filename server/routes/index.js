@@ -1,14 +1,14 @@
 const { errorHandling } = require('../utils/errorHandling');
-const FilmRouter = require('./film.route');
+
 const AdminRoute = require('./admin');
+const ClientRoute = require('./client');
 
 function route(app) {
   app.get('/health', (req, res) => {
     res.send('OK');
   });
   AdminRoute(app);
-
-  app.use('/api/films', FilmRouter);
+  ClientRoute(app);
   app.use((err, req, res, next) => {
     errorHandling(err, res);
   });

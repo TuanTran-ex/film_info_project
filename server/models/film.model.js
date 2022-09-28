@@ -12,6 +12,7 @@ class Film {
     countryOfProduction,
     imdbPoint,
     categoryId,
+    categoryName,
     isProcessing,
     created_at,
     updated_at,
@@ -27,6 +28,7 @@ class Film {
     this.countryOfProduction = countryOfProduction;
     this.imdbPoint = imdbPoint;
     this.categoryId = categoryId;
+    this.categoryName = categoryName;
     this.isProcessing = isProcessing;
     this.createdAt = created_at;
     this.updatedAt = updated_at;
