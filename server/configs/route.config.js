@@ -9,6 +9,7 @@ const config = {
     Person: ADMIN_URL + 'persons',
     Genre: ADMIN_URL + 'genres',
     Country: ADMIN_URL + 'countries',
+    Account: ADMIN_URL + 'account',
   },
 };
 
