@@ -1,3 +1,5 @@
+const routeConfig = require('./route.config');
+
 require('dotenv').config();
 const defaultConfig = {
   sqlConfig: {
@@ -9,6 +11,7 @@ const defaultConfig = {
     connectionLimit: 10,
     queueLimit: 0,
   },
+  routeConfig: routeConfig,
 };
 
 module.exports = defaultConfig;
