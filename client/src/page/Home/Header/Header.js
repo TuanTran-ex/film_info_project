@@ -10,7 +10,6 @@ import './Responsive.css';
 const cx = classNames.bind(styles);
 
 function Header({ listCategory, listGender, listCountry }) {
-    
     return (
         <div className={cx('wrapper', 'grid')}>
             <div className={cx('row', 'block')}>
@@ -22,7 +21,7 @@ function Header({ listCategory, listGender, listCountry }) {
                             {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={publicRoutes[2].path}
+                                    value={item.name}
                                     key={index}
                                 >
                                     {item.name}
@@ -39,7 +38,7 @@ function Header({ listCategory, listGender, listCountry }) {
                             {listGender.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={publicRoutes[2].path}
+                                    value={item.name}
                                     key={index}
                                 >
                                     {item.name}
@@ -56,7 +55,7 @@ function Header({ listCategory, listGender, listCountry }) {
                             {listCountry.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={publicRoutes[2].path}
+                                    value={item.name}
                                     key={index}
                                 >
                                     {item.name}
@@ -70,15 +69,33 @@ function Header({ listCategory, listGender, listCountry }) {
                     <div className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
-                            {listCategory.map((item, index) => (
-                                <option
-                                    className={cx('item')}
-                                    value={publicRoutes[2].path}
-                                    key={index}
-                                >
-                                    {item.name}
-                                </option>
-                            ))}
+                            <option value="2022" className={cx('item')}>
+                                2022
+                            </option>
+                            <option value="2021" className={cx('item')}>
+                                2021
+                            </option>
+                            <option value="2020" className={cx('item')}>
+                                2020
+                            </option>
+                            <option value="2019" className={cx('item')}>
+                                2019
+                            </option>
+                            <option value="2018" className={cx('item')}>
+                                2018
+                            </option>
+                            <option value="2017" className={cx('item')}>
+                                2017
+                            </option>
+                            <option value="2016" className={cx('item')}>
+                                2016
+                            </option>
+                            <option value="2015" className={cx('item')}>
+                                2015
+                            </option>
+                            <option value="before-2015" className={cx('item')}>
+                                Trước 2015
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -86,16 +103,30 @@ function Header({ listCategory, listGender, listCountry }) {
                     <label className={cx('title')}>Thời lượng</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
-                            <option className={cx('item')}>-- Tất cả --</option>
-                            {listCategory.map((item, index) => (
-                                <option
-                                    className={cx('item')}
-                                    value={publicRoutes[2].path}
-                                    key={index}
-                                >
-                                    {item.name}
-                                </option>
-                            ))}
+                            <option value="" className={cx('item')}>
+                                -- Tất cả --
+                            </option>
+                            <option value="0-30" className={cx('item')}>
+                                Dưới 30 phút
+                            </option>
+                            <option value="30-60" className={cx('item')}>
+                                30' - 1 tiếng
+                            </option>
+                            <option value="60-90" className={cx('item')}>
+                                1 - 1.5 tiếng
+                            </option>
+                            <option value="90-120" className={cx('item')}>
+                                1.5 - 2 tiếng
+                            </option>
+                            <option value="120-150" className={cx('item')}>
+                                2 - 2.5 tiếng
+                            </option>
+                            <option value="150-180" className={cx('item')}>
+                                2.5 - 3 tiếng
+                            </option>
+                            <option value="180-0" className={cx('item')}>
+                                Trên 3 tiếng
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -103,16 +134,15 @@ function Header({ listCategory, listGender, listCountry }) {
                     <label className={cx('title')}>Sắp xếp</label>
                     <div className={cx('control')}>
                         <select className={cx('list')}>
-                            <option className={cx('item')}>-- Tất cả --</option>
-                            {listCategory.map((item, index) => (
-                                <option
-                                    className={cx('item')}
-                                    value={publicRoutes[2].path}
-                                    key={index}
-                                >
-                                    {item.name}
-                                </option>
-                            ))}
+                            <option className={cx('item')}>
+                                Ngày cập nhật
+                            </option>
+                            <option value="movie" className={cx('item')}>
+                                Ngày phát hành
+                            </option>
+                            <option value="movie" className={cx('item')}>
+                                Điểm đánh giá
+                            </option>
                         </select>
                     </div>
                 </div>

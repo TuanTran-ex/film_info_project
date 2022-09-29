@@ -2,8 +2,6 @@ import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import GoogleIcon from '@mui/icons-material/Google';
 
-
-
 const cx = classNames.bind(styles);
 function Login() {
     return (
@@ -40,7 +38,7 @@ function Login() {
                     </div>
                     <div className={cx('divider')} data-content="HOẶC"></div>
                     <button className={cx('btn-google-login')}>
-                        <GoogleIcon  className = {cx('icon')}/>
+                        <GoogleIcon className={cx('icon')} />
                         Đăng nhập với Google
                     </button>
                 </div>
@@ -58,4 +56,4 @@ function Login() {
     );
 }
 
-export default Login; 
+export default Login;

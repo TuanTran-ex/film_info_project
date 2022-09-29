@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 // -------LIBRARY---------
 
-import FilmBlock from '../../layouts/public/FilmBlock';
+import FilmBlock from '../../layouts/components/public/FilmBlock';
 
 const cx = classNames.bind(styles);
 function Search() {

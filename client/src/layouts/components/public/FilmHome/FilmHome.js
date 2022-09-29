@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './FilmHome.module.scss';
 // --- LIBRARY --
 
-import Image from '../../../components/image/Images';
+import Image from '../../../../components/image/Images';
 import './14_LIBRARY.css';
 
 const cx = classNames.bind(styles);

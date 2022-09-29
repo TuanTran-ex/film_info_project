@@ -6,9 +6,9 @@ import styles from './Home.module.scss';
 
 import homePageApi from '../../api/homeApi';
 import './14_LIBRARY.css';
-import Header from '../../layouts/public/Header';
-import FilmHome from '../../layouts/public/FilmHome';
-import Type from '../../layouts/public/TypeFilm';
+import Header from './Header';
+import FilmHome from '../../layouts/components/public/FilmHome';
+import Type from '../../layouts/components/public/TypeFilm';
 
 const cx = classNames.bind(styles);
 function Home() {

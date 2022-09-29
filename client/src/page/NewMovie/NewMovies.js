@@ -1,10 +1,10 @@
 import classNames from 'classnames/bind';
-import styles from './Body.module.scss';
+import styles from './NewMovie.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Body() {
+function NewMovie() {
     return <div></div>;
 }
 
-export default Body;
+export default NewMovie;
