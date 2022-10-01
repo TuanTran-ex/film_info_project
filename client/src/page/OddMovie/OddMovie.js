@@ -6,6 +6,7 @@ import homePageApi from '../../api/homeApi';
 import Header from '../../layouts/components/public/Header';
 import FilmBlock from '../../layouts/components/public/FilmBlock';
 import ListFilm from '../../layouts/components/public/ListFilm';
+import Title from '../../layouts/components/public/Title';
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +14,7 @@ function OddMovie() {
     const [listCategory, setListCategory] = useState([]);
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
-    const [isList, setIsList] = useState(true);
+    const [isList, setIsList] = useState(false);
 
     useEffect(() => {
         const fetchHomeApi = async () => {
@@ -35,10 +36,11 @@ function OddMovie() {
     const handleClick = (param) => {
         setIsList(param);
     };
+    const title = 'Phim lẻ';
 
     return (
         <div className={cx('wrapper')}>
-            <h1 className={cx('type')}>Phim lẻ</h1>
+            <Title title={title} />
             <div className="header-nav">
                 <Header
                     listCategory={listCategory}
