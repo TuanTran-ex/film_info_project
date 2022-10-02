@@ -1,11 +1,17 @@
-const e = require('express');
-
 // Category
+/**
+ *
+ * @returns string query
+ */
 exports.qGetAllCategory = () => {
   return `SELECT * FROM Category`;
 };
 
 // Genre
+/**
+ *
+ * @returns string query
+ */
 exports.qGetAllGenre = () => {
   return `SELECT * FROM Genre`;
 };
@@ -13,19 +19,37 @@ exports.qGetAllGenre = () => {
 // Film
 /**
  * Get list Film
- * @param {array} column List field select in query
+ * @param {array<string>} column List field select in query
  * @returns string
  */
-exports.qGetAllFilmHomePage = (column) => {
+exports.qGetAllFilm = (column) => {
   if (!column)
-    return `SELECT * FROM Film JOIN Category WHERE Film.categoryId = Category.id ORDER BY premierDate DESC LIMIT 0,200`;
+    return `SELECT * FROM Film JOIN Category ON Film.categoryId = Category.id ORDER BY premierDate DESC LIMIT 0,200`;
   else {
     column = column.map((item) => 'Film.' + item);
     strCol = column.toString();
-    return `SELECT ${strCol}, premierDate, isProcessing, Category.id AS categoryId, Category.name AS categoryName 
+    return `SELECT ${strCol}, Category.id AS categoryId, Category.name AS categoryName 
     FROM Film JOIN Category WHERE Film.categoryId = Category.id 
     ORDER BY premierDate DESC LIMIT 0,200`;
   }
+};
+
+/**
+ *
+ * @param {int} categoryId List field select in query
+ * @param {int} page
+ * @param {int} perPage item in one page
+ * @returns string query
+ */
+exports.qGetFilmWithPaginateBrowerPage = (
+  categoryId,
+  page = 1,
+  perPage = 15
+) => {
+  const query = `CALL proc_Film_GetAll(${
+    !categoryId ? 'NULL' : categoryId
+  }, ${page}, ${perPage});`;
+  return query;
 };
 
 /**
@@ -56,7 +80,21 @@ exports.qGetListFilmProcessing = (column) => {
   }
 };
 
+/**
+ * String query get Genre with Film by FilmId
+ * @param {int} filmId
+ * @returns string query
+ */
+exports.qGetGenreFilm = (filmId) => {
+  return `SELECT Genre.id, Genre.name FROM Film JOIN GenreFilm ON Film.id = GenreFilm.filmId JOIN Genre
+  ON Genre.id = GenreFilm.genreId WHERE Film.id = ${filmId}`;
+};
+
 // Country
+/**
+ *
+ * @returns string query
+ */
 exports.qGetAllCountry = () => {
   return `SELECT * FROM Country`;
 };
