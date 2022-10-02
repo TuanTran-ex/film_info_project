@@ -9,14 +9,20 @@ class FilmRepo {
    * Get list Film
    * @returns Film model
    */
-  async getListFilmHomePage(param) {
+  async getListFilmHomePage() {
+    const col = [
+      'id',
+      'name',
+      'englishName',
+      'image',
+      'premierDate',
+      'isProcessing',
+    ];
     let films = [];
     let tvFilms = [];
     let movies = [];
     let processingFilms = [];
-    const [listFilm, fields] = await pool.query(
-      query.qGetAllFilmHomePage(param, true)
-    );
+    const [listFilm, fields] = await pool.query(query.qGetAllFilm(col));
     if (!listFilm) {
       throw new CustomError(6, 400, 'Film is not exists');
     }
@@ -33,6 +39,43 @@ class FilmRepo {
     processingFilms = processingFilms.slice(0, 15);
 
     return { films, tvFilms, movies, processingFilms };
+  }
+
+  /**
+   * Get list Film for Browser Page with paginate
+   * @param {int} page
+   * @param {int} perPage item in one page
+   * @returns array films
+   */
+  async getListFilmBrowserPage(categoryId, page, perPage) {
+    // const col = ['id', 'name', 'englishName', 'image', 'premierDate', 'time'];
+    let films = [];
+    const [listFilm, fields] = await pool.query(
+      query.qGetFilmWithPaginateBrowerPage(categoryId, page, perPage)
+    );
+    // let listFilm = rows[0];
+    for (const item of listFilm[0]) {
+      const film = new Film(item);
+      const genres = await this.getGenreFilm(film.id);
+      if (genres.length > 0)
+        genres.forEach((genre) => {
+          film.genreId.push(genre.id);
+          film.genreName.push(genre.name);
+        });
+      films.push(film);
+    }
+
+    return films;
+  }
+
+  /**
+   * Get list genre film
+   * @param {int} filmId
+   * @returns array
+   */
+  async getGenreFilm(filmId) {
+    const [listGenre, fields] = await pool.query(query.qGetGenreFilm(filmId));
+    return listGenre;
   }
 }
 
