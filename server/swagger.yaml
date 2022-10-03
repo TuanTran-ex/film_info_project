@@ -1,0 +1,367 @@
+openapi: 3.0.0
+
+info:
+  title: API WebFilm Online
+  description: API cho Website WebFilm
+  version: 0.1.0
+  contact:
+    name: tuantran
+    email: tuantranit12@gmail.com
+
+servers:
+  - url: http://localhost:3300/api/
+    description: Develoment server
+tags:
+  - name: Pages
+    description: Data cho các trang của web
+paths:
+  /pages/home:
+    get:
+      tags:
+        - Pages
+      description: Lấy data cho trang home
+      summary: Lấy data cho trang home
+
+      responses:
+        200:
+          description: Object của Film, TvFilm, Movie, ProcessingFilm, Category, Genre, Country.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      films:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Gia tộc rồng'
+                            englishName:
+                              type: string
+                              example: 'House of the Dragon'
+                            image:
+                              type: string
+                              example: 'http://dummyimage.com/342x513.png/cc0000/ffffff'
+                            categoryId:
+                              type: int
+                              example: 1
+                            categoryName:
+                              type: string
+                              example: 'Phim bộ'
+                            genreId:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            genreName:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            isProcessing:
+                              type: int
+                              example: 1
+                      tvFilms:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Gia tộc rồng'
+                            englishName:
+                              type: string
+                              example: 'House of the Dragon'
+                            image:
+                              type: string
+                              example: 'http://dummyimage.com/342x513.png/cc0000/ffffff'
+                            categoryId:
+                              type: int
+                              example: 1
+                            categoryName:
+                              type: string
+                              example: 'Phim bộ'
+                            genreId:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            genreName:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            isProcessing:
+                              type: int
+                              example: 0
+                      movies:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Sát thủ đối đầu'
+                            englishName:
+                              type: string
+                              example: 'Bullet Train'
+                            image:
+                              type: string
+                              example: 'http://dummyimage.com/342x513.png/cc0000/ffffff'
+                            categoryId:
+                              type: int
+                              example: 2
+                            categoryName:
+                              type: string
+                              example: 'Phim lẻ'
+                            genreId:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            genreName:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            isProcessing:
+                              type: int
+                              example: 0
+                      processingFilms:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Sát thủ đối đầu'
+                            englishName:
+                              type: string
+                              example: 'Bullet Train'
+                            image:
+                              type: string
+                              example: 'http://dummyimage.com/342x513.png/cc0000/ffffff'
+                            categoryId:
+                              type: int
+                              example: 2
+                            categoryName:
+                              type: string
+                              example: 'Phim lẻ'
+                            genreId:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            genreName:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                            isProcessing:
+                              type: int
+                              example: 1
+                      genres:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Âm nhạc'
+                      countries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Trung Quốc'
+                      categories:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Phim bộ'
+        400:
+          description: Lỗi không có dữ liệu trả vể
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: int
+                    example: 6
+                  error:
+                    type: string
+                    example: 'data_not_exists'
+                  message:
+                    type: string
+                    example: 'Data is not exist'
+        500:
+          description: Lỗi Server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: int
+                    example: 9
+                  error:
+                    type: string
+                    example: 'server_error'
+                  message:
+                    type: string
+                    example: 'Error from server ...'
+  /pages/browse:
+    get:
+      description: Lấy data cho trang Phim mới, Phim bộ, Phim lẻ
+      summary: Lấy data cho trang Phim mới, Phim bộ, Phim lẻ
+      parameters:
+        - in: query
+          name: categoryId
+          description: ID của category của danh sách film cần lấy data. Nếu không truyền sẽ lấy hết tất cả film
+          required: false
+          schema:
+            type: int
+        - in: query
+          name: page
+          description: Số của trang trong danh sách (phân trang). Nếu không truyền thì Defaul = 1
+          required: false
+          schema:
+            type: int
+        - in: query
+          name: perPage
+          description: Số lượng film có trong một trang. Nếu không truyền thì Defaul = 15
+          required: false
+          schema:
+            type: int
+      responses:
+        200:
+          description: Object của Film, Category, Genre, Country.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      films:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Gia tộc rồng'
+                            englishName:
+                              type: string
+                              example: 'House of the Dragon'
+                            image:
+                              type: string
+                              example: 'http://dummyimage.com/342x513.png/cc0000/ffffff'
+                            time:
+                              type: int
+                              example: 90
+                            description:
+                              type: string
+                              example: 'Lấy bối cảnh ở vương triều Targaryen, thế hệ được trị vì bởi cha ông Daenerys Targaryen. Khi này, ông tổ Daenerys là Aegon người đã ra lệnh cho rồng xâm lăng rồi thống nhất Bảy Vương Quốc.'
+                            imdbPoint:
+                              type: float
+                              example: 8.6
+                            categoryId:
+                              type: int
+                              example: 1
+                            categoryName:
+                              type: string
+                              example: 'Phim bộ'
+                            genreId:
+                              type: array
+                              items:
+                                type: int
+                              example: [1, 2, 3]
+                            genreName:
+                              type: array
+                              items:
+                                type: string
+                              example:
+                                [
+                                  'Chính kịch',
+                                  'Viễn tưởng & Thần thoại',
+                                  'Hành động & Phiêu lưu',
+                                ]
+                            isProcessing:
+                              type: int
+                              example: 1
+                      genres:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Âm nhạc'
+                      countries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Trung Quốc'
+                      categories:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: int
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Phim bộ'
