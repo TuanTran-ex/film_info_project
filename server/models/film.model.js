@@ -9,9 +9,13 @@ class Film {
     time,
     premierDay,
     description,
-    countryOfProduction,
+    countryId,
+    countryName,
     imdbPoint,
     categoryId,
+    categoryName,
+    genreId,
+    genreName,
     isProcessing,
     created_at,
     updated_at,
@@ -24,9 +28,13 @@ class Film {
     this.time = time;
     this.premierDay = premierDay;
     this.description = description;
-    this.countryOfProduction = countryOfProduction;
     this.imdbPoint = imdbPoint;
     this.categoryId = categoryId;
+    this.categoryName = categoryName;
+    this.genreId = genreId ? [genreId] : [];
+    this.genreName = genreName ? [genreName] : [];
+    this.countryId = countryId;
+    this.countryName = countryName;
     this.isProcessing = isProcessing;
     this.createdAt = created_at;
     this.updatedAt = updated_at;

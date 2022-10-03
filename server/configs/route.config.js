@@ -1,4 +1,5 @@
 const ADMIN_URL = '/admin/';
+const API_URL = '/api/';
 
 const config = {
   admin: {
@@ -10,6 +11,10 @@ const config = {
     Genre: ADMIN_URL + 'genres',
     Country: ADMIN_URL + 'countries',
     Account: ADMIN_URL + 'account',
+  },
+  api: {
+    Film: API_URL + 'films',
+    Page: API_URL + 'pages',
   },
 };
 
