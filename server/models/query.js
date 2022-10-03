@@ -4,7 +4,7 @@
  * @returns string query
  */
 exports.qGetAllCategory = () => {
-  return `SELECT * FROM Category`;
+  return `SELECT id, name FROM Category`;
 };
 
 // Genre
@@ -13,7 +13,7 @@ exports.qGetAllCategory = () => {
  * @returns string query
  */
 exports.qGetAllGenre = () => {
-  return `SELECT * FROM Genre`;
+  return `SELECT id, name FROM Genre`;
 };
 
 // Film
@@ -96,5 +96,5 @@ exports.qGetGenreFilm = (filmId) => {
  * @returns string query
  */
 exports.qGetAllCountry = () => {
-  return `SELECT * FROM Country`;
+  return `SELECT id, name FROM Country`;
 };

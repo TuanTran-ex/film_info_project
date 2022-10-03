@@ -7,6 +7,6 @@ const {
 const router = express.Router();
 
 router.get('/home', getHomePageData);
-router.get('/browser', getBrowserPageData);
+router.get('/browse', getBrowserPageData);
 
 module.exports = router;

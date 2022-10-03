@@ -7,12 +7,7 @@ const { CustomError } = require('../../../utils/errorHandling');
 async function getHomePageData(req, res, next) {
   try {
     const { films, tvFilms, movies, processingFilms } =
-      await FilmRepo.getListFilmHomePage([
-        'id',
-        'name',
-        'englishName',
-        'image',
-      ]);
+      await FilmRepo.getListFilmHomePage();
     const genres = await GenreRepo.getListGenre();
     const countries = await CountryRepo.getListCountry();
     const categories = await CategoryRepo.getListCategories();
