@@ -247,6 +247,8 @@ paths:
                     example: 'Error from server ...'
   /pages/browse:
     get:
+      tags:
+        - Pages
       description: Lấy data cho trang Phim mới, Phim bộ, Phim lẻ
       summary: Lấy data cho trang Phim mới, Phim bộ, Phim lẻ
       parameters:
@@ -365,3 +367,35 @@ paths:
                             name:
                               type: string
                               example: 'Phim bộ'
+        400:
+          description: Lỗi không có dữ liệu trả vể
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: int
+                    example: 6
+                  error:
+                    type: string
+                    example: 'data_not_exists'
+                  message:
+                    type: string
+                    example: 'Data is not exist'
+        500:
+          description: Lỗi Server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: int
+                    example: 9
+                  error:
+                    type: string
+                    example: 'server_error'
+                  message:
+                    type: string
+                    example: 'Error from server ...'
