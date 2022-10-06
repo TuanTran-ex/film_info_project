@@ -111,3 +111,6 @@ test
 
 # VS Code
 .vscode
+
+# image film
+server/public/images/films
