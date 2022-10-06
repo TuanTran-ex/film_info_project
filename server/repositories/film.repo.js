@@ -77,6 +77,18 @@ class FilmRepo {
     const [listGenre, fields] = await pool.query(query.qGetGenreFilm(filmId));
     return listGenre;
   }
+
+  async addFilm(film) {
+    const [rows, fields] = await pool.query(query.qAddFilm(film));
+    for (let item of film.genreId[0]) {
+      await pool.query(query.qAddGenreToFilm(rows.insertId, item));
+    }
+    return rows;
+  }
+  async deleteFilm(filmId) {
+    const [rows, fields] = await pool.query(query.qDeleteFilmById(filmId));
+    return rows;
+  }
 }
 
 module.exports = new FilmRepo();

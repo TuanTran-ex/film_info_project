@@ -7,7 +7,7 @@ class Film {
     image,
     backgroundImage,
     time,
-    premierDay,
+    premierDate,
     description,
     countryId,
     countryName,
@@ -26,7 +26,7 @@ class Film {
     this.image = image;
     this.backgroundImage = backgroundImage;
     this.time = time;
-    this.premierDay = premierDay;
+    this.premierDate = new Date(premierDate).toLocaleDateString('en-US');
     this.description = description;
     this.imdbPoint = imdbPoint;
     this.categoryId = categoryId;

@@ -90,6 +90,34 @@ exports.qGetGenreFilm = (filmId) => {
   ON Genre.id = GenreFilm.genreId WHERE Film.id = ${filmId}`;
 };
 
+exports.qAddFilm = ({
+  name,
+  englishName,
+  image,
+  backgroundImage,
+  time,
+  premierDate,
+  description,
+  imdbPoint,
+  isProcessing,
+  categoryId,
+  countryId,
+}) => {
+  console.log(typeof premierDate);
+  premierDate = premierDate.replaceAll('/', '-');
+  return `INSERT INTO Film (name, englishName, image, backgroundImage, time, premierDate, description, imdbPoint, isProcessing, categoryId, countryOfProduction) 
+  VALUES('${name}', '${englishName}', '${image}', '${backgroundImage}', ${
+    time == '' ? 'NULL' : time
+  }, STR_TO_DATE('${premierDate}', '%m-%d-%Y'), '${description}', '${imdbPoint}', ${isProcessing}, ${categoryId}, ${countryId})`;
+};
+
+exports.qAddGenreToFilm = (filmId, genreId) => {
+  return `INSERT INTO GenreFilm (filmId, genreId) VALUES(${filmId}, ${genreId})`;
+};
+exports.qDeleteFilmById = (filmId) => {
+  return `DELETE FROM Film WHERE id = ${filmId}`;
+};
+
 // Country
 /**
  *
