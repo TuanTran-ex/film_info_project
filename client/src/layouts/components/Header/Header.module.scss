@@ -11,7 +11,8 @@
     height: var(--default-header-height);
     display: flex;
     align-items: center;
-    background-color: var(--main-color);
+    // background-color: var(--main-color);
+    background-color: transparent;
     position: fixed;
     top: 0;
     right: 0;
@@ -20,8 +21,9 @@
 }
 
 .header-active {
-    background-color: rgb(40, 21, 97, 0.9);
-    // background-color: rgba(51, 10, 103, 0.93);
+    // background-color: rgb(40, 21, 97, 0.9);
+    background-color: hsl(183, 86%, 19%, 0.9);
+    background-color: hsl(183, 86%, 19%, 0.9);
 }
 
 .nav-brand {
@@ -38,7 +40,6 @@
         color: #dc1a28;
         margin: 0 0 0 48px;
         cursor: pointer;
-        // font-family: 'Merriweather';
     }
 
     .film-icon {

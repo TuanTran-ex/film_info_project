@@ -9,6 +9,7 @@ import HotMovie from '../page/HotMovie';
 import OddMovie from '../page/OddMovie';
 import SeriesMovie from '../page/SeriesMovie';
 import NewMovie from '../page/NewMovie';
+import MovieDetails from '../page/MovieDetails';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -19,6 +20,11 @@ const publicRoutes = [
     { path: config.routes.oddmovie, component: OddMovie },
     { path: config.routes.seriesmovie, component: SeriesMovie },
     { path: config.routes.newmovie, component: NewMovie },
+    {
+        path: config.routes.moviedetails,
+        component: MovieDetails,
+        layout: MovieDetails,
+    },
 ];
 
 //Dang nhap: Login

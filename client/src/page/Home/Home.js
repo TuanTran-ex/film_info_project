@@ -9,6 +9,7 @@ import './14_LIBRARY.css';
 import Header from './Header';
 import FilmHome from '../../layouts/components/public/FilmHome';
 import Type from '../../layouts/components/public/TypeFilm';
+import config from '../../config';
 
 const cx = classNames.bind(styles);
 function Home() {
@@ -44,11 +45,11 @@ function Home() {
             />
             <div className={cx('content')}>
                 <Type />
-                <FilmHome />
+                <FilmHome listFilm={listFilm} />
                 <Type />
-                <FilmHome />
+                <FilmHome listFilm={listFilm} />
                 <Type />
-                <FilmHome />
+                <FilmHome listFilm={listFilm} />
             </div>
             <div className={cx('new-film')}>
                 <div className={cx('title')}>Phim mới đăng (chờ xử lý)</div>

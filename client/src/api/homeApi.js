@@ -1,9 +1,8 @@
 import axiosClient from './axiosClient';
 
-
 class HomePageAPI {
     getAll = (params) => {
-        const url = '/films';
+        const url = '/pages/home';
         return axiosClient.get(url, { params });
     };
 }

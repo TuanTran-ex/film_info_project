@@ -5,6 +5,7 @@ import styles from './Header.module.scss';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import config from '../../../config';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -50,33 +51,73 @@ function Header({}) {
                 <p className={cx('film-icon')}>
                     <MovieCreationOutlinedIcon className={cx('icon')} />
                 </p>
-                <a href={config.routes.home} className={cx('brand')}>
+                <Link to={config.routes.home} className={cx('brand')}>
                     Xem phim
-                </a>
+                </Link>
             </nav>
 
             <div className={cx('nav-menu')}>
                 <div className={cx('nav-list')}>
                     <li className={cx('item')}>
                         <SearchOutlinedIcon className={cx('search-icon')} />
-                        <a href={config.routes.search}>Tìm kiếm</a>
+                        <Link
+                            to={config.routes.search}
+                            onClick={() => {
+                                sessionStorage.removeItem('nowIndex');
+                            }}
+                        >
+                            Tìm kiếm
+                        </Link>
                     </li>
                     <li className={cx('item')}>
-                        <a href={config.routes.hotmovie}>Phim Hot</a>
+                        <Link
+                            to={config.routes.hotmovie}
+                            onClick={() => {
+                                sessionStorage.removeItem('nowIndex');
+                            }}
+                        >
+                            Phim Hot
+                        </Link>
                     </li>
                     <li className={cx('item')}>
-                        <a href={config.routes.oddmovie}>Phim Lẻ</a>
+                        <Link
+                            to={config.routes.oddmovie}
+                            onClick={() => {
+                                sessionStorage.removeItem('nowIndex');
+                            }}
+                        >
+                            Phim Lẻ
+                        </Link>
                     </li>
                     <li className={cx('item')}>
-                        <a href={config.routes.seriesmovie}>Phim Bộ</a>
+                        <Link
+                            to={config.routes.seriesmovie}
+                            onClick={() => {
+                                sessionStorage.removeItem('nowIndex');
+                            }}
+                        >
+                            Phim Bộ
+                        </Link>
                     </li>
                     <li className={cx('item')}>
-                        <a href={config.routes.newmovie}>Phim mới</a>
+                        <Link
+                            to={config.routes.newmovie}
+                            onClick={() => {
+                                sessionStorage.removeItem('nowIndex');
+                            }}
+                        >
+                            Phim mới
+                        </Link>
                     </li>
                 </div>
                 <div className={cx('nav-use')}>
-                    <button className={cx('btn-user')}>
-                        <a href={config.routes.login}>Đăng nhập</a>
+                    <button
+                        className={cx('btn-user')}
+                        onClick={() => {
+                            sessionStorage.removeItem('nowIndex');
+                        }}
+                    >
+                        <Link to={config.routes.login}>Đăng nhập</Link>
                     </button>
                 </div>
             </div>

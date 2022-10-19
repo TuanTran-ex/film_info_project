@@ -8,6 +8,7 @@ const routes = {
     oddmovie: '/oddmovie',
     seriesmovie: '/seriesmovie',
     newmovie: '/newmovie',
+    moviedetails: '/moviedetails',
 };
 
 export default routes;

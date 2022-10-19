@@ -4,15 +4,22 @@ import styles from './ListFilm.module.scss';
 import Image from '../../../../components/image/Images';
 
 const cx = classNames.bind(styles);
-function ListFilm() {
+function ListFilm({ films }) {
+    const array = films.slice(1, films.length);
+    const getYear = (day) => {
+        const year = day.slice(day.length - 4, day.length);
+        return year;
+        // console.log(year);
+    };
+    // getYear('9/27/2022');
     return (
         <div className={cx('wrapper')}>
             <div className={cx('list')}>
-                <div className={cx('item')}>
+                <div key={films[0].id} className={cx('item')}>
                     <div className={cx('film-image')}>
                         <Image
-                            src="https://image.tmdb.org/t/p/w342/w3fo3V0RumihdBgecrP4eSi5aru.jpg"
-                            alt="Hanh trinh vo tan"
+                            src="https://image.tmdb.org/t/p/w342/wCQBzTOigP5eCyBAjQGlWYNo5DR.jpg"
+                            alt={films[0].name}
                             className={cx('image')}
                         />
                     </div>
@@ -20,27 +27,27 @@ function ListFilm() {
                         <div className={cx('row-1')}>
                             <div className={cx('film-name')}>
                                 <a href="/" className={cx('name-vi')}>
-                                    Hành trình vô tận
+                                    {films[0].name}
                                 </a>
                                 <div className={cx('name-en')}>
-                                    <a href="/">A trip to Infinity</a>
+                                    <a href="/">{films[0].englishName}</a>
                                     <a href="/" className={cx('year')}>
-                                        (2022)
+                                        ({getYear(films[0].premierDate)})
                                     </a>
                                 </div>
                             </div>
                             <div className={cx('meta')}>
-                                <p className={cx('time')}>90 phút</p>
+                                <p className={cx('time')}>
+                                    {films[0].time} phút
+                                </p>
                                 <a href="/" className={cx('country')}>
-                                    Mỹ
+                                    {films[0].countryName}
                                 </a>
                             </div>
                         </div>
 
                         <div className={cx('row-2')}>
-                            Các nhà toán học, nhà vật lý hạt và nhà vũ trụ học
-                            lỗi lạc đào sâu về vô tận và những tác động khó hiểu
-                            của nó đối với vũ trụ.
+                            {films[0].description}
                         </div>
                         <div className={cx('row-3')}>
                             <div className={cx('document')}>
@@ -61,70 +68,71 @@ function ListFilm() {
                                         fill="#263238"
                                     ></path>
                                 </svg>
-                                6.9
+                                {films[0].imdbPoint}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div className={cx('item', 'item-2')}>
-                    <div className={cx('film-image')}>
-                        <Image
-                            src="https://image.tmdb.org/t/p/w342/w3fo3V0RumihdBgecrP4eSi5aru.jpg"
-                            alt="Hanh trinh vo tan"
-                            className={cx('image')}
-                        />
-                    </div>
-                    <div className={cx('content')}>
-                        <div className={cx('row-1')}>
-                            <div className={cx('film-name')}>
-                                <a href="/" className={cx('name-vi')}>
-                                    Hành trình vô tận
-                                </a>
-                                <div className={cx('name-en')}>
-                                    <a href="/">A trip to Infinity</a>
-                                    <a href="/" className={cx('year')}>
-                                        (2022)
+                {array.map((item) => (
+                    <div key={item.id} className={cx('item', 'item-2')}>
+                        <div className={cx('film-image')}>
+                            <Image
+                                src="https://image.tmdb.org/t/p/w342/kb64uk8TU1KGQF5lshgr6Y5qQgq.jpg"
+                                alt={item.name}
+                                className={cx('image')}
+                            />
+                        </div>
+                        <div className={cx('content')}>
+                            <div className={cx('row-1')}>
+                                <div className={cx('film-name')}>
+                                    <a href="/" className={cx('name-vi')}>
+                                        {item.name}
+                                    </a>
+                                    <div className={cx('name-en')}>
+                                        <a href="/">{item.englishName}</a>
+                                        <a href="/" className={cx('year')}>
+                                            ({getYear(item.premierDate)})
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className={cx('meta')}>
+                                    <p className={cx('time')}>
+                                        {item.time} phút
+                                    </p>
+                                    <a href="/" className={cx('country')}>
+                                        {item.countryName}
                                     </a>
                                 </div>
                             </div>
-                            <div className={cx('meta')}>
-                                <p className={cx('time')}>90 phút</p>
-                                <a href="/" className={cx('country')}>
-                                    Mỹ
-                                </a>
-                            </div>
-                        </div>
 
-                        <div className={cx('row-2')}>
-                            Các nhà toán học, nhà vật lý hạt và nhà vũ trụ học
-                            lỗi lạc đào sâu về vô tận và những tác động khó hiểu
-                            của nó đối với vũ trụ.
-                        </div>
-                        <div className={cx('row-3')}>
-                            <div className={cx('document')}>
-                                <a href="/">Tài liệu</a>
+                            <div className={cx('row-2')}>
+                                {item.description}
                             </div>
-                            <div className={cx('IMDh')}>
-                                <svg
-                                    className={cx('icon')}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 48 48"
-                                >
-                                    <path
-                                        d="M44 13H4c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h40c2.2 0 4-1.8 4-4V17c0-2.2-1.8-4-4-4z"
-                                        fill="#ffc107"
-                                    ></path>
-                                    <path
-                                        d="M28.102 18h-3.704v13.102h3.704c2 0 2.796-.403 3.296-.704.602-.398.903-1.097.903-1.796v-7.903c0-.898-.403-1.699-.903-2-.796-.5-1.097-.699-3.296-.699zm.699 10.3c0 .598-.7.598-1.301.598V20c.602 0 1.3 0 1.3.602zM33.8 18v13.3h2.802s.199-.902.398-.698c.398 0 1.5.597 2.2.597.698 0 1.1 0 1.5-.199.6-.398.698-.7.698-1.3v-7.802c0-1.097-1.097-1.796-2-1.796-.898 0-1.796.597-2.199.898v-3zm3.598 4.2c0-.4 0-.598.403-.598.199 0 .398.199.398.597v6.602c0 .398 0 .597-.398.597-.2 0-.403-.199-.403-.597zM22.7 31.3V18h-4.4l-.8 6.3-1.102-6.3h-4v13.3h2.903v-7.402l1.3 7.403h2l1.297-7.403v7.403zM7.602 18h3.097v13.3H7.602z"
-                                        fill="#263238"
-                                    ></path>
-                                </svg>
-                                6.9
+                            <div className={cx('row-3')}>
+                                <div className={cx('document')}>
+                                    <a href="/">Tài liệu</a>
+                                </div>
+                                <div className={cx('IMDh')}>
+                                    <svg
+                                        className={cx('icon')}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 48 48"
+                                    >
+                                        <path
+                                            d="M44 13H4c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h40c2.2 0 4-1.8 4-4V17c0-2.2-1.8-4-4-4z"
+                                            fill="#ffc107"
+                                        ></path>
+                                        <path
+                                            d="M28.102 18h-3.704v13.102h3.704c2 0 2.796-.403 3.296-.704.602-.398.903-1.097.903-1.796v-7.903c0-.898-.403-1.699-.903-2-.796-.5-1.097-.699-3.296-.699zm.699 10.3c0 .598-.7.598-1.301.598V20c.602 0 1.3 0 1.3.602zM33.8 18v13.3h2.802s.199-.902.398-.698c.398 0 1.5.597 2.2.597.698 0 1.1 0 1.5-.199.6-.398.698-.7.698-1.3v-7.802c0-1.097-1.097-1.796-2-1.796-.898 0-1.796.597-2.199.898v-3zm3.598 4.2c0-.4 0-.598.403-.598.199 0 .398.199.398.597v6.602c0 .398 0 .597-.398.597-.2 0-.403-.199-.403-.597zM22.7 31.3V18h-4.4l-.8 6.3-1.102-6.3h-4v13.3h2.903v-7.402l1.3 7.403h2l1.297-7.403v7.403zM7.602 18h3.097v13.3H7.602z"
+                                            fill="#263238"
+                                        ></path>
+                                    </svg>
+                                    {item.imdbPoint}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     );
