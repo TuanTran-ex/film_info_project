@@ -49,17 +49,18 @@
             <tbody>
               <% for (item of films) { %>
               <tr>
-                <td><%=item.name%></td>
-                <td><%=item.englishName%></td>
-                <td><%=item.time %></td>
-                <td><%=item.premierDate%></td>
-                <td><%=item.countryName %></td>
+                <td><%=item.name ?? ''%></td>
+                <td><%=item.englishName ?? ''%></td>
+                <td><%=item.time ?? ''%></td>
+                <td><%=item.premierDate ?? ''%></td>
+                <td><%=item.Country?.name ?? '' %></td>
                 <td>
-                  <% for( let i = 0; i < item.genreName.length; i++ ) { %>
-                  <span><%=item.genreName[i] %><br /></span>
+                  <% if (item.Genres) for( let i = 0; i < item.Genres.length;
+                  i++ ) { %>
+                  <span><%=item.Genres[i].name %><br /></span>
                   <% } %>
                 </td>
-                <td><%=item.categoryName %></td>
+                <td><%=item.Category?.name ?? '' %></td>
                 <td><%=item.isProcessing ? 'Đang xử lý': 'Đã xử lý' %></td>
                 <td>
                   <a class="btn btn-info mr-2" href="#">Chi tiết</a

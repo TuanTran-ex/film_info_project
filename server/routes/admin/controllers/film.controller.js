@@ -32,7 +32,7 @@ exports.postFilm = async (req, res, next) => {
     genreId,
   } = req.body;
   const { image, backgroundImage } = req.files;
-  const film = new Film({
+  const film = {
     name,
     englishName,
     time,
@@ -45,7 +45,7 @@ exports.postFilm = async (req, res, next) => {
     genreId,
     image: image[0].path.replace('public', ''),
     backgroundImage: backgroundImage[0].path.replace('public', ''),
-  });
+  };
   await FilmRepo.addFilm(film);
   res.redirect('/admin/films');
 };

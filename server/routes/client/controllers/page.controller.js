@@ -45,6 +45,7 @@ async function getBrowserPageData(req, res, next) {
     if (!films && !genres && !countries && !categories) {
       return next(new CustomError(6, 400, 'Data is not exist'));
     }
+
     return res.status(200).json({
       success: true,
       data: {
