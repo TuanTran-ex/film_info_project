@@ -101,7 +101,32 @@ class FilmRepo {
 
     return films.map((el) => el.get({ plain: true }));
   }
-
+  /**
+   * Tìm kiếm Film theo name và englishName
+   * @param {string} searchValue
+   * @returns Array Films
+   */
+  async searchFilm(searchValue) {
+    searchValue = searchValue.trim();
+    const films = await Film.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${searchValue}%`,
+            },
+          },
+          {
+            englishName: {
+              [Op.like]: `%${searchValue}%`,
+            },
+          },
+        ],
+      },
+      limit: 30,
+    });
+    return films.map((el) => el.get({ plain: true }));
+  }
   /**
    * Get list genre film
    * @param {int} filmId

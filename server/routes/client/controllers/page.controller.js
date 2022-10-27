@@ -60,4 +60,14 @@ async function getBrowserPageData(req, res, next) {
   }
 }
 
-module.exports = { getHomePageData, getBrowserPageData };
+async function searchFilm(req, res, next) {
+  const searchValue = req.query.q;
+  try {
+    const listFilm = await FilmRepo.searchFilm(searchValue);
+    res.status(200).json({ success: true, data: listFilm });
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { getHomePageData, getBrowserPageData, searchFilm };
