@@ -10,8 +10,8 @@ const cpUpload = upload.fields([
 ]);
 
 router.get('/', FilmController.index);
-router.get('/add', FilmController.add);
-router.post('/', cpUpload, FilmController.postFilm);
-router.delete('/:id', FilmController.deleteFilm);
+router.get('/add', FilmController.create);
+router.post('/', cpUpload, FilmController.store);
+router.delete('/:id', FilmController.destroy);
 
 module.exports = router;

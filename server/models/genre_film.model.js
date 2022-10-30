@@ -11,6 +11,7 @@ const GenreFilm = sequelize.define(
       type: DataTypes.BIGINT.UNSIGNED,
       primaryKey: true,
       allowNull: false,
+      autoIncrement: true,
     },
     filmId: {
       type: DataTypes.BIGINT.UNSIGNED,

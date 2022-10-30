@@ -68,4 +68,8 @@ function errorHandling(error, res) {
   }
 }
 
-module.exports = { CustomError, errorHandling };
+const tryCatchFunc = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
+
+module.exports = { CustomError, errorHandling, tryCatchFunc };

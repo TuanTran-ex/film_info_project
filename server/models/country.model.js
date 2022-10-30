@@ -8,6 +8,7 @@ const Country = sequelize.define(
       type: DataTypes.BIGINT.UNSIGNED,
       primaryKey: true,
       allowNull: false,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
