@@ -15,6 +15,7 @@ const config = {
   api: {
     Film: API_URL + 'films',
     Page: API_URL + 'pages',
+    Category: API_URL + 'categories',
   },
 };
 

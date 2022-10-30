@@ -9,19 +9,38 @@ class CategoryRepo {
    * Get list Categories
    * @returns Categories model
    */
-  async getListCategories() {
-    // const categories = [];
-    // const [rows, fields] = await pool.query(query.qGetAllCategory());
-
-    // if (!rows) {
-    //   throw new CustomError(6, 400, 'Categories is not exists');
-    // }
-    // rows.map((item) => {
-    //   const category = new Category(item);
-    //   categories.push(category);
-    // });
+  async getList() {
     const categories = await CategoryModel.findAll();
     return categories;
+  }
+
+  async getById(id) {
+    const category = await CategoryModel.findByPk(id);
+    return category;
+  }
+  async getByName(name) {
+    const category = await CategoryModel.findOne({
+      where: {
+        name,
+      },
+    });
+    return category;
+  }
+  async create(category) {
+    const newCategory = await CategoryModel.create(category);
+    return newCategory;
+  }
+  async update(category) {
+    const updatedCategory = await CategoryModel.update(category, {
+      where: { id: category.id },
+    });
+    return updatedCategory;
+  }
+  async delete(id) {
+    const deletedCategory = await CategoryModel.destroy({
+      where: { id },
+    });
+    return deletedCategory;
   }
 }
 
