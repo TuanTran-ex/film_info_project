@@ -11,14 +11,14 @@ exports.index = async (req, res) => {
   res.render('admin/film', { films });
 };
 
-exports.add = async (req, res) => {
+exports.create = async (req, res) => {
   const genres = await GenreRepo.getListGenre();
   const countries = await CountryRepo.getListCountry();
   const categories = await CategoryRepo.getListCategories();
   res.render('admin/film/add', { genres, countries, categories });
 };
 
-exports.postFilm = async (req, res, next) => {
+exports.store = async (req, res, next) => {
   const {
     name,
     englishName,
@@ -32,7 +32,7 @@ exports.postFilm = async (req, res, next) => {
     genreId,
   } = req.body;
   const { image, backgroundImage } = req.files;
-  const film = new Film({
+  const film = {
     name,
     englishName,
     time,
@@ -45,12 +45,16 @@ exports.postFilm = async (req, res, next) => {
     genreId,
     image: image[0].path.replace('public', ''),
     backgroundImage: backgroundImage[0].path.replace('public', ''),
-  });
+  };
   await FilmRepo.addFilm(film);
   res.redirect('/admin/films');
 };
 
-exports.deleteFilm = async (req, res, next) => {
+exports.edit = (req, res, next) => {};
+
+exports.update = (req, res, next) => {};
+
+exports.destroy = async (req, res, next) => {
   const { id } = req.params;
   await FilmRepo.deleteFilm(id);
   res.status(204).send();
