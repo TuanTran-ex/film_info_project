@@ -20,21 +20,7 @@ class FilmRepo {
     let tvFilms = [];
     let movies = [];
     let processingFilms = [];
-    // const [listFilm, fields] = await pool.query(query.qGetAllFilm(col));
-    // if (!listFilm) {
-    //   throw new CustomError(6, 400, 'Film is not exists');
-    // }
-    // listFilm.map((item) => {
-    //   const film = new Film(item);
-    //   if (item.categoryName === CATEGORY_MOVIE_STR) movies.push(film);
-    //   if (item.categoryName === CATEGORY_TV_FILM_STR) tvFilms.push(film);
-    //   if (item.isProcessing) processingFilms.push(film);
-    //   films.push(film);
-    // });
-    // films = films.slice(0, 8);
-    // tvFilms = tvFilms.slice(0, 8);
-    // movies = movies.slice(0, 8);
-    // processingFilms = processingFilms.slice(0, 15);
+
     films = await Film.findAll();
     tvFilms = await Film.findAll({
       include: [
@@ -57,11 +43,7 @@ class FilmRepo {
    * @returns array films
    */
   async getListFilmBrowserPage(categoryId, page = 1, perPage = 20) {
-    // const col = ['id', 'name', 'englishName', 'image', 'premierDate', 'time'];
     let films = [];
-    // const [listFilm, fields] = await pool.query(
-    //   query.qGetFilmWithPaginateBrowerPage(categoryId, page, perPage)
-    // );
     if (categoryId)
       films = await Film.findAll({
         attributes: {
@@ -87,17 +69,6 @@ class FilmRepo {
         offset: parseInt(page) - 1,
         limit: parseInt(perPage),
       });
-    // let listFilm = rows[0];
-    // for (const item of listFilm[0]) {
-    //   const film = new Film(item);
-    //   const genres = await this.getGenreFilm(film.id);
-    //   if (genres.length > 0)
-    //     genres.forEach((genre) => {
-    //       film.genreId.push(genre.id);
-    //       film.genreName.push(genre.name);
-    //     });
-    //   films.push(film);
-    // }
 
     return films.map((el) => el.get({ plain: true }));
   }
@@ -106,7 +77,7 @@ class FilmRepo {
    * @param {string} searchValue
    * @returns Array Films
    */
-  async searchFilm(searchValue) {
+  async searchFilm(searchValue = '') {
     searchValue = searchValue.trim();
     const films = await Film.findAll({
       where: {
@@ -141,25 +112,15 @@ class FilmRepo {
   }
 
   async addFilm(film) {
-    // const [rows, fields] = await pool.query(query.qAddFilm(film));
-    // for (let item of film.genreId[0]) {
-    //   await pool.query(query.qAddGenreToFilm(rows.insertId, item));
-    // }
-    // return rows;
     let newFilm;
-    // console.log(film);
-    let listGenre = await Genre.findAll({ where: { id: film.genreId } });
-    // console.log(listGenre);
 
-    newFilm = await Film.create(
-      {
-        ...film,
-        CategoryId: film.categoryId,
-        countryOfProduction: film.countryId,
-        // genres: listGenre,
-      }
-      // { include: [{ model: Genre, as: 'genres' }] }
-    );
+    let listGenre = await Genre.findAll({ where: { id: film.genreId } });
+
+    newFilm = await Film.create({
+      ...film,
+      CategoryId: film.categoryId,
+      countryOfProduction: film.countryId,
+    });
     for (let item of listGenre) {
       item.addFilm(newFilm);
     }
