@@ -55,6 +55,9 @@ const Film = sequelize.define(
     created_at: {
       type: DataTypes.DATE,
     },
+    slug: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timeStamp: true,
@@ -64,6 +67,10 @@ const Film = sequelize.define(
     tableName: 'Film',
   }
 );
+
+Film.beforeCreate(async (film, options) => {
+  film.slug = film.name.toSlug();
+});
 
 const PersonFilm = sequelize.define(
   'PersonFilm',
