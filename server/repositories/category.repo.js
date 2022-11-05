@@ -1,7 +1,3 @@
-const pool = require('../models/connectDB');
-const Category = require('../models/category.model');
-const query = require('../models/query');
-const { CustomError } = require('../utils/errorHandling');
 const CategoryModel = require('../models/category.model');
 
 class CategoryRepo {
