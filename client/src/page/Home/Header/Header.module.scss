@@ -13,13 +13,12 @@
 }
 
 .block {
-    width: 100%; //set width
+    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
 }
 
 .type {
-    margin: 0;
     margin: auto;
     padding: 0 10px;
 }
@@ -119,4 +118,11 @@
 }
 
 @media (max-width: 739px) {
+    .type {
+        margin-top: 16px;
+    }
+
+    .control .list {
+        // display: none;
+    }
 }

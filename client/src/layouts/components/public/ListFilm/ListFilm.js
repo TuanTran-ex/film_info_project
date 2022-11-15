@@ -2,45 +2,67 @@ import classNames from 'classnames/bind';
 import styles from './ListFilm.module.scss';
 // LIBRARY
 import Image from '../../../../components/image/Images';
-
+import routes from '../../../../config/routes';
 const cx = classNames.bind(styles);
 function ListFilm({ films }) {
     const array = films.slice(1, films.length);
     const getYear = (day) => {
-        const year = day.slice(day.length - 4, day.length);
+        // const year = day.slice(day.length - 4, day.length);
+        const year = day.slice(0, 4);
         return year;
-        // console.log(year);
     };
-    // getYear('9/27/2022');
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('list')}>
                 <div key={films[0].id} className={cx('item')}>
                     <div className={cx('film-image')}>
-                        <Image
-                            src="https://image.tmdb.org/t/p/w342/wCQBzTOigP5eCyBAjQGlWYNo5DR.jpg"
-                            alt={films[0].name}
-                            className={cx('image')}
-                        />
+                        <a
+                            href={routes.moviedetails.replace(
+                                ':id',
+                                films[0].id,
+                            )}
+                        >
+                            <Image
+                                src="https://image.tmdb.org/t/p/w342/wCQBzTOigP5eCyBAjQGlWYNo5DR.jpg"
+                                alt={films[0].name}
+                                className={cx('image')}
+                            />
+                        </a>
                     </div>
                     <div className={cx('content')}>
                         <div className={cx('row-1')}>
                             <div className={cx('film-name')}>
-                                <a href="/" className={cx('name-vi')}>
+                                <a
+                                    href={routes.moviedetails.replace(
+                                        ':id',
+                                        films[0].id,
+                                    )}
+                                    className={cx('name-vi')}
+                                >
                                     {films[0].name}
                                 </a>
                                 <div className={cx('name-en')}>
-                                    <a href="/">{films[0].englishName}</a>
-                                    <a href="/" className={cx('year')}>
-                                        ({getYear(films[0].premierDate)})
+                                    <a
+                                        href={routes.moviedetails.replace(
+                                            ':id',
+                                            films[0].id,
+                                        )}
+                                    >
+                                        {films[0].englishName}
                                     </a>
+                                    (
+                                    <a href="/year" className={cx('year')}>
+                                        {getYear(films[0].premierDate)}
+                                    </a>
+                                    )
                                 </div>
                             </div>
                             <div className={cx('meta')}>
                                 <p className={cx('time')}>
                                     {films[0].time} phút
                                 </p>
-                                <a href="/" className={cx('country')}>
+                                <a href="/country" className={cx('country')}>
                                     {films[0].countryName}
                                 </a>
                             </div>
@@ -51,7 +73,10 @@ function ListFilm({ films }) {
                         </div>
                         <div className={cx('row-3')}>
                             <div className={cx('document')}>
-                                <a href="/">Tài liệu</a>
+                                <a href="/document">Tài liệu</a>
+                                <a href="/document">Kinh dị</a>
+                                <a href="/document">Hài kịch & Sân khấu</a>
+                                <a href="/document">Tâm lí</a>
                             </div>
                             <div className={cx('IMDh')}>
                                 <svg
@@ -76,30 +101,64 @@ function ListFilm({ films }) {
                 {array.map((item) => (
                     <div key={item.id} className={cx('item', 'item-2')}>
                         <div className={cx('film-image')}>
-                            <Image
-                                src="https://image.tmdb.org/t/p/w342/kb64uk8TU1KGQF5lshgr6Y5qQgq.jpg"
-                                alt={item.name}
-                                className={cx('image')}
-                            />
+                            <a
+                                href={routes.moviedetails.replace(
+                                    ':id',
+                                    item.id,
+                                )}
+                            >
+                                <Image
+                                    src="https://image.tmdb.org/t/p/w342/kb64uk8TU1KGQF5lshgr6Y5qQgq.jpg"
+                                    alt={item.name}
+                                    className={cx('image')}
+                                />
+                            </a>
                         </div>
                         <div className={cx('content')}>
                             <div className={cx('row-1')}>
                                 <div className={cx('film-name')}>
-                                    <a href="/" className={cx('name-vi')}>
+                                    <a
+                                        href={routes.moviedetails.replace(
+                                            ':id',
+                                            item.id,
+                                        )}
+                                        className={cx('name-vi')}
+                                    >
                                         {item.name}
                                     </a>
                                     <div className={cx('name-en')}>
-                                        <a href="/">{item.englishName}</a>
-                                        <a href="/" className={cx('year')}>
-                                            ({getYear(item.premierDate)})
+                                        <a
+                                            href={routes.moviedetails.replace(
+                                                ':id',
+                                                item.id,
+                                            )}
+                                        >
+                                            {item.englishName}
                                         </a>
+                                        (
+                                        <a
+                                            href={routes.moviedetails.replace(
+                                                ':id',
+                                                item.id,
+                                            )}
+                                            className={cx('year')}
+                                        >
+                                            {getYear(item.premierDate)}
+                                        </a>
+                                        )
                                     </div>
                                 </div>
                                 <div className={cx('meta')}>
                                     <p className={cx('time')}>
                                         {item.time} phút
                                     </p>
-                                    <a href="/" className={cx('country')}>
+                                    <a
+                                        href={routes.moviedetails.replace(
+                                            ':id',
+                                            item.id,
+                                        )}
+                                        className={cx('country')}
+                                    >
                                         {item.countryName}
                                     </a>
                                 </div>
@@ -110,7 +169,14 @@ function ListFilm({ films }) {
                             </div>
                             <div className={cx('row-3')}>
                                 <div className={cx('document')}>
-                                    <a href="/">Tài liệu</a>
+                                    <a
+                                        href={routes.moviedetails.replace(
+                                            ':id',
+                                            item.id,
+                                        )}
+                                    >
+                                        Tài liệu
+                                    </a>
                                 </div>
                                 <div className={cx('IMDh')}>
                                     <svg

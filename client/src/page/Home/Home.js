@@ -22,11 +22,13 @@ function Home() {
         const fetchHomeApi = async () => {
             try {
                 const params = {};
+                console.log(params);
                 const response = await homePageApi.getAll(params);
                 console.log('Fetch products successfully: ', response);
                 const { categories, films, countries, genres } = response.data;
                 setListCategory(categories);
                 setListFilm(films);
+                console.log(typeof films);
                 setListGenre(genres);
                 setlistCountry(countries);
             } catch (error) {
@@ -35,6 +37,19 @@ function Home() {
         };
         fetchHomeApi();
     }, []);
+    const listTypeFilm = [
+        { id: 1, type: 'PHIM ĐỀ CỬ' },
+        {
+            id: 2,
+            type: 'PHIM LẺ MỚI CẬP NHẬT',
+        },
+        {
+            id: 3,
+            type: 'PHIM BỘ MỚI CẬP NHẬT',
+        },
+    ];
+
+    const arrayFilms = listFilm.slice(0, 10);
 
     return (
         <div className={cx('wrapper')}>
@@ -44,12 +59,12 @@ function Home() {
                 listCountry={listCountry}
             />
             <div className={cx('content')}>
-                <Type />
-                <FilmHome listFilm={listFilm} />
-                <Type />
-                <FilmHome listFilm={listFilm} />
-                <Type />
-                <FilmHome listFilm={listFilm} />
+                <Type type={listTypeFilm[0]} />
+                <FilmHome listFilm={arrayFilms} />
+                <Type type={listTypeFilm[1]} />
+                <FilmHome listFilm={arrayFilms} />
+                <Type type={listTypeFilm[2]} />
+                <FilmHome listFilm={arrayFilms} />
             </div>
             <div className={cx('new-film')}>
                 <div className={cx('title')}>Phim mới đăng (chờ xử lý)</div>

@@ -2,7 +2,7 @@ import axiosClient from './axiosClient';
 
 class SearchPageAPI {
     getAll = (params) => {
-        const url = '/search';
+        const url = 'pages/search';
         return axiosClient.get(url, { params });
     };
 }

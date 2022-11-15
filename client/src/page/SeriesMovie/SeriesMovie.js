@@ -7,10 +7,11 @@ import HeaderSeries from '../../layouts/components/public/HeaderSeries/HeaderSer
 import FilmBlock from '../../layouts/components/public/FilmBlock';
 import ListFilm from '../../layouts/components/public/ListFilm';
 import Pagination from '../../layouts/components/public/Pagination/Pagination';
+
 const cx = classNames.bind(styles);
 
 function SeriesMovie() {
-    const title = 'Phim bộ';
+    const title = 'Phim Bộ';
     const [listCategory, setListCategory] = useState([]);
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
@@ -30,7 +31,6 @@ function SeriesMovie() {
             try {
                 const params = { categoryId: 8 };
                 const response = await BrowseAPI.getAll(params);
-                console.log('Fetch products successfully series: ', response);
                 const { films, categories, countries, genres } = response.data;
                 console.log(films);
                 setFilms(films);
@@ -50,7 +50,6 @@ function SeriesMovie() {
 
     const handleClickPage = async (page) => {
         const params = { categoryId: 7, page };
-        console.log({ categoryId: 7 });
         const response = await BrowseAPI.getAll(params);
         const { films } = response.data;
         setNowIndex(page);

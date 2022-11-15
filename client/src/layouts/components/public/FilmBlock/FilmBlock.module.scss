@@ -9,7 +9,7 @@
     width: 100%;
     margin: 0 !important; // bo margin cua row
     .item {
-        height: var(--item-height);
+        height: auto;
         padding: 10px;
         transition: transform ease-in 0.1s;
         will-change: transform;
@@ -21,7 +21,7 @@
 
     .avata {
         // the a
-        height: 86%;
+        height: auto;
         width: 100%;
 
         .image {
@@ -59,18 +59,3 @@
     text-overflow: ellipsis;
     white-space: nowrap; // (*)
 }
-
-@media (max-width: 739px) {
-    .list .item {
-        height: 564px;
-
-        .image {
-            // width: 330px;
-        }
-    }
-}
-//div: 346px
-
-//330 - 496; 256 - 384
-
-//322 - 482px

@@ -31,7 +31,7 @@
             }
         }
     }
-    .doc {
+    .dot {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -53,10 +53,9 @@
 
     .prev-page,
     .next-page {
-        min-width: 164px;
+        width: 132px;
+        padding: 7px 8px;
         font-size: 1.6rem;
-        padding: 7px 12px;
-        margin: 0 4px;
         text-align: center;
         border: 1px solid #dbdbdb;
         border-radius: 4px;
@@ -69,6 +68,32 @@
         }
     }
 
+    .prev-page {
+        margin-right: 4px;
+    }
+
     .next-page {
+        margin-left: 4px;
+    }
+
+    .disable {
+        &:hover {
+            border: 1px solid #dbdbdb;
+            color: #fff;
+            cursor: text;
+        } 
+    }
+}
+
+//mobile
+@media only screen and (max-width: 576px) {
+    .wrapper {
+        display: block;
+
+        .box {
+            .prev-page,
+            .next-page {
+            }
+        }
     }
 }

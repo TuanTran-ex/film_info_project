@@ -20,13 +20,13 @@ function Header({
             <div className={cx('row', 'block')}>
                 <div className={cx('column', 'l-2', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Loại phim</label>
-                    <div className={cx('control')}>
+                    <div name="type" className={cx('control')}>
                         <select className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
                             {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={item.name}
+                                    value="films"
                                     key={index}
                                 >
                                     {item.name}
@@ -38,7 +38,7 @@ function Header({
                 <div className={cx('column', 'l-2', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Thể loại</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select name="genre" className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
                             {listGender.map((item, index) => (
                                 <option
@@ -55,7 +55,7 @@ function Header({
                 <div className={cx('column', 'l-2', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Quốc gia</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select name="country" className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
                             {listCountry.map((item, index) => (
                                 <option
@@ -72,7 +72,7 @@ function Header({
                 <div className={cx('column', 'l-2', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Năm</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select name="year" className={cx('list')}>
                             <option className={cx('item')}>-- Tất cả --</option>
                             <option value="2022" className={cx('item')}>
                                 2022
@@ -107,7 +107,7 @@ function Header({
                 <div className={cx('column', 'l-2', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Thời lượng</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select name="time" className={cx('list')}>
                             <option value="" className={cx('item')}>
                                 -- Tất cả --
                             </option>
@@ -138,7 +138,7 @@ function Header({
                 <div className={cx('column', 'l-2', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Sắp xếp</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select name="sort" className={cx('list')}>
                             <option className={cx('item')}>
                                 Ngày cập nhật
                             </option>

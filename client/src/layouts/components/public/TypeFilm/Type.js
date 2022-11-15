@@ -6,7 +6,7 @@ import WebFont from 'webfontloader';
 
 const cx = classNames.bind(styles);
 
-function Type() {
+function Type({ type }) {
     useEffect(() => {
         WebFont.load({
             google: {
@@ -16,7 +16,7 @@ function Type() {
     }, []);
     return (
         <div className={cx('film-title')}>
-            <p>PHIM ĐỀ CỬ</p>
+            <p>{type.type}</p>
         </div>
     );
 }

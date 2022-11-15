@@ -13,14 +13,14 @@ function FilmMonth() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/uU3YoLSaVBOaMryzhuiiRWDFbIw.jpg"
+                                src="https://image.tmdb.org/t/p/w342/jvIVl8zdNSOAJImw1elQEzxStMN.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
                         </a>
                         <span className={cx('film-name')}>
                             <a href="/" className={cx('name')}>
-                                Bodies Bodies Bodies(Month)
+                                Bodies Bodies Bodies
                             </a>
                             <a href="/" className={cx('English-name')}>
                                 Bodies Bodies Bodies
@@ -32,17 +32,17 @@ function FilmMonth() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/vH50lq31h8GlDgRnHKrW5x0aHUK.jpg"
+                                src="https://image.tmdb.org/t/p/w342/6hgEe1w0An5fKi3ZqIUBwOyIN2y.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
                         </a>
                         <span className={cx('film-name')}>
                             <a href="/" className={cx('name')}>
-                                Sự trỗi dậy của Gru
+                                Chú rồng của cha tôi
                             </a>
                             <a href="/" className={cx('English-name')}>
-                                English
+                                My Father's Dragon
                             </a>
                         </span>
                     </div>
@@ -51,18 +51,17 @@ function FilmMonth() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/i6TRDlVuuEXMyLSlIkDd8YhBN0r.jpg"
+                                src="https://image.tmdb.org/t/p/w342/ifRFLx83Xk1DcwAS3OScgI6HmWO.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
                         </a>
                         <span className={cx('film-name')}>
                             <a href="/" className={cx('name')}>
-                                Adventure Vũ Điệu Dòng Sông: Cuộc Phiêu Lưu Hoạt
-                                Hình (2021)
+                                Hang ổ
                             </a>
                             <a href="/" className={cx('English-name')}>
-                                Riverdance: The Animated Adventure
+                                The Lair
                             </a>
                         </span>
                     </div>

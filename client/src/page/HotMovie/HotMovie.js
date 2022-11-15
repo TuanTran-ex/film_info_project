@@ -11,7 +11,6 @@ function HotMovie() {
 
     const handleClick = (param) => {
         setIsList(param);
-        console.log(isList);
     };
 
     return (

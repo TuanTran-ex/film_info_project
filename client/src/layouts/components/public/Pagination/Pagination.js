@@ -39,7 +39,7 @@ function Pagination({ handleClickPage, nowIndex }) {
             setArray(tmp);
         }
         setPage(nextNumber); //setPage -> active
-        handleClickPage(nextNumber); // lay count + 1 -> render sang trang tiep theo
+        handleClickPage(nextNumber); // count = count + 1 -> render nextpage
     };
 
     const handleClickPrevPage = () => {
@@ -51,9 +51,7 @@ function Pagination({ handleClickPage, nowIndex }) {
         setPage(prevNumber); //setPage -> active
         handleClickPage(prevNumber);
     };
-    // const temp = array;
 
-    //2.useEffect: render xong -> useEffect thuc thi
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('list')}>
@@ -67,12 +65,17 @@ function Pagination({ handleClickPage, nowIndex }) {
                         </button>
                     </li>
                 ))}
-                {totalPage !== 35 ? <li className={cx('doc')}>...</li> : ''}
+                {/* hide dot */}
+                {array.length >= 4 ? <li className={cx('dot')}>...</li> : ''}
             </ul>
 
             <div className={cx('box')}>
                 <button
-                    className={cx('prev-page')}
+                    className={
+                        count === 1
+                            ? cx('prev-page', 'disable')
+                            : cx('prev-page')
+                    }
                     onClick={() => {
                         if (count > 1) handleClickPrevPage();
                     }}
@@ -80,9 +83,13 @@ function Pagination({ handleClickPage, nowIndex }) {
                     Trang trước
                 </button>
                 <button
-                    className={cx('next-page')}
+                    className={
+                        count === totalPage
+                            ? cx('next-page', 'disable')
+                            : cx('next-page')
+                    }
                     onClick={() => {
-                        if (count < 35) handleClickNextPage();
+                        if (count < totalPage) handleClickNextPage();
                     }}
                 >
                     Trang sau

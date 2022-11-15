@@ -1,0 +1,234 @@
+:root {
+    --brand-width: 160px;
+    --search-width: 110px;
+    --red-btn: #c41f20;
+}
+
+.wrapper {
+    height: var(--default-header-height);
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.header-active {
+    // background-color: rgba(51, 10, 103, 0.93);
+    background-color: hsl(183, 86%, 19%, 0.9);
+}
+
+.wrapper .icon {
+    line-height: 56px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+
+    .menu-icon {
+        display: block;
+        color: #fff;
+        font-size: 3.4rem;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.nav-left {
+    display: flex;
+}
+.brand {
+    display: flex;
+}
+
+.nav-brand {
+    height: 100%;
+    display: flex;
+    min-width: var(--brand-width);
+    position: relative;
+    line-height: 56px;
+    justify-content: space-around;
+    margin: 0;
+
+    .brand-link {
+        font-family: 'Zen Antique Soft';
+        font-size: 3rem;
+        font-weight: 700;
+        margin-left: 8px;
+        color: #dc1a28;
+        cursor: pointer;
+    }
+}
+
+.search {
+    height: 56px;
+    width: var(--search-width);
+    width: var(--search-width);
+    margin-left: 10px;
+
+    flex-shrink: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    span {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-item {
+        padding: 12px 10px;
+    }
+    .search-icon {
+        font-size: 2rem;
+        color: #fff;
+    }
+}
+
+.search:hover {
+    background-color: #102c48;
+    cursor: pointer;
+
+    span,
+    .search-icon {
+        color: #428bca;
+    }
+}
+
+.nav-menu {
+    height: 100%;
+    color: #fff;
+    width: calc(100% - var(--brand-width) - var(--search-width));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+
+    .nav-list {
+        height: 100%;
+        display: flex;
+        list-style-type: none;
+        text-decoration: none;
+        margin-right: auto;
+
+        .item {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            flex-shrink: 0;
+            a {
+                font-size: 1.6rem;
+                font-weight: 400;
+                padding: 10px 16px;
+            }
+        }
+        :hover {
+            background-color: #102c48;
+            color: #428bca;
+            cursor: pointer;
+        }
+    }
+
+    .nav-user {
+        margin-left: auto;
+        :hover {
+            background-color: var(--red-btn);
+            border-color: transparent;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    .btn-user {
+        display: flex;
+        font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
+            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,
+            Arial, sans-serif;
+        font-size: 1.6rem;
+        background-color: #dc1a28;
+        border-radius: 4px;
+        a {
+            width: 100%;
+            padding: 9px 16px;
+            flex-shrink: 0; //co lai theo tung trinh duyet
+            border-radius: 4px;
+            color: #fff;
+        }
+    }
+}
+
+//RESPOSIVE
+
+@media (max-width: 575px) {
+    .nav-left .search {
+        width: 60px;
+        padding-right: 6px;
+        span {
+            justify-content: flex-end;
+        }
+        .search-item {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .hide {
+        display: none;
+    }
+    .wrapper {
+        display: block;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .search {
+        width: 110px;
+    }
+    //block:  icon - brand
+
+    .nav-menu {
+        width: 100%;
+        height: auto;
+        background-color: #102c48;
+        flex-direction: column;
+        align-items: baseline;
+
+        .nav-list,
+        .nav-use {
+            .item {
+                display: block;
+            }
+        }
+
+        .nav-list {
+            width: 100%;
+            display: block; //cac item nam theo tung hang ngang
+            .item:hover {
+                cursor: pointer;
+                background-color: rgba(0, 0, 0, 0.1);
+                a {
+                    background-color: transparent;
+                    color: #428bca;
+                }
+            }
+        }
+
+        .nav-user {
+            width: 100%;
+            padding-left: 12px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .btn-user {
+            width: 100%;
+        }
+    }
+}

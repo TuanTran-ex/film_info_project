@@ -10,12 +10,15 @@ import OddMovie from '../page/OddMovie';
 import SeriesMovie from '../page/SeriesMovie';
 import NewMovie from '../page/NewMovie';
 import MovieDetails from '../page/MovieDetails';
+import Casts from '../page/Casts/Casts';
+import Register from '../page/Register';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.user, component: User },
     { path: config.routes.search, component: Search },
     { path: config.routes.login, component: Login },
+    { path: config.routes.register, component: Register },
     { path: config.routes.hotmovie, component: HotMovie },
     { path: config.routes.oddmovie, component: OddMovie },
     { path: config.routes.seriesmovie, component: SeriesMovie },
@@ -24,6 +27,11 @@ const publicRoutes = [
         path: config.routes.moviedetails,
         component: MovieDetails,
         layout: MovieDetails,
+    },
+    {
+        path: config.routes.casts,
+        component: Casts,
+        layout: Casts,
     },
 ];
 

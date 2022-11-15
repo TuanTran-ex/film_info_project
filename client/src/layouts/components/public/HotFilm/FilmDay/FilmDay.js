@@ -13,7 +13,7 @@ function FilmDay() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/uU3YoLSaVBOaMryzhuiiRWDFbIw.jpg"
+                                src="https://image.tmdb.org/t/p/w342/glZfjVEzZCJ7oTHWa3m6KefcoRN.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
@@ -32,7 +32,7 @@ function FilmDay() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/vH50lq31h8GlDgRnHKrW5x0aHUK.jpg"
+                                src="https://image.tmdb.org/t/p/w342/1X4h40fcB4WWUmIBK0auT4zRBAV.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />
@@ -51,7 +51,7 @@ function FilmDay() {
                     <div className={cx('item')}>
                         <a href="/" className={cx('avata')}>
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/i6TRDlVuuEXMyLSlIkDd8YhBN0r.jpg"
+                                src="https://image.tmdb.org/t/p/w342/hYD06ezIZ5dhySVAgxK68y8Z3w3.jpg"
                                 alt="image"
                                 className={cx('image')}
                             />

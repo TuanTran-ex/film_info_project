@@ -1,0 +1,31 @@
+.wrapper {
+    margin-top: 38px;
+}
+
+.main {
+    .title {
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+}
+
+.list {
+    margin-top: 12px;
+    display: flex;
+    .item {
+        padding-right: 16px;
+        .image {
+            width: 180px;
+            height: 270px;
+            object-fit: cover;
+        }
+
+        .name {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            &:hover {
+                color: #dcf836;
+            }
+        }
+    }
+}

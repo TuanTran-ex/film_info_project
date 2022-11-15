@@ -4,12 +4,16 @@
 }
 
 // --List film--
+.movidetail {
+    display: none;
+}
 
 .list {
     width: 100%;
     margin: 0 !important; // bo margin cua row
     .item {
-        height: var(--item-height);
+        // height: var(--item-height);
+        height: auto;
         padding: 8px;
         background-color: rgb(23, 31, 39);
         transition: transform ease-in 0.1s;
@@ -22,7 +26,7 @@
 
     .avata {
         // the a
-        height: 86%;
+        height: auto;
         width: 100%;
 
         .image {
@@ -61,15 +65,5 @@
     white-space: nowrap; // (*)
 }
 
-@media (max-width: 739px) {
-    .list .item {
-        height: 564px;
-
-        .image {
-            // width: 330px;
-        }
-    }
+@media (max-width: 768px) {
 }
-//div: 346px
-
-//330 - 496; 256 - 384

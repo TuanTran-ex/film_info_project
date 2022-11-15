@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import styles from './FilmBlock.module.scss';
 // --- LIBRARY --
-
 import Image from '../../../../components/image/Images';
 import './14_LIBRARY.css';
+import routes from '../../../../config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -17,18 +17,36 @@ function FilmBlock({ films }) {
                         className={cx('column', 'l-2-4', 'm-4', 'c-6')}
                     >
                         <div className={cx('item')}>
-                            <a href="/" className={cx('avata')}>
+                            <a
+                                href={routes.moviedetails.replace(
+                                    ':id',
+                                    item.id,
+                                )}
+                                className={cx('avata')}
+                            >
                                 <Image
-                                    src="https://image.tmdb.org/t/p/w342/vlIYzx7cc4Wvaoh7ShjF2HZG45.jpg"
+                                    src="https://image.tmdb.org/t/p/w342/8ZMrZGGW65ePWIgRn1260nA1uUm.jpg"
                                     alt="image"
                                     className={cx('image')}
                                 />
                             </a>
                             <span className={cx('film-name')}>
-                                <a href="/" className={cx('name')}>
+                                <a
+                                    href={routes.moviedetails.replace(
+                                        ':id',
+                                        item.id,
+                                    )}
+                                    className={cx('name')}
+                                >
                                     {item.name}
                                 </a>
-                                <a href="/" className={cx('English-name')}>
+                                <a
+                                    href={routes.moviedetails.replace(
+                                        ':id',
+                                        item.id,
+                                    )}
+                                    className={cx('English-name')}
+                                >
                                     {item.englishName}
                                 </a>
                             </span>

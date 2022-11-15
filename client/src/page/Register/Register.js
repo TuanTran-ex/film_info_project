@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './Login.module.scss';
+import styles from './Register.module.scss';
 import GoogleIcon from '@mui/icons-material/Google';
 import routes from '../../config/routes';
 const cx = classNames.bind(styles);
@@ -28,6 +28,13 @@ function Login() {
                             className={cx('email')}
                             placeholder="Email"
                             // value=
+                        />
+                    </div>
+                    <div className={cx('field')}>
+                        <input
+                            type="text"
+                            className={cx('name')}
+                            placeholder="Name"
                         />
                     </div>
                     <div className={cx('field')}>
@@ -63,11 +70,8 @@ function Login() {
                 </div>
 
                 <p className={cx('other')}>
-                    <a href={routes.register} className={cx('register')}>
-                        Đăng ký
-                    </a>
-                    <a href="/" className={cx('forgot')}>
-                        Quên mật khẩu
+                    <a href="/" className={cx('register')}>
+                        Đăng nhập
                     </a>
                 </p>
             </div>

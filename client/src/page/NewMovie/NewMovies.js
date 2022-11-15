@@ -11,7 +11,7 @@ import Pagination from '../../layouts/components/public/Pagination/Pagination';
 
 const cx = classNames.bind(styles);
 function NewMovie() {
-    const title = 'Phim mới';
+    const title = 'Phim Mới';
     const [listCategory, setListCategory] = useState([]);
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
@@ -50,7 +50,7 @@ function NewMovie() {
 
     const handleClickPage = async (page) => {
         const params = { categoryId: 7, page };
-        console.log({ categoryId: 7 });
+        // console.log({ categoryId: 7 });
         const response = await BrowseAPI.getAll(params);
         const { films } = response.data;
         setNowIndex(page);

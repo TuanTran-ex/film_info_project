@@ -30,7 +30,6 @@ function OddMovie() {
             try {
                 const params = { categoryId: 7 };
                 const response = await BrowseAPI.getAll(params);
-                console.log('Fetch products successfully oddMovie: ', response);
                 const { films, categories, countries, genres } = response.data;
                 setFilms(films);
                 setListCategory(categories);
