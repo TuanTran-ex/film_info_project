@@ -13,6 +13,7 @@ const config = {
     Account: ADMIN_URL + 'account',
   },
   api: {
+    Base: '/api',
     Film: API_URL + 'films',
     Page: API_URL + 'pages',
     Category: API_URL + 'categories',
