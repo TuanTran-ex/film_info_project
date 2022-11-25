@@ -6,7 +6,7 @@ const expressLayouts = require('express-ejs-layouts');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-
+require('./utils/prototype');
 const route = require('./routes');
 const app = express();
 
@@ -24,7 +24,6 @@ app.use(expressLayouts);
 
 // API document
 const swaggerDocument = YAML.load('./swagger.yaml');
-
 app.use(
   '/api-docs',
   swaggerUi.serve,

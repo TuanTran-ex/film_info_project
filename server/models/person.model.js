@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../models/connectDB');
 
-const Country = sequelize.define(
-  'Country',
+const Person = sequelize.define(
+  'Person',
   {
     id: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -14,14 +14,29 @@ const Country = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    job: {
+      type: DataTypes.STRING,
+    },
+    gender: {
+      type: DataTypes.STRING,
+    },
+    birthday: {
+      type: DataTypes.DATE,
+    },
+    placeOfBirth: {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timeStamp: true,
     // underscored: true,
     createdAt: false,
     updatedAt: false,
-    tableName: 'Country',
+    tableName: 'Person',
   }
 );
 
-module.exports = Country;
+module.exports = Person;

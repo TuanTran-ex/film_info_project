@@ -4,6 +4,8 @@ const sequelize = require('../models/connectDB');
 const Category = require('../models/category.model');
 const Genre = require('./genre.model');
 const Country = require('./country.model');
+const Trailer = require('./trailer.model');
+const Person = require('./person.model');
 
 const Film = sequelize.define(
   'Film',
@@ -42,31 +44,19 @@ const Film = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    // countryId: {
-    //   type: DataTypes.BIGINT.UNSIGNED,
-    //   field: 'countryOfProduction',
-    //   references: {
-    //     model: 'Country',
-    //     key: 'id',
-    //   },
-    // },
     imdbPoint: {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: true,
     },
-    // categoryId: {
-    //   type: DataTypes.BIGINT.UNSIGNED,
-    //   references: {
-    //     model: 'Category',
-    //     key: 'id',
-    //   },
-    // },
     isProcessing: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
+    },
+    slug: {
+      type: DataTypes.STRING,
     },
   },
   {
@@ -75,6 +65,53 @@ const Film = sequelize.define(
     createdAt: false,
     updatedAt: false,
     tableName: 'Film',
+  }
+);
+
+Film.beforeCreate(async (film, options) => {
+  film.slug = film.name.toSlug();
+});
+
+const PersonFilm = sequelize.define(
+  'PersonFilm',
+  {
+    id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    filmId: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: Film,
+        key: 'id',
+      },
+    },
+    personId: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: Genre,
+        key: 'id',
+      },
+    },
+    nameInFilm: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    type: {
+      type: DataTypes.ENUM('Actor', 'Directors', 'Writer', 'Creator'),
+      allowNull: false,
+    },
+  },
+  {
+    timeStamp: true,
+    // underscored: true,
+    createdAt: false,
+    updatedAt: false,
+    tableName: 'PersonFilm',
   }
 );
 
@@ -90,46 +127,8 @@ Genre.belongsToMany(Film, {
   foreignKey: 'genreId',
 });
 Film.belongsTo(Country, { foreignKey: 'countryOfProduction' });
-// class Film {
-//   constructor({
-//     id,
-//     name,
-//     englishName,
-//     image,
-//     backgroundImage,
-//     time,
-//     premierDate,
-//     description,
-//     countryId,
-//     countryName,
-//     imdbPoint,
-//     categoryId,
-//     categoryName,
-//     genreId,
-//     genreName,
-//     isProcessing,
-//     created_at,
-//     updated_at,
-//   }) {
-//     this.id = id;
-//     this.name = name;
-//     this.englishName = englishName;
-//     this.image = image;
-//     this.backgroundImage = backgroundImage;
-//     this.time = time;
-//     this.premierDate = new Date(premierDate).toLocaleDateString('en-US');
-//     this.description = description;
-//     this.imdbPoint = imdbPoint;
-//     this.categoryId = categoryId;
-//     this.categoryName = categoryName;
-//     this.genreId = genreId ? [genreId] : [];
-//     this.genreName = genreName ? [genreName] : [];
-//     this.countryId = countryId;
-//     this.countryName = countryName;
-//     this.isProcessing = isProcessing;
-//     this.createdAt = created_at;
-//     this.updatedAt = updated_at;
-//   }
-// }
+Film.belongsToMany(Person, { through: 'PersonFilm', foreignKey: 'filmId' });
+Person.belongsToMany(Film, { through: 'PersonFilm', foreignKey: 'personId' });
+Film.hasMany(Trailer, { foreignKey: 'filmId' });
 
 module.exports = Film;

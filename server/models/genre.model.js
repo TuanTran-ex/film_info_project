@@ -24,15 +24,5 @@ const Genre = sequelize.define(
     tableName: 'Genre',
   }
 );
-// class Genre {
-//   constructor({ id, name, updated_at, created_at }) {
-//     this.id = id;
-//     this.name = name;
-//     this.createdAt = created_at;
-//     this.updateAt = updated_at;
-//   }
-// }
-
-// Genre.belongsToMany(Film, { through: 'GenreFilm' });
 
 module.exports = Genre;

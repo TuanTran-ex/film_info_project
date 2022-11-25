@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../models/connectDB');
 
-const Country = sequelize.define(
-  'Country',
+const Trailer = sequelize.define(
+  'Trailer',
   {
     id: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -10,18 +10,17 @@ const Country = sequelize.define(
       allowNull: false,
       autoIncrement: true,
     },
-    name: {
+    url: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
-    timeStamp: true,
-    // underscored: true,
+    timeStamp: false,
     createdAt: false,
     updatedAt: false,
-    tableName: 'Country',
+    tableName: 'Trailer',
   }
 );
 
-module.exports = Country;
+module.exports = Trailer;
