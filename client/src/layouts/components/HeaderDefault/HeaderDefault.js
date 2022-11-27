@@ -15,6 +15,7 @@ function Header({}) {
     const [isMobile, setIsMobile] = useState(false);
     const [isShow, setIsShow] = useState(false);
     const [isHide, setIsHide] = useState(true);
+    const getValueUser = localStorage.getItem('account');
 
     function hanleScroll() {
         window.addEventListener('scroll', function () {
@@ -76,6 +77,7 @@ function Header({}) {
             setIsShow(false);
         } else setIsShow(true);
     };
+
     const handleClickList = () => {};
     return (
         <header
@@ -177,16 +179,21 @@ function Header({}) {
                         </Link>
                     </li>
                 </div>
+
                 <div className={cx('nav-user')}>
-                    <div
-                        className={cx('btn-user')}
-                        onClick={() => {
-                            sessionStorage.removeItem('nowIndex');
-                            setIsShow(false);
-                        }}
-                    >
-                        <Link to={routes.login}>Đăng nhập</Link>
-                    </div>
+                    {!getValueUser ? (
+                        <div
+                            className={cx('btn-user')}
+                            onClick={() => {
+                                sessionStorage.removeItem('nowIndex');
+                                setIsShow(false);
+                            }}
+                        >
+                            <Link to={routes.login}>Đăng nhập</Link>
+                        </div>
+                    ) : (
+                        JSON.parse(getValueUser).username
+                    )}
                 </div>
             </div>
         </header>

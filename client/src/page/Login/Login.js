@@ -1,21 +1,53 @@
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import GoogleIcon from '@mui/icons-material/Google';
+//login;
 import routes from '../../config/routes';
+import authApi from '../../api/authApi';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Login() {
+    const [userName, setUserName] = useState('');
+    const [passWord, setPassWord] = useState('');
+    const getUserName = localStorage.getItem('');
+    let navigate = useNavigate('account');
+
     const hanleClickLogin = () => {
-        const getValueEmail = document.getElementsByClassName(
-            cx('email'),
-        ).value;
-        console.log(getValueEmail);
-        const getValuePass = document.getElementsByClassName(
-            cx('password'),
-        ).value;
-        if (getValueEmail === null || getValuePass === null) {
+        const regex =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (userName === '' || passWord === '') {
             alert('Điền thông tin đăng nhập.');
             console.log('success');
         }
+        // else if (!regex.test(userName)) {
+        //     alert('Điền đúng userName');
+        // }
+
+        const login = async () => {
+            try {
+                const params = { username: userName, password: passWord };
+                console.log(params);
+                const response = await authApi.login(params);
+                const err = response.data.error;
+                if (err) {
+                    alert('Thông tin đăng nhập không hợp lệ!');
+                } else {
+                    //dung ->setItem
+                    localStorage.setItem(
+                        'account',
+                        JSON.stringify({
+                            accessToken: response.data.accessToken,
+                            username: userName,
+                        }),
+                    );
+                    return navigate('/');
+                }
+            } catch (error) {
+                console.log('Đăng nhập không thành công!', error);
+            }
+        };
+        login();
     };
     return (
         <div className={cx('wrapper')}>
@@ -24,15 +56,16 @@ function Login() {
                 <div className={cx('box')}>
                     <div className={cx('field')}>
                         <input
-                            type="email"
-                            className={cx('email')}
-                            placeholder="Email"
-                            // value=
+                            type="text"
+                            onChange={(e) => setUserName(e.target.value)}
+                            className={cx('userName')}
+                            placeholder="Ten dang nhap"
                         />
                     </div>
                     <div className={cx('field')}>
                         <input
                             type="password"
+                            onChange={(e) => setPassWord(e.target.value)}
                             className={cx('password')}
                             placeholder="Mat khau"
                         />

@@ -12,7 +12,8 @@ const routes = {
     register: '/register',
     search: '/search',
     seriesmovie: '/seriesmovie',
-    user: '/use',
+    user: '/user',
+    watching: '/watching',
 };
 
 export default routes;

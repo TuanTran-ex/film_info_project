@@ -1,57 +1,113 @@
 import classNames from 'classnames/bind';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Register.module.scss';
 import GoogleIcon from '@mui/icons-material/Google';
 import routes from '../../config/routes';
+///register
+import authApi from '../../api/authApi';
+
 const cx = classNames.bind(styles);
 function Login() {
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    let navigate = useNavigate();
     const hanleClickLogin = () => {
+        // const regex =
+        // /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        //   const regex =
         const getValueEmail = document.getElementsByClassName(
             cx('email'),
         ).value;
-        console.log(getValueEmail);
+        const getValueName = document.getElementsByClassName(cx('name')).value;
         const getValuePass = document.getElementsByClassName(
             cx('password'),
         ).value;
-        if (getValueEmail === null || getValuePass === null) {
-            alert('Điền thông tin đăng nhập.');
-            console.log('success');
+
+        // if (!regex.test(getValueEmail) || !regex.test(getValueName)) {
+        //     alert('Dien thong tin hop le!');
+        // }
+        // console.log('ketqua: ', regex.test(getValueEmail));
+
+        if (
+            getValueEmail === undefined ||
+            getValuePass === undefined ||
+            getValueName === undefined
+        ) {
+            alert('Điền thông đầy đủ thông tin đăng ký');
+            return;
         }
+
+        //
+        const register = async () => {
+            try {
+                const params = { email, username: name, password };
+                console.log('param:', params);
+                //kiem tra password, email
+                if (
+                    params.password.length <= 6 ||
+                    params.password.length >= 50
+                ) {
+                    alert('Mat khau phai lon hon 6 ki tu ');
+                    return;
+                }
+
+                const response = await authApi.register(params);
+                const err = response.data.error; //err in resposive
+                if (err) {
+                    alert('Thông tin đăng ký không hợp lệ!');
+                } else {
+                    return navigate('/login');
+                }
+            } catch (error) {
+                console.log('đăng ký không thành công', error);
+            }
+        };
+        register();
     };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('block')}>
-                <h2 className={cx('title')}>Đăng nhập</h2>
+                <h2 className={cx('title')}>Đăng ký</h2>
                 <div className={cx('box')}>
-                    <div className={cx('field')}>
+                    <form className={cx('field')} autoComplete="off">
                         <input
-                            type="email"
+                            autoFocus
                             className={cx('email')}
+                            onChange={(e) => setEmail(e.target.value)}
+                            name="email"
+                            required
                             placeholder="Email"
-                            // value=
+                            type="email"
                         />
-                    </div>
-                    <div className={cx('field')}>
+                    </form>
+                    <form className={cx('field')} autoComplete="off">
                         <input
-                            type="text"
                             className={cx('name')}
-                            placeholder="Name"
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Ten"
+                            required
+                            type="text"
                         />
-                    </div>
-                    <div className={cx('field')}>
+                    </form>
+                    <form className={cx('field')} autoComplete="off">
                         <input
-                            type="password"
                             className={cx('password')}
+                            onChange={(e) => setPassword(e.target.value)}
+                            min={6}
+                            max={20}
                             placeholder="Mat khau"
+                            required
+                            type="password"
                         />
-                    </div>
+                    </form>
 
                     <div className={cx('field')}>
-                        <input
-                            type="checkbox"
-                            className={cx('checkbox')}
-                            placeholder="Mat khau"
-                        />
-                        <p>Ghi nhớ</p>
+                        <input type="checkbox" className={cx('checkbox')} />
+                        <p>Đăng ký nhận thông báo về trang web</p>
                     </div>
 
                     <div className={cx('submit')}>
@@ -59,7 +115,7 @@ function Login() {
                             className={cx('btn-submit')}
                             onClick={() => hanleClickLogin()}
                         >
-                            Đăng nhập
+                            Đăng ký
                         </button>
                     </div>
                     <div className={cx('divider')} data-content="HOẶC"></div>
@@ -70,7 +126,7 @@ function Login() {
                 </div>
 
                 <p className={cx('other')}>
-                    <a href="/" className={cx('register')}>
+                    <a href={routes.login} className={cx('register')}>
                         Đăng nhập
                     </a>
                 </p>

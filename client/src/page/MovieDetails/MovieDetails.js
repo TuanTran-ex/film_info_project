@@ -304,7 +304,10 @@ function MovieDetails({ item }) {
                                     className={cx('image')}
                                 />
                             </div>
-                            <a href="/" className={cx('button-play')}>
+                            <a
+                                href={routes.watching}
+                                className={cx('button-play')}
+                            >
                                 <svg
                                     className={cx('icon')}
                                     xmlns="http://www.w3.org/2000/svg"
@@ -536,7 +539,7 @@ function MovieDetails({ item }) {
                                                     )}
                                                 />
                                                 <a
-                                                    href="/"
+                                                    href={routes.watching}
                                                     className={cx(
                                                         'button-play',
                                                     )}

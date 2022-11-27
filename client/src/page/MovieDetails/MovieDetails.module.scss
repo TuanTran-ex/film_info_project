@@ -60,7 +60,10 @@
             margin: auto;
             .image {
                 display: block;
-                width: 100%;
+                max-width: 100%;
+                margin: auto;
+                object-fit: cover;
+                background-size: cover;
             }
         }
 
@@ -360,9 +363,7 @@
                     height: 100%;
                 }
                 &:hover {
-                    // margin: -2px;
                     border: 2px solid #cc7b19;
-                    // box-shadow: 0 0 0 2px #cc7b19;
                 }
             }
             .clip:hover .button-play {

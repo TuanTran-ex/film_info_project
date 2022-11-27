@@ -21,12 +21,14 @@
 }
 
 .field:first-child,
-.field:nth-child(2) {
+.field:nth-child(2),
+.field:nth-child(3) {
     height: 50px;
     width: 100%;
     margin-bottom: 16px;
 
     .email,
+    .name,
     .password {
         width: 100%;
         height: 100%;
@@ -38,8 +40,9 @@
     }
 }
 
-.field:nth-child(3) {
+.field:nth-child(4) {
     display: flex;
+    align-items: center;
     margin-bottom: 16px;
     .checkbox {
         display: block;
@@ -50,8 +53,8 @@
 
     p {
         margin-left: 6px;
-        font-size: 1.2rem;
-        color: #fff;
+        font-size: 1.4rem;
+        color: #ccc;
     }
 }
 
@@ -59,6 +62,7 @@
 .btn-submit {
     width: 100%;
     height: 50px;
+    margin-bottom: 10px;
     font-size: 2rem;
     background-color: #3e8ed0;
     color: #fff;
@@ -83,14 +87,14 @@
 
 //Tao bien gia
 .divider::after {
-    background: #fff;
-    color: #a17a7a;
     content: attr(data-content);
     display: inline-block;
-    font-size: 1.4rem;
     padding: 0.4rem 0.8rem;
-    transform: translateY(-50%);
+    font-size: 1.4rem;
     text-align: center;
+    background: #fff;
+    color: #a17a7a;
+    transform: translateY(-50%);
 }
 
 //Google-login

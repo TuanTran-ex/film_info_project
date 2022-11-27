@@ -1,17 +1,18 @@
 import config from '../config';
 
 //Cau hinh router
+import Casts from '../page/Casts/Casts';
 import Home from '../page/Home';
-import Search from '../page/Search';
-import User from '../page/User';
-import Login from '../page/Login';
 import HotMovie from '../page/HotMovie';
-import OddMovie from '../page/OddMovie';
-import SeriesMovie from '../page/SeriesMovie';
+import Login from '../page/Login';
 import NewMovie from '../page/NewMovie';
 import MovieDetails from '../page/MovieDetails';
-import Casts from '../page/Casts/Casts';
+import OddMovie from '../page/OddMovie';
 import Register from '../page/Register';
+import Search from '../page/Search';
+import SeriesMovie from '../page/SeriesMovie';
+import User from '../page/User';
+import Watching from '../page/Watching/Watching';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -32,6 +33,11 @@ const publicRoutes = [
         path: config.routes.casts,
         component: Casts,
         layout: Casts,
+    },
+    {
+        path: config.routes.watching,
+        component: Watching,
+        layout: Watching,
     },
 ];
 
