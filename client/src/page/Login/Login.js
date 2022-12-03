@@ -10,33 +10,28 @@ const cx = classNames.bind(styles);
 function Login() {
     const [userName, setUserName] = useState('');
     const [passWord, setPassWord] = useState('');
-    const getUserName = localStorage.getItem('');
+
     let navigate = useNavigate('account');
+    const getUserEmail = localStorage.getItem('account');
 
     const hanleClickLogin = () => {
         const regex =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (userName === '' || passWord === '') {
-            alert('Điền thông tin đăng nhập.');
-            console.log('success');
+            alert('Điền đầy đủ thông tin đăng nhập.');
         }
-        // else if (!regex.test(userName)) {
-        //     alert('Điền đúng userName');
-        // }
 
         const login = async () => {
             try {
                 const params = { username: userName, password: passWord };
-                console.log(params);
+                // console.log(params);
                 const response = await authApi.login(params);
                 const err = response.data.error;
-                if (err) {
-                    alert('Thông tin đăng nhập không hợp lệ!');
-                } else {
-                    //dung ->setItem
+                if (!err) {
                     localStorage.setItem(
                         'account',
                         JSON.stringify({
+                            userEmail: getUserEmail,
                             accessToken: response.data.accessToken,
                             username: userName,
                         }),
@@ -44,6 +39,7 @@ function Login() {
                     return navigate('/');
                 }
             } catch (error) {
+                alert('Thông tin đăng nhập không hợp lệ!');
                 console.log('Đăng nhập không thành công!', error);
             }
         };

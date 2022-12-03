@@ -13,56 +13,81 @@ function Login() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     let navigate = useNavigate();
+    // const [user, setUser] = useState({
+    //     email: '',
+    //     name: '',
+    //     password: '',
+    // });
+    //nguyenanh@gmail.com
+
+    const Joi = require('joi');
+    const schema = Joi.object({
+        username: Joi.string().alphanum().min(3).max(30).required(),
+
+        Password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,30}$')),
+
+        repeat_password: Joi.ref('password'),
+
+        access_token: [Joi.string(), Joi.number()],
+
+        birth_year: Joi.number().integer().min(1900).max(2013),
+
+        // Email: Joi.string().email({
+        //     minDomainSegments: 2,
+        //     tlds: { allow: ['com', 'net'] },
+        // }),
+    })
+        .with('username', 'birth_year')
+        .xor('password', 'access_token')
+        .with('password', 'repeat_password');
+
+    const checkValue = schema.validate({
+        Email: email,
+        username: name,
+        Password: password,
+    });
+    const temp = checkValue.error.toString();
     const hanleClickLogin = () => {
-        // const regex =
-        // /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-        //   const regex =
-        const getValueEmail = document.getElementsByClassName(
-            cx('email'),
-        ).value;
-        const getValueName = document.getElementsByClassName(cx('name')).value;
-        const getValuePass = document.getElementsByClassName(
-            cx('password'),
-        ).value;
-
-        // if (!regex.test(getValueEmail) || !regex.test(getValueName)) {
-        //     alert('Dien thong tin hop le!');
-        // }
-        // console.log('ketqua: ', regex.test(getValueEmail));
-
-        if (
-            getValueEmail === undefined ||
-            getValuePass === undefined ||
-            getValueName === undefined
-        ) {
-            alert('Điền thông đầy đủ thông tin đăng ký');
+        if (email === '' || name === '' || password === '') {
+            alert('Hãy điền đầy đủ thông tin đăng ký');
             return;
         }
+        //huyenanh@gmail.com
+        const regex =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        //
+        //check email validity
+        console.log(temp);
+        if (!regex.test(email)) {
+            alert('Hãy điền địa chỉ email hợp lệ!');
+            return;
+        }
+        if (temp.includes('username')) {
+            alert('Tên đăng kí phải trên 3 kí tự!');
+            return;
+        }
+        if (temp.includes('Password')) {
+            alert('Mật khẩu phải trên 8 kí tự và không có ký tự đặc biệt!');
+            return;
+        }
         const register = async () => {
             try {
                 const params = { email, username: name, password };
                 console.log('param:', params);
-                //kiem tra password, email
-                if (
-                    params.password.length <= 6 ||
-                    params.password.length >= 50
-                ) {
-                    alert('Mat khau phai lon hon 6 ki tu ');
-                    return;
-                }
-
                 const response = await authApi.register(params);
-                const err = response.data.error; //err in resposive
-                if (err) {
-                    alert('Thông tin đăng ký không hợp lệ!');
-                } else {
+                const err = response.data.error;
+                if (!err) {
+                    //save email: register
+                    localStorage.setItem(
+                        'account',
+                        JSON.stringify({
+                            email,
+                        }),
+                    );
                     return navigate('/login');
                 }
             } catch (error) {
-                console.log('đăng ký không thành công', error);
+                alert('Thông tin đăng ký không hợp lệ!');
             }
         };
         register();
@@ -97,9 +122,8 @@ function Login() {
                         <input
                             className={cx('password')}
                             onChange={(e) => setPassword(e.target.value)}
-                            min={6}
-                            max={20}
                             placeholder="Mat khau"
+                            // pattern=
                             required
                             type="password"
                         />

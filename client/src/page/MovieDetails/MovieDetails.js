@@ -14,6 +14,8 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import 'animate.css';
 import { useMediaQuery } from 'react-responsive';
 import React from 'react';
@@ -21,8 +23,6 @@ import routes from '../../config/routes';
 const cx = classNames.bind(styles);
 
 function MovieDetails({ item }) {
-    const { id } = useParams();
-
     const castData = [
         {
             id: 1,
@@ -143,19 +143,15 @@ function MovieDetails({ item }) {
     };
 
     const viewPort = useViewport();
-    const isTablet = viewPort.width <= 1024; //bool //768
+    const isTablet = viewPort.width <= 1024;
     const inTheMiddle = viewPort.width >= 1025 && viewPort.width <= 1200;
 
-    let a2 = 4;
-    //1024 - 1216
-
-    // const [value, setValue] = useState(isTablet ? 4 : inTheMiddle ? 5 : 6);
     const [value, setValue] = useState(() => {
-        let tam;
-        if (isTablet) tam = 4;
-        else if (!isTablet && inTheMiddle) tam = 5;
-        else tam = 6;
-        return tam;
+        let temp;
+        if (isTablet) temp = 4;
+        else if (!isTablet && inTheMiddle) temp = 5;
+        else temp = 6;
+        return temp;
     });
     const [valueofT, setValueofT] = useState(() => {
         let n;
@@ -165,12 +161,16 @@ function MovieDetails({ item }) {
         return n;
     });
 
+    const getUserName = localStorage.getItem('account');
     const [number, setNumber] = useState(0);
     const [array, setArray] = useState(castData.slice(number, value));
     const [index, setIndex] = useState(0);
     const [array2, setArray2] = useState(trailer.slice(index, valueofT));
     const [season, setSeason] = useState(true); //display : Season or FoundSimilar
+    const [option1, setOption1] = useState(false);
+    const [option2, setOption2] = useState(false);
 
+    //--setItem for Casts
     useEffect(() => {
         if (isTablet && value !== 4) {
             if (number === 0 || number === 5) {
@@ -235,6 +235,7 @@ function MovieDetails({ item }) {
         }
     }, [isTablet, viewPort.width]);
 
+    //setItem for Trailer
     useEffect(() => {
         if (isTablet && valueofT !== 2) {
             setArray2(trailer.slice(0, 2));
@@ -256,14 +257,13 @@ function MovieDetails({ item }) {
             : setArray(castData.slice(nowIndex, castData.length)); // cd  new array < 6
     };
 
-    // nowIndex + a -> khi tru luon cho ket qua  number % 6 = 0 ->
     const handlePrev = () => {
         const nowIndex = number - value;
         setNumber(nowIndex);
         setArray(castData.slice(nowIndex, number));
     };
 
-    //-- TRAILER
+    //-- Hanle click next TRAILER
     const handleTrailerNext = () => {
         const nowIndex = index + valueofT;
         setIndex(nowIndex);
@@ -277,6 +277,7 @@ function MovieDetails({ item }) {
         setIndex(nowIndex);
         setArray2(trailer.slice(nowIndex, index));
     };
+    // -- END
 
     return (
         <div className={cx('wrapper')}>
@@ -299,7 +300,6 @@ function MovieDetails({ item }) {
                             <div className={cx('film-image')}>
                                 <Image
                                     src="https://image.tmdb.org/t/p/w342/wZccw4Hj9ZF1yimnfPsX9rl3HvB.jpg"
-                                    // src={item.image}
                                     alt="image"
                                     className={cx('image')}
                                 />
@@ -348,17 +348,120 @@ function MovieDetails({ item }) {
                             </span>
                             <div className={cx('genres')}>
                                 <div className={cx('left')}>
-                                    <a href="/" className={cx('item', 'share')}>
+                                    <a href="#" className={cx('item', 'share')}>
                                         <FacebookIcon className={cx('icon')} />
                                         Chia sẻ
                                     </a>
 
-                                    <button className={cx('item', 'album')}>
-                                        <AddOutlinedIcon
-                                            className={cx('icon')}
-                                        />
-                                        <p className={cx('text')}>Bộ sưu tập</p>
-                                    </button>
+                                    <div className={cx('collection')}>
+                                        {option1 === false &&
+                                        option2 === false ? (
+                                            <a
+                                                href={routes.collection}
+                                                className={cx('item', 'album')}
+                                            >
+                                                <AddOutlinedIcon
+                                                    className={cx('icon')}
+                                                />
+
+                                                <p
+                                                    href={routes.collection}
+                                                    className={cx('text')}
+                                                >
+                                                    Bộ sưu tập
+                                                </p>
+                                            </a>
+                                        ) : option1 ? (
+                                            <div
+                                                className={cx(
+                                                    'item',
+                                                    'option1',
+                                                )}
+                                            >
+                                                <CheckOutlinedIcon
+                                                    className={cx('icon-check')}
+                                                />
+
+                                                <p className={cx('text')}>
+                                                    Đã xem
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div
+                                                className={cx(
+                                                    'item',
+                                                    'option2',
+                                                )}
+                                            >
+                                                <RemoveRedEyeOutlinedIcon
+                                                    className={cx('icon-eye')}
+                                                />
+                                                <p className={cx('text')}>
+                                                    Muốn xem
+                                                </p>
+                                            </div>
+                                        )}
+
+                                        {getUserName ? ( //Login
+                                            <div
+                                                className={cx('add-collection')}
+                                            >
+                                                {!option1 ? (
+                                                    <div
+                                                        className={cx(
+                                                            'watched',
+                                                        )}
+                                                        onClick={() =>
+                                                            setOption1(true)
+                                                        }
+                                                    >
+                                                        Thêm vào danh sách
+                                                        <b>Đã xem</b>
+                                                    </div>
+                                                ) : (
+                                                    <div
+                                                        className={cx(
+                                                            'watched',
+                                                        )}
+                                                        onClick={() =>
+                                                            setOption1(false)
+                                                        }
+                                                    >
+                                                        Loại khỏi danh sách
+                                                        <b>Đã xem</b>
+                                                    </div>
+                                                )}
+
+                                                {!option2 ? (
+                                                    <div
+                                                        className={cx(
+                                                            'watched',
+                                                        )}
+                                                        onClick={() =>
+                                                            setOption2(true)
+                                                        }
+                                                    >
+                                                        Thêm vào danh sách
+                                                        <b>Muốn xem</b>
+                                                    </div>
+                                                ) : (
+                                                    <div
+                                                        className={cx(
+                                                            'watched',
+                                                        )}
+                                                        onClick={() =>
+                                                            setOption2(false)
+                                                        }
+                                                    >
+                                                        Loại khỏi danh sách
+                                                        <b> Muốn xem</b>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ) : (
+                                            ''
+                                        )}
+                                    </div>
                                 </div>
                                 <div className={cx('right')}>
                                     <a href="/" className={cx('item')}>
@@ -441,7 +544,7 @@ function MovieDetails({ item }) {
                                         'animate__slideInRight',
                                     )}
                                     key={number}
-                                    //number thay doi -> array add new element -> add animation
+                                    //-> array add new element -> add animation
                                 >
                                     {array.map((item, key) => (
                                         <div key={key} className={cx('item')}>
