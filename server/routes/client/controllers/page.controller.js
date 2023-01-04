@@ -28,12 +28,32 @@ async function getHomePageData(req, res, next) {
 }
 
 async function getBrowserPageData(req, res, next) {
-  const { categoryId, page, perPage } = req.query;
-
+  const {
+    categoryId,
+    genreId,
+    countryId,
+    year,
+    timeStart,
+    timeEnd,
+    order,
+    page,
+    perPage,
+  } = req.query;
+  let time = null;
+  if (timeStart && timeEnd) time = { start: timeStart, end: timeEnd };
   const genres = await GenreRepo.getList();
   const countries = await CountryRepo.getList();
   const categories = await CategoryRepo.getList();
-  const films = await FilmRepo.getListBrowserPage(categoryId, page, perPage);
+  const films = await FilmRepo.getListBrowserPage({
+    categoryId,
+    genreId,
+    countryId,
+    year,
+    time,
+    order,
+    page,
+    perPage,
+  });
   if (!films && !genres && !countries && !categories) {
     return next(new CustomError(6, 400, 'Data is not exist'));
   }
