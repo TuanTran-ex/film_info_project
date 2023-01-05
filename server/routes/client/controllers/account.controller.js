@@ -72,3 +72,21 @@ exports.logout = async (req, res, next) => {
     }
   }
 };
+
+exports.addFilmToCollection = async (req, res, next) => {
+  const accountId = req.accountId;
+  if (!accountId) {
+    next(new CustomError(6, 401, 'Authentication Error'));
+  }
+  const { filmId, type } = req.body;
+  try {
+    const collectionDetail = await AccountRepo.addFilmToCollection(
+      filmId,
+      accountId,
+      type
+    );
+    return successRes(res, collectionDetail);
+  } catch (err) {
+    throw new CustomError(9, 500, 'Server error');
+  }
+};

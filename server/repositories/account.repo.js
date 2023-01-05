@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const Account = require('../models/account.model');
+const FilmCollection = require('../models/film_collection.model');
 
 class AccountRepo {
   async getList() {
@@ -32,6 +33,18 @@ class AccountRepo {
     const res = await Account.destroy({ where: { id } });
     if (!res) throw new CustomError(6, 404, 'Account not found');
     return res;
+  }
+  async addFilmToCollection(filmId, accountId, type) {
+    try {
+      const detailCollections = await FilmCollection.create({
+        filmId,
+        accountId,
+        type,
+      });
+      return detailCollections;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

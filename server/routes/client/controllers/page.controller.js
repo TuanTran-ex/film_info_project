@@ -78,8 +78,16 @@ async function searchFilm(req, res, next) {
 async function getFilmDetailsPageData(req, res, next) {
   const filmId = req.params.id;
   const film = await FilmRepo.getDetail(filmId);
+  const listFilmSuggest = await FilmRepo.getListBrowserPage({
+    page: 1,
+    perPage: 10,
+    genreId: film.Genres[0].id,
+  });
+  // film.listFilmSuggest = listFilmSuggest;
   if (!film) throw new CustomError(6, 400, 'Film not found');
-  return res.status(200).json({ success: true, data: film });
+  return res
+    .status(200)
+    .json({ success: true, data: { film, listFilmSuggest } });
 }
 
 module.exports = {
