@@ -24,8 +24,8 @@ const BlackListToken = sequelize.define(
   }
 );
 
-BlackListToken.sync({ alter: true })
-  .then(() => console.log('Sync DB'))
-  .catch((err) => console.log('Sync error: ' + err));
+// BlackListToken.sync({ alter: true })
+//   .then(() => console.log('Sync DB BlackList token'))
+//   .catch((err) => console.log('Sync BlackList token error: ' + err));
 
 module.exports = BlackListToken;
