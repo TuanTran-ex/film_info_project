@@ -7,7 +7,6 @@ const redisClient = require('../../../helpers/redisService');
 const redisKey = require('../../../configs/redisKey');
 
 async function getHomePageData(req, res, next) {
-  await redisClient.connect();
   let data = await redisClient.get(redisKey.film.HOME_PAGE);
   if (!data) {
     const { films, tvFilms, movies, processingFilms } =
@@ -16,7 +15,6 @@ async function getHomePageData(req, res, next) {
     const countries = await CountryRepo.getList();
     const categories = await CategoryRepo.getList();
     if (!films && !genres && !countries && !categories) {
-      redisClient.disconnect();
       return next(new CustomError(6, 400, 'Data is not exist'));
     }
     data = {
@@ -33,7 +31,6 @@ async function getHomePageData(req, res, next) {
       NX: true,
     });
   } else data = JSON.parse(data);
-  redisClient.disconnect();
   return res.status(200).json({
     success: true,
     data: data,
