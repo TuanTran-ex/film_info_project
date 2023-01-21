@@ -4,7 +4,7 @@ const Category = require('../models/category.model');
 const { Op } = require('sequelize');
 const Genre = require('../models/genre.model');
 const Country = require('../models/country.model');
-const Person = require('../models/person.model');
+const Person = require('../models/person.model').Person;
 const Trailer = require('../models/trailer.model');
 
 const CATEGORY_TV_FILM_STR = 'Phim Bộ';
@@ -69,6 +69,23 @@ class FilmRepo {
     perPage = 20,
   }) {
     let films = [];
+    let orderCondition;
+    if (order) {
+      switch (order) {
+        case 'updated':
+          orderCondition = ['created_at', 'DESC'];
+          break;
+        case 'publishDate':
+          orderCondition = ['premierDate', 'DESC'];
+          break;
+        case 'rating':
+          orderCondition = ['imdbPoint', 'DESC'];
+          break;
+        default:
+          orderCondition = [];
+          break;
+      }
+    }
     let where = {
       [Op.and]: [
         categoryId ? { categoryId: categoryId } : null,
@@ -80,10 +97,9 @@ class FilmRepo {
             )
           : null,
         time ? { time: { [Op.between]: [time.start, time.end] } } : null,
-        order ? {} : null,
       ],
     };
-    // if (categoryId)
+
     films = await Film.findAll({
       attributes: {
         exclude: ['GenreFilm'],
@@ -100,21 +116,10 @@ class FilmRepo {
         { model: Country },
       ],
       where: where,
-      order: [['created_at']],
+      order: [orderCondition],
       offset: parseInt(page) - 1,
       limit: parseInt(perPage),
     });
-    // else
-    //   films = await Film.findAll({
-    //     include: [
-    //       { model: Category },
-    //       { model: Genre, attributes: ['id', 'name'] },
-    //       { model: Country },
-    //     ],
-    //     order: [['created_at', 'DESC']],
-    //     offset: parseInt(page) - 1,
-    //     limit: parseInt(perPage),
-    //   });
 
     return films.map((el) => el.get({ plain: true }));
   }

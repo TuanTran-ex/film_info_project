@@ -5,6 +5,7 @@ const PageRouter = require('./page.route');
 const CategoryRouter = require('./category.route');
 const CountryRouter = require('./country.route');
 const AuthRouter = require('./account.route');
+const PersonRouter = require('./person.route');
 
 function route(app) {
   app.use(routeName.Film, FilmRouter);
@@ -12,6 +13,7 @@ function route(app) {
   app.use(routeName.Category, CategoryRouter);
   app.use(routeName.Country, CountryRouter);
   app.use(routeName.Base, AuthRouter);
+  app.use(routeName.Person, PersonRouter);
 }
 
 module.exports = route;

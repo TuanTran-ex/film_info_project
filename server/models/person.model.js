@@ -39,4 +39,35 @@ const Person = sequelize.define(
   }
 );
 
-module.exports = Person;
+const PersonImage = sequelize.define(
+  'PersonImage',
+  {
+    id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    url: { type: DataTypes.STRING },
+    personId: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: Person,
+        key: 'id',
+      },
+    },
+  },
+  {
+    timeStamp: false,
+    createdAt: false,
+    updatedAt: false,
+    tableName: 'PersonImage',
+  }
+);
+
+Person.hasMany(PersonImage, {
+  foreignKey: 'personId',
+  tableName: 'PersonImage',
+});
+
+module.exports = { Person, PersonImage };

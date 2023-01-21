@@ -3,19 +3,21 @@ const CountryRepo = require('../../../repositories/country.repo');
 const FilmRepo = require('../../../repositories/film.repo');
 const GenreRepo = require('../../../repositories/genre.repo');
 const { CustomError } = require('../../../utils/errorHandling');
+const redisClient = require('../../../helpers/redisService');
+const redisKey = require('../../../configs/redisKey');
 
 async function getHomePageData(req, res, next) {
-  const { films, tvFilms, movies, processingFilms } =
-    await FilmRepo.getListHomePage();
-  const genres = await GenreRepo.getList();
-  const countries = await CountryRepo.getList();
-  const categories = await CategoryRepo.getList();
-  if (!films && !genres && !countries && !categories) {
-    return next(new CustomError(6, 400, 'Data is not exist'));
-  }
-  return res.status(200).json({
-    success: true,
-    data: {
+  let data = await redisClient.get(redisKey.film.HOME_PAGE);
+  if (!data) {
+    const { films, tvFilms, movies, processingFilms } =
+      await FilmRepo.getListHomePage();
+    const genres = await GenreRepo.getList();
+    const countries = await CountryRepo.getList();
+    const categories = await CategoryRepo.getList();
+    if (!films && !genres && !countries && !categories) {
+      return next(new CustomError(6, 400, 'Data is not exist'));
+    }
+    data = {
       films,
       tvFilms,
       movies,
@@ -23,7 +25,15 @@ async function getHomePageData(req, res, next) {
       genres,
       countries,
       categories,
-    },
+    };
+    await redisClient.set(redisKey.film.HOME_PAGE, JSON.stringify(data), {
+      EX: 24 * 60 * 60,
+      NX: true,
+    });
+  } else data = JSON.parse(data);
+  return res.status(200).json({
+    success: true,
+    data: data,
   });
 }
 
