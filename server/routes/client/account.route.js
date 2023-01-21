@@ -14,4 +14,5 @@ router.post(
   tryCatchFunc(AccountController.addFilmToCollection)
 );
 
+router.get('/accounts', verifyAccessToken, tryCatchFunc(AccountController.get));
 module.exports = router;
