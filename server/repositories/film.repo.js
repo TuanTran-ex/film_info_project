@@ -82,7 +82,6 @@ class FilmRepo {
           orderCondition = ['imdbPoint', 'DESC'];
           break;
         default:
-          orderCondition = [];
           break;
       }
     }
@@ -116,7 +115,7 @@ class FilmRepo {
         { model: Country },
       ],
       where: where,
-      order: [orderCondition],
+      order: orderCondition ? orderCondition : [],
       offset: parseInt(page) - 1,
       limit: parseInt(perPage),
     });
