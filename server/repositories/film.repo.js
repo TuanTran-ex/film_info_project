@@ -1,9 +1,10 @@
+const sequelize = require('sequelize');
 const Film = require('../models/film.model');
 const Category = require('../models/category.model');
 const { Op } = require('sequelize');
 const Genre = require('../models/genre.model');
 const Country = require('../models/country.model');
-const Person = require('../models/person.model');
+const Person = require('../models/person.model').Person;
 const Trailer = require('../models/trailer.model');
 
 const CATEGORY_TV_FILM_STR = 'Phim Bộ';
@@ -57,33 +58,68 @@ class FilmRepo {
    * @param {int} perPage item in one page
    * @returns array films
    */
-  async getListBrowserPage(categoryId, page = 1, perPage = 20) {
+  async getListBrowserPage({
+    categoryId,
+    genreId,
+    countryId,
+    year,
+    time,
+    order,
+    page = 1,
+    perPage = 20,
+  }) {
     let films = [];
-    if (categoryId)
-      films = await Film.findAll({
-        attributes: {
-          exclude: ['GenreFilm'],
+    let orderCondition;
+    if (order) {
+      switch (order) {
+        case 'updated':
+          orderCondition = ['created_at', 'DESC'];
+          break;
+        case 'publishDate':
+          orderCondition = ['premierDate', 'DESC'];
+          break;
+        case 'rating':
+          orderCondition = ['imdbPoint', 'DESC'];
+          break;
+        default:
+          orderCondition = [];
+          break;
+      }
+    }
+    let where = {
+      [Op.and]: [
+        categoryId ? { categoryId: categoryId } : null,
+        countryId ? { countryOfProduction: countryId } : null,
+        year
+          ? sequelize.where(
+              sequelize.fn('YEAR', sequelize.col('Film.premierDate')),
+              year
+            )
+          : null,
+        time ? { time: { [Op.between]: [time.start, time.end] } } : null,
+      ],
+    };
+
+    films = await Film.findAll({
+      attributes: {
+        exclude: ['GenreFilm'],
+      },
+      include: [
+        {
+          model: Category,
         },
-        include: [
-          { model: Category, where: { id: { [Op.eq]: categoryId } } },
-          { model: Genre, attributes: ['id', 'name'] },
-          { model: Country },
-        ],
-        order: [['created_at']],
-        offset: parseInt(page) - 1,
-        limit: parseInt(perPage),
-      });
-    else
-      films = await Film.findAll({
-        include: [
-          { model: Category },
-          { model: Genre, attributes: ['id', 'name'] },
-          { model: Country },
-        ],
-        order: [['created_at', 'DESC']],
-        offset: parseInt(page) - 1,
-        limit: parseInt(perPage),
-      });
+        {
+          model: Genre,
+          attributes: ['id', 'name'],
+          where: { [Op.and]: [genreId ? { id: genreId } : null] },
+        },
+        { model: Country },
+      ],
+      where: where,
+      order: [orderCondition],
+      offset: parseInt(page) - 1,
+      limit: parseInt(perPage),
+    });
 
     return films.map((el) => el.get({ plain: true }));
   }
@@ -100,7 +136,7 @@ class FilmRepo {
    * @param {string} searchValue
    * @returns Array Films
    */
-  async searchFilm(searchValue = '') {
+  async search(searchValue = '') {
     searchValue = searchValue.trim();
     const films = await Film.findAll({
       where: {

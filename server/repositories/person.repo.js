@@ -1,4 +1,6 @@
-const PersonModel = require('../models/person.model');
+const PersonModel = require('../models/person.model').Person;
+const PersonImageModel = require('../models/person.model').PersonImage;
+const FilmModel = require('../models/film.model');
 
 class PersonRepo {
   async getList() {
@@ -6,7 +8,9 @@ class PersonRepo {
     return listPerson;
   }
   async getById(id) {
-    const person = await PersonModel.findByPk(id);
+    const person = await PersonModel.findByPk(id, {
+      include: [PersonImageModel, FilmModel],
+    });
     return person;
   }
   async getByName(name) {

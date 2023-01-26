@@ -51,8 +51,8 @@ Account.beforeCreate(async (user, options) => {
   }
 });
 
-Account.sync({ alter: true })
-  .then(() => console.log('Sync DB'))
-  .catch((err) => console.log('Sync error: ' + err));
+// Account.sync({ alter: true })
+//   .then(() => console.log('Sync DB Account table successfully'))
+//   .catch((err) => console.log('Sync Account table error: ' + err));
 
 module.exports = Account;

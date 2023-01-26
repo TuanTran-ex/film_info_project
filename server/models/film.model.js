@@ -5,7 +5,7 @@ const Category = require('../models/category.model');
 const Genre = require('./genre.model');
 const Country = require('./country.model');
 const Trailer = require('./trailer.model');
-const Person = require('./person.model');
+const Person = require('./person.model').Person;
 
 const Film = sequelize.define(
   'Film',
@@ -93,7 +93,7 @@ const PersonFilm = sequelize.define(
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       references: {
-        model: Genre,
+        model: Person,
         key: 'id',
       },
     },
