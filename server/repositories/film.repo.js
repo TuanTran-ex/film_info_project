@@ -125,7 +125,7 @@ class FilmRepo {
 
   async getDetail(filmId) {
     const film = await Film.findByPk(filmId, {
-      include: [Genre, Person, Trailer],
+      include: [Genre, Person, Trailer, Category, Country],
     });
     return film;
   }
