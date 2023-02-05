@@ -115,7 +115,7 @@ class FilmRepo {
         { model: Country },
       ],
       where: where,
-      order: orderCondition ? orderCondition : [],
+      order: orderCondition ? [orderCondition] : [['id', 'DESC']],
       offset: parseInt(page) - 1,
       limit: parseInt(perPage),
     });
@@ -125,7 +125,7 @@ class FilmRepo {
 
   async getDetail(filmId) {
     const film = await Film.findByPk(filmId, {
-      include: [Genre, Person, Trailer],
+      include: [Genre, Person, Trailer, Category, Country],
     });
     return film;
   }
