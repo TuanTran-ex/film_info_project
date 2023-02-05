@@ -93,6 +93,12 @@ async function getFilmDetailsPageData(req, res, next) {
     perPage: 10,
     genreId: film.Genres[0].id,
   });
+  for (let index = 0; index < listFilmSuggest.length; index++) {
+    if (listFilmSuggest[index].id == filmId) {
+      listFilmSuggest.splice(index, 1);
+      break;
+    }
+  }
   // film.listFilmSuggest = listFilmSuggest;
   if (!film) throw new CustomError(6, 400, 'Film not found');
   return res

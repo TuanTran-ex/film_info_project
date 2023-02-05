@@ -115,7 +115,7 @@ class FilmRepo {
         { model: Country },
       ],
       where: where,
-      order: orderCondition ? orderCondition : [],
+      order: orderCondition ? [orderCondition] : [['id', 'DESC']],
       offset: parseInt(page) - 1,
       limit: parseInt(perPage),
     });
