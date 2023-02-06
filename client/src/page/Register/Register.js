@@ -13,69 +13,59 @@ function Login() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     let navigate = useNavigate();
-    // const [user, setUser] = useState({
-    //     email: '',
-    //     name: '',
-    //     password: '',
-    // });
-    //nguyenanh@gmail.com
 
     const Joi = require('joi');
     const schema = Joi.object({
-        username: Joi.string().alphanum().min(3).max(30).required(),
+        username: Joi.string().min(3).max(30).required(),
 
         Password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,30}$')),
 
         repeat_password: Joi.ref('password'),
 
-        access_token: [Joi.string(), Joi.number()],
-
-        birth_year: Joi.number().integer().min(1900).max(2013),
-
-        // Email: Joi.string().email({
-        //     minDomainSegments: 2,
-        //     tlds: { allow: ['com', 'net'] },
-        // }),
-    })
-        .with('username', 'birth_year')
-        .xor('password', 'access_token')
-        .with('password', 'repeat_password');
+        Email: Joi.string().email({
+            minDomainSegments: 2,
+            tlds: { allow: ['com', 'net'] },
+        }),
+    });
+    // .with('username', 'birth_year')
+    // .xor('password', 'access_token')
+    // .with('password', 'repeat_password');
 
     const checkValue = schema.validate({
         Email: email,
         username: name,
         Password: password,
     });
-    const temp = checkValue.error.toString();
+    const temp = checkValue.error?.toString();
     const hanleClickLogin = () => {
         if (email === '' || name === '' || password === '') {
             alert('Hãy điền đầy đủ thông tin đăng ký');
             return;
         }
-        //huyenanh@gmail.com
         const regex =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         //check email validity
-        console.log(temp);
         if (!regex.test(email)) {
             alert('Hãy điền địa chỉ email hợp lệ!');
             return;
         }
-        if (temp.includes('username')) {
-            alert('Tên đăng kí phải trên 3 kí tự!');
+        if (temp?.includes('username')) {
+            alert(
+                'Tên đăng kí phải trên 3 kí tự và phải không chứa các kí tự đặc biệt!',
+            );
             return;
         }
-        if (temp.includes('Password')) {
+        if (temp?.includes('Password')) {
             alert('Mật khẩu phải trên 8 kí tự và không có ký tự đặc biệt!');
             return;
         }
         const register = async () => {
             try {
                 const params = { email, username: name, password };
-                console.log('param:', params);
                 const response = await authApi.register(params);
                 const err = response.data.error;
+
                 if (!err) {
                     //save email: register
                     localStorage.setItem(
@@ -87,7 +77,8 @@ function Login() {
                     return navigate('/login');
                 }
             } catch (error) {
-                alert('Thông tin đăng ký không hợp lệ!');
+                console.log(error);
+                alert('Thông tin đăng ký không hợp lệ!', error);
             }
         };
         register();
@@ -123,7 +114,6 @@ function Login() {
                             className={cx('password')}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Mat khau"
-                            // pattern=
                             required
                             type="password"
                         />

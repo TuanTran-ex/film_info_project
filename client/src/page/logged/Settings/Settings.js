@@ -1,26 +1,54 @@
 import classNames from 'classnames/bind';
+import { useState, useEffect } from 'react';
+import accountsPageApi from '../../../api/accountsInfoApi';
 import styles from './Settings.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Settings() {
-    const getUserName = localStorage.getItem('account');
-    // const getEmail = localStorage.getItem('register');
+    const account = localStorage.getItem('account');
+    const { username, accessToken } = JSON.parse(account);
+    const [email, setEmail] = useState('');
+    const [date, setDate] = useState();
+
+    useEffect(() => {
+        const fetchAccountsInfoApi = async (accessToken) => {
+            try {
+                const response = await accountsPageApi.getAll(accessToken);
+                setEmail(response.data.email);
+                const resDate = new Date(response.data.createdAt);
+                setDate(
+                    `${resDate?.getDate()}/${
+                        resDate?.getMonth() + 1
+                    }/${resDate?.getFullYear()} ${
+                        resDate?.getHours() < 10
+                            ? '0' + resDate?.getHours()
+                            : resDate?.getHours()
+                    }:${
+                        resDate?.getMinutes() < 10
+                            ? '0' + resDate?.getMinutes()
+                            : resDate?.getMinutes()
+                    }`,
+                );
+            } catch (error) {
+                console.log('Error: ', error);
+            }
+        };
+        fetchAccountsInfoApi(accessToken);
+    });
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
-                <h2 className={cx('username')}>
-                    {JSON.parse(getUserName).username}
-                </h2>
+                <h2 className={cx('username')}>{username}</h2>
                 <div className={cx('info')}>
                     <div className={cx('date-joined')}>
                         Ngày gia nhập:
-                        <p className={cx('date')}>14/11/2022 19:14</p>
+                        <p className={cx('date')}>{date ?? ''}</p>
                     </div>
                     <div className={cx('field-email')}>
                         <span className={cx('email')}>
-                            Email: <p>{JSON.parse(getUserName).userEmail}</p>
+                            Email: <p>{email ?? ''}</p>
                         </span>
                         <span className={cx('settings-email')}>
                             <a href="#" className={cx('change-email')}>

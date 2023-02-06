@@ -1,11 +1,14 @@
+//Libary
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Watching.module.scss';
 import WebFont from 'webfontloader';
-//Libary
+
+//Components
+import routes from '../../config/routes';
 import Header from '../../layouts/components/HeaderDefault';
 import Footer from '../../layouts/components/Footer';
-import routes from '../../config/routes';
+import watchPageApi from '../../api/watchApi';
 
 //icon
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -16,8 +19,24 @@ import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import ThumbDownAltTwoToneIcon from '@mui/icons-material/ThumbDownAltTwoTone';
 const cx = classNames.bind(styles);
 function Watching() {
+    const id = window.location.href.split('/')[4];
     const [indexChoiceEn, setIndexChoiceEn] = useState();
     const [indexChoiceVn, setIndexChoiceVn] = useState();
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        const fetchWatchMovies = async () => {
+            try {
+                const response = await watchPageApi.getAll(id);
+                const { data } = response;
+                setData(data);
+            } catch (error) {
+                console.log('Failed tp fetch product list: ', error);
+            }
+        };
+        fetchWatchMovies();
+    }, []);
+
+    //pointLike / dispoinDisLike - en
     const [poinLike, setPoinLike] = useState(
         sessionStorage.getItem('poin')
             ? JSON.parse(sessionStorage.getItem('poin')).poinLike
@@ -28,6 +47,7 @@ function Watching() {
             ? JSON.parse(sessionStorage.getItem('poin')).poinDisLike
             : -1,
     );
+    // vn
     const [poinLikeVn, setPoinLikeVn] = useState(
         sessionStorage.getItem('poin')
             ? JSON.parse(sessionStorage.getItem('poin')).poinLikeVn
@@ -199,13 +219,21 @@ function Watching() {
                                 <div className={cx('row-left')}>
                                     <div className={cx('name-film')}>
                                         <h2 className={cx('name-vn')}>
-                                            Học Viện Ảo Thuật
+                                            {data?.film?.name}
                                         </h2>
                                         <span>
                                             <p className={cx('name-en')}>
-                                                Scooby-Doo! Abracadabra-Doo
+                                                {data?.film?.englishName}
                                             </p>
-                                            (<a href="/country">2022</a>)
+
+                                            <a href="#">
+                                                (
+                                                {data?.film?.premierDate.slice(
+                                                    0,
+                                                    4,
+                                                )}
+                                                )
+                                            </a>
                                         </span>
                                     </div>
                                     <div className={cx('button')}>

@@ -32,7 +32,6 @@ function SeriesMovie() {
                 const params = { categoryId: 8 };
                 const response = await BrowseAPI.getAll(params);
                 const { films, categories, countries, genres } = response.data;
-                console.log(films);
                 setFilms(films);
                 setListCategory(categories);
                 setListGenre(genres);

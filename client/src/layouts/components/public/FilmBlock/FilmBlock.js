@@ -25,7 +25,10 @@ function FilmBlock({ films }) {
                                 className={cx('avata')}
                             >
                                 <Image
-                                    src="https://image.tmdb.org/t/p/w342/8ZMrZGGW65ePWIgRn1260nA1uUm.jpg"
+                                    src={
+                                        item.image ??
+                                        'https://image.tmdb.org/t/p/w342/8ZMrZGGW65ePWIgRn1260nA1uUm.jpg'
+                                    }
                                     alt="image"
                                     className={cx('image')}
                                 />

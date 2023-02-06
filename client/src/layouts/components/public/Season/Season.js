@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Season.module.scss';
 import Image from '../../../../components/image/Images';
 import WebFont from 'webfontloader';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Season() {
     const data = [
@@ -56,17 +57,19 @@ function Season() {
             <div className={cx('list')}>
                 <div className={cx('first-child')}>
                     <div className={cx('left')}>
-                        <Image
-                            src={data[0].image}
-                            alt="image"
-                            className={cx('image')}
-                        />
+                        <Link to="#">
+                            <Image
+                                src={data[0].image}
+                                alt="image"
+                                className={cx('image')}
+                            />
+                        </Link>
                     </div>
 
                     <div className={cx('right')}>
-                        <a href="/" className={cx('season')}>
+                        <Link to="#" className={cx('season')}>
                             Phần {data[0].season}
-                        </a>
+                        </Link>
                         <span>
                             <p className={cx('year')}> {data[0].year}</p>
                             <p className={cx('episode')}>
@@ -79,19 +82,19 @@ function Season() {
                 {array.map((item, index) => (
                     <div key={index} className={cx('item')}>
                         <div className={cx('left')}>
-                            <a href="/">
+                            <Link to="#">
                                 <Image
                                     src={item.image}
                                     alt="image"
                                     className={cx('image')}
                                 />
-                            </a>
+                            </Link>
                         </div>
 
                         <div className={cx('right')}>
-                            <a href="/" className={cx('season')}>
+                            <Link to="#" className={cx('season')}>
                                 Phần {item.season}
-                            </a>
+                            </Link>
 
                             <span>
                                 <p className={cx('year')}> {item.year}</p>

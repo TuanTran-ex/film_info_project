@@ -87,14 +87,12 @@ function Casts() {
     let getIdImage;
     const handleClickImage = (id) => {
         getIdImage = id;
-        console.log(id);
         if (isClickImage === true) {
             setIsClickImage(false);
         } else setIsClickImage(true);
     };
 
     const handleCloseImage = () => {
-        console.log('in');
         setIsClickImage(false);
     };
     return (

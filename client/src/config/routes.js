@@ -15,7 +15,7 @@ const routes = {
     seriesmovie: '/seriesmovie',
     settings: '/setting', //setting accoount
     user: '/user',
-    watching: '/watching',
+    watching: '/watching/:id',
 };
 
 export default routes;

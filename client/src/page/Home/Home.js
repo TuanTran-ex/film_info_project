@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 // --- LIBRARY --
@@ -9,7 +8,7 @@ import './14_LIBRARY.css';
 import Header from './Header';
 import FilmHome from '../../layouts/components/public/FilmHome';
 import Type from '../../layouts/components/public/TypeFilm';
-import config from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Home() {
@@ -18,25 +17,28 @@ function Home() {
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
 
+    let navigate = useNavigate();
+    const fetchHomeApi = async (params = {}) => {
+        try {
+            const response = await homePageApi.getAll(params);
+            const { categories, films, countries, genres } = response.data;
+            setListCategory(categories);
+            setListFilm(films);
+            setListGenre(genres);
+            setlistCountry(countries);
+        } catch (error) {
+            console.log('Failed to fetch product list: ', error);
+        }
+    };
+
+    const selectValue = (object) => {
+        return navigate('/newmovie', { ...object });
+    };
+
     useEffect(() => {
-        const fetchHomeApi = async () => {
-            try {
-                const params = {};
-                console.log(params);
-                const response = await homePageApi.getAll(params);
-                console.log('Fetch products successfully: ', response);
-                const { categories, films, countries, genres } = response.data;
-                setListCategory(categories);
-                setListFilm(films);
-                console.log(typeof films);
-                setListGenre(genres);
-                setlistCountry(countries);
-            } catch (error) {
-                console.log('Failed to fetch product list: ', error);
-            }
-        };
         fetchHomeApi();
     }, []);
+
     const listTypeFilm = [
         { id: 1, type: 'PHIM ĐỀ CỬ' },
         {
@@ -50,13 +52,13 @@ function Home() {
     ];
 
     const arrayFilms = listFilm.slice(0, 10);
-
     return (
         <div className={cx('wrapper')}>
             <Header
                 listCategory={listCategory}
                 listGender={listGender}
                 listCountry={listCountry}
+                selectValue={selectValue}
             />
             <div className={cx('content')}>
                 <Type type={listTypeFilm[0]} />

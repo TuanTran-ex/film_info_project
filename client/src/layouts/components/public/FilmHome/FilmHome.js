@@ -24,60 +24,67 @@ function FilmHome({ listFilm }) {
 
         return { width };
     };
-    // const viewPort = useViewport();
-    // const NotDesktop = viewPort.width >= 740 && viewPort.width <= 1023;
-    // const [array, setArray] = useState();
-    // console.log('array: ', array);
+    const viewPort = useViewport();
+    const NotDesktop = viewPort.width >= 740 && viewPort.width <= 1023;
+    const Desktop = viewPort.width >= 1024;
+    const [array, setArray] = useState(() => {
+        return viewPort.width >= 740 && viewPort.width <= 1023
+            ? listFilm.slice(0, 8)
+            : [];
+    });
 
-    // useEffect(() => {
-    //     if (NotDesktop && array === undefined) setArray(listFilm.slice(0, 8));
-    // }, [viewPort.width]);
+    useEffect(() => {
+        if (NotDesktop && array.length === 0) setArray(listFilm.slice(0, 8));
+        Desktop && setArray(listFilm);
+    }, [viewPort.width]);
 
     return (
         <div className={cx('film-block', 'grid')}>
             <div className={cx('row', 'list')}>
-                {listFilm.map((item, index) => (
-                    <div
-                        key={index}
-                        className={cx('column', 'l-2-4', 'm-3', 'c-6')}
-                    >
-                        <div className={cx('item')}>
-                            <a
-                                href={routes.moviedetails.replace(
-                                    ':id',
-                                    item.id,
-                                )}
-                                className={cx('avata')}
-                            >
-                                <Image
-                                    src="https://image.tmdb.org/t/p/w342/vH50lq31h8GlDgRnHKrW5x0aHUK.jpg"
-                                    alt={item.name}
-                                    className={cx('image')}
-                                />
-                            </a>
-                            <span className={cx('film-name')}>
+                {(NotDesktop ? listFilm.slice(0, 8) : listFilm).map(
+                    (item, index) => (
+                        <div
+                            key={index}
+                            className={cx('column', 'l-2-4', 'm-3', 'c-6')}
+                        >
+                            <div className={cx('item')}>
                                 <a
                                     href={routes.moviedetails.replace(
-                                    ':id',
-                                    item.id,
-                                )}
-                                    className={cx('name')}
+                                        ':id',
+                                        item.id,
+                                    )}
+                                    className={cx('avata')}
                                 >
-                                    {item.name}
+                                    <Image
+                                        src="https://image.tmdb.org/t/p/w342/vH50lq31h8GlDgRnHKrW5x0aHUK.jpg"
+                                        alt={item.name}
+                                        className={cx('image')}
+                                    />
                                 </a>
-                                <a
-                                    href={routes.moviedetails.replace(
-                                    ':id',
-                                    item.id,
-                                )}
-                                    className={cx('English-name')}
-                                >
-                                    {item.englishName}
-                                </a>
-                            </span>
+                                <span className={cx('film-name')}>
+                                    <a
+                                        href={routes.moviedetails.replace(
+                                            ':id',
+                                            item.id,
+                                        )}
+                                        className={cx('name')}
+                                    >
+                                        {item.name}
+                                    </a>
+                                    <a
+                                        href={routes.moviedetails.replace(
+                                            ':id',
+                                            item.id,
+                                        )}
+                                        className={cx('English-name')}
+                                    >
+                                        {item.englishName}
+                                    </a>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ),
+                )}
             </div>
         </div>
     );

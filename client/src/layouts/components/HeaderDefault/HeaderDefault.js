@@ -6,18 +6,18 @@ import styles from './HeaderDefault.module.scss';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import routes from '../../../config/routes';
 import { Link } from 'react-router-dom';
-//icon
+//---ICON / ANIMATION --
+// import 'animate.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 const cx = classNames.bind(styles);
 
-function Header({}) {
+function Header() {
     const [isScroll, setIsScroll] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isShow, setIsShow] = useState(false);
-    const [isHide, setIsHide] = useState(true);
     const getValueUser = localStorage.getItem('account');
 
     function hanleScroll() {
@@ -80,10 +80,15 @@ function Header({}) {
     }, [viewPort.width]);
 
     //Click Icon menu
+    let i = 0;
     const handleClickIconMenu = () => {
         if (isShow) {
             setIsShow(false);
-        } else setIsShow(true);
+            i = 1;
+        } else {
+            i = 0;
+            setIsShow(true);
+        }
     };
 
     const handleClickList = () => {};
@@ -101,6 +106,7 @@ function Header({}) {
                             <MenuIcon
                                 className={cx('menu-icon')}
                                 onClick={() => handleClickIconMenu()}
+                                key={i}
                             />
                         </p>
                     ) : (

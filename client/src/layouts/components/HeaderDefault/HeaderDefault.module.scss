@@ -1,6 +1,6 @@
 :root {
     --brand-width: 110px;
-    --search-width: 110px;
+    --search-width: 116px;
     --red-btn: #c41f20;
 }
 
@@ -46,7 +46,6 @@
 .nav-brand {
     height: 100%;
     position: relative;
-    // line-height: 56px;
     margin: 0;
 
     .brand-link {
@@ -69,9 +68,9 @@
 
 .search {
     height: 56px;
-    width: var(--search-width);
+    min-width: var(--search-width);
     margin-left: 10px;
-
+    padding-left: 8px;
     flex-shrink: 0;
     font-size: 1.6rem;
     font-weight: 400;
@@ -252,19 +251,32 @@
     }
     .wrapper {
         display: block;
+        height: 50px;
     }
 
+    //start: nav-left
     .nav-left {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 100%;
     }
+
+    .nav-brand .brand-link {
+        .svg {
+            width: 84px;
+        }
+    }
+    //end
 
     .search {
         width: 110px;
+        // .search-icon {
+        //     font-size: 40px;
+        // }
     }
-    //block:  icon - brand
 
+    //start: nav-right
     .nav-menu {
         width: 100%;
         height: auto;
@@ -330,5 +342,12 @@
                 left: 0;
             }
         }
+    }
+    // end
+}
+
+@media (max-width: 575px) {
+    .search .search-icon {
+        font-size: 30px;
     }
 }

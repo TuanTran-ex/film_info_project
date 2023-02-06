@@ -1,30 +1,30 @@
-import { useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './Login.module.scss';
-import GoogleIcon from '@mui/icons-material/Google';
-//login;
-import routes from '../../config/routes';
-import authApi from '../../api/authApi';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+//Components;
+import authApi from '../../api/authApi';
+import routes from '../../config/routes';
+import styles from './Login.module.scss';
+// import loginPageApi from '../../api/loginApi';
+//Icons
+import GoogleIcon from '@mui/icons-material/Google';
 const cx = classNames.bind(styles);
 function Login() {
     const [userName, setUserName] = useState('');
     const [passWord, setPassWord] = useState('');
-
     let navigate = useNavigate('account');
     const getUserEmail = localStorage.getItem('account');
 
     const hanleClickLogin = () => {
-        const regex =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (userName === '' || passWord === '') {
             alert('Điền đầy đủ thông tin đăng nhập.');
+            return;
         }
 
         const login = async () => {
             try {
                 const params = { username: userName, password: passWord };
-                // console.log(params);
+
                 const response = await authApi.login(params);
                 const err = response.data.error;
                 if (!err) {
@@ -40,11 +40,12 @@ function Login() {
                 }
             } catch (error) {
                 alert('Thông tin đăng nhập không hợp lệ!');
-                console.log('Đăng nhập không thành công!', error);
+                return;
             }
         };
         login();
     };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('block')}>
