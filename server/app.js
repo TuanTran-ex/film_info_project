@@ -1,4 +1,6 @@
 const express = require('express');
+const helmet = require('helmet');
+const compression = require('compression');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -21,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
+app.use(compression());
+app.use(helmet());
 
 // API document
 const swaggerDocument = YAML.load('./swagger.yaml');
