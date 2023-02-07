@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import config from '../../../../config/index';
 import classNames from 'classnames/bind';
 // --- LIBRARY --
 import routes from '../../../../config/routes';
@@ -56,7 +56,11 @@ function FilmHome({ listFilm }) {
                                     className={cx('avata')}
                                 >
                                     <Image
-                                        src="https://image.tmdb.org/t/p/w342/vH50lq31h8GlDgRnHKrW5x0aHUK.jpg"
+                                        src={
+                                            item.image.includes('/images')
+                                                ? `${config.urlAPI}${item.image}`
+                                                : item.image
+                                        }
                                         alt={item.name}
                                         className={cx('image')}
                                     />

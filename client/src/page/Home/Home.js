@@ -16,16 +16,21 @@ function Home() {
     const [listFilm, setListFilm] = useState([]);
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
+    const [listTvFilms, setListTvFilms] = useState([]);
+    const [listMovies, setListMovies] = useState([]);
 
     let navigate = useNavigate();
     const fetchHomeApi = async (params = {}) => {
         try {
             const response = await homePageApi.getAll(params);
-            const { categories, films, countries, genres } = response.data;
+            const { categories, films, countries, genres, tvFilms, movies } =
+                response.data;
             setListCategory(categories);
             setListFilm(films);
             setListGenre(genres);
             setlistCountry(countries);
+            setListTvFilms(tvFilms);
+            setListMovies(movies);
         } catch (error) {
             console.log('Failed to fetch product list: ', error);
         }
@@ -64,9 +69,9 @@ function Home() {
                 <Type type={listTypeFilm[0]} />
                 <FilmHome listFilm={arrayFilms} />
                 <Type type={listTypeFilm[1]} />
-                <FilmHome listFilm={arrayFilms} />
+                <FilmHome listFilm={listMovies} />
                 <Type type={listTypeFilm[2]} />
-                <FilmHome listFilm={arrayFilms} />
+                <FilmHome listFilm={listTvFilms} />
             </div>
             <div className={cx('new-film')}>
                 <div className={cx('title')}>Phim mới đăng (chờ xử lý)</div>

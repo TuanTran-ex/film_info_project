@@ -4,6 +4,7 @@ import styles from './FilmBlock.module.scss';
 import Image from '../../../../components/image/Images';
 import './14_LIBRARY.css';
 import routes from '../../../../config/routes';
+import config from '../../../../config';
 
 const cx = classNames.bind(styles);
 
@@ -26,8 +27,9 @@ function FilmBlock({ films }) {
                             >
                                 <Image
                                     src={
-                                        item.image ??
-                                        'https://image.tmdb.org/t/p/w342/8ZMrZGGW65ePWIgRn1260nA1uUm.jpg'
+                                        item.image.includes('/images')
+                                            ? `${config.urlAPI}${item.image}`
+                                            : item.image
                                     }
                                     alt="image"
                                     className={cx('image')}

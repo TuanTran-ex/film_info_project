@@ -10,36 +10,34 @@ function Footer() {
     return (
         <div className={cx('wrapper')}>
             <span className={cx('compare')}>
-                Phim chất lượng cao online của <a href="/">XemPhim</a> khác gì
-                so với các trang phim khác?
+                Trang cung cấp thông tin và trailer phim. Trang web mang mục
+                đích học tập.
             </span>
             <ul className={cx('list')}>
                 <li className={cx('item')}>
-                    Là phim bluray (reencoded), có độ phân giải thấp nhất là
-                    Full HD (1080p), trong khi hầu hết các trang phim khác chỉ
-                    có tới độ phân giải HD (720p) là cao nhất
+                    Trang web sử dụng các kỹ năng HTML, CSS và ReactJS.
                 </li>
                 <li className={cx('item')}>
-                    Chất lượng cao, lượng dữ liệu trên giây (bitrate) gấp từ 5 -
-                    10 lần phim online thông thường - đây là yếu tố quyết định
-                    độ nét của phim (thậm chí còn quan trọng hơn độ phân giải)
+                    React - A JavaScript library for building user interfaces
                 </li>
                 <li className={cx('item')}>
-                    Âm thanh 5.1 (6 channel) thay vì stereo (2 channel) như các
-                    trang phim khác (kể cả Youtube)
+                    HTML is the markup language that we use to structure and
+                    give meaning to our web content, for example defining
+                    paragraphs, headings, and data tables, or embedding images
+                    and videos in the page.
                 </li>
                 <li className={cx('item')}>
-                    Phù hợp để xem trên màn hình TV, máy tính, laptop có độ phân
-                    giải cao
+                    CSS is a language of style rules that we use to apply
+                    styling to our HTML content, for example setting background
+                    colors and fonts, and laying out our content in multiple
+                    columns.
                 </li>
                 <li className={cx('item')}>
-                    Nếu không hài lòng với phụ đề có sẵn, bạn có thể tự upload
-                    phụ đề của riêng mình để xem online
-                </li>
-                <li className={cx('item')}>
-                    Có lựa chọn hiện phụ đề song ngữ (tức hiện đồng thời cả
-                    tiếng Anh & tiếng Việt), phù hợp với những người muốn học
-                    tiếng Anh qua phụ đề phim
+                    JavaScript is a scripting language that enables you to
+                    create dynamically updating content, control multimedia,
+                    animate images, and pretty much everything else. (Okay, not
+                    everything, but it is amazing what you can achieve with a
+                    few lines of JavaScript code.)
                 </li>
             </ul>
 

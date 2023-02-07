@@ -12,6 +12,7 @@ import Footer from '../../layouts/components/Footer';
 import Season from '../../layouts/components/public/Season/Season';
 import routes from '../../config/routes';
 import movieDetailsApi from '../../api/moviedetailsApi';
+import config from '../../config/index';
 // --ICONS--
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
@@ -183,7 +184,7 @@ function MovieDetails() {
 
             <div className={cx('background')}>
                 <Image
-                    src="https://image.tmdb.org/t/p/original/5UaBZlO6RCKug49N4IA9yfztZJP.jpg"
+                    src={`${config.urlAPI}${data?.film?.backgroundImage}`}
                     alt="image"
                     className={cx('image')}
                 />
@@ -195,7 +196,7 @@ function MovieDetails() {
                         <div className={cx('column-left')}>
                             <div className={cx('film-image')}>
                                 <Image
-                                    src="https://image.tmdb.org/t/p/w342/wZccw4Hj9ZF1yimnfPsX9rl3HvB.jpg"
+                                    src={`${config.urlAPI}${data?.film?.image}`}
                                     alt="image"
                                     className={cx('image')}
                                 />
@@ -470,8 +471,11 @@ function MovieDetails() {
                                                     <figure>
                                                         <Image
                                                             src={
-                                                                item.image ??
-                                                                'https://image.tmdb.org/t/p/w138_and_h175_face/rVc9M8pojcY7aHyKpx3iCZKWYIs.jpg'
+                                                                item
+                                                                    ?.PersonImages[0]
+                                                                    ?.url
+                                                                    ? `${config.urlAPI}${item.PersonImages[0].url}`
+                                                                    : 'https://image.tmdb.org/t/p/w138_and_h175_face/rVc9M8pojcY7aHyKpx3iCZKWYIs.jpg'
                                                             }
                                                             alt={item.name}
                                                             className={cx(
@@ -494,12 +498,7 @@ function MovieDetails() {
                                                         className={cx(
                                                             'character',
                                                         )}
-                                                    >
-                                                        {
-                                                            // item.PersonFilm
-                                                            //     .nameInFilm
-                                                        }
-                                                    </p>
+                                                    ></p>
                                                 </span>
                                             </div>
                                         ))}

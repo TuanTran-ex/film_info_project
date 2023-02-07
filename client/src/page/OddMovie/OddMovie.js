@@ -1,9 +1,11 @@
+// --LIBRARY
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './OddMovie.module.scss';
+import { useNavigate } from 'react-router-dom';
+//COMPONENTS
 import BrowseAPI from '../../api/browseApi';
-// --LIBRARY
 import Header from '../../layouts/components/public/Header';
 import FilmBlock from '../../layouts/components/public/FilmBlock';
 import ListFilm from '../../layouts/components/public/ListFilm';
@@ -13,8 +15,8 @@ import Pagination from '../../layouts/components/public/Pagination/Pagination';
 const cx = classNames.bind(styles);
 
 function OddMovie() {
-    const location = useLocation();
-    const title = 'Phim lẻ'; //TYPE
+    const title = 'Phim lẻ';
+    let navigate = useNavigate();
     const [listCategory, setListCategory] = useState([]);
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
@@ -25,12 +27,8 @@ function OddMovie() {
             ? JSON.parse(sessionStorage.getItem('nowIndex'))
             : 1,
     );
-    const [paramFilter, setParamFilter] = useState({ ...location.state });
-    const selectValue = (object) => {
-        setParamFilter({ ...object });
-    };
 
-    const fetchBrowseApi = async () => {
+    const fetchBrowseApi = async (params = {}) => {
         try {
             const params = { categoryId: 7 };
             const response = await BrowseAPI.getAll(params);
@@ -47,9 +45,9 @@ function OddMovie() {
         fetchBrowseApi();
     }, []);
 
-    // useEffect(() => {
-    //     fetchBrowseApi(paramFilter);
-    // }, [paramFilter]);
+    const selectValue = (object) => {
+        return navigate('/newmovie', { ...object });
+    };
 
     useEffect(() => {
         // storing input name

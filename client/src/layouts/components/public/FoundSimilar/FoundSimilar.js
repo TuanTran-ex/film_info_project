@@ -8,6 +8,7 @@ import Image from '../../../../components/image/Images';
 //Icons
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import config from '../../../../config';
 
 const cx = classNames.bind(styles);
 
@@ -137,8 +138,9 @@ function FoundSimilar({ data }) {
                             <a href="/">
                                 <Image
                                     src={
-                                        item.image ??
-                                        'https://image.tmdb.org/t/p/w342/tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg '
+                                        item.image.includes('/images')
+                                            ? `${config.urlAPI}${item.image}`
+                                            : item.image
                                     }
                                     alt={item.name}
                                     className={cx('image')}
