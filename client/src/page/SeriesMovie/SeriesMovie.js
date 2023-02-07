@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import styles from './SeriesMovie.module.scss';
+import { useNavigate } from 'react-router-dom';
+//COMPONENTS
 import BrowseAPI from '../../api/browseApi';
+import styles from './SeriesMovie.module.scss';
 import Title from '../../layouts/components/public/Title';
 import HeaderSeries from '../../layouts/components/public/HeaderSeries/HeaderSeries';
 import FilmBlock from '../../layouts/components/public/FilmBlock';
 import ListFilm from '../../layouts/components/public/ListFilm';
 import Pagination from '../../layouts/components/public/Pagination/Pagination';
-
 const cx = classNames.bind(styles);
 
 function SeriesMovie() {
     const title = 'Phim Bộ';
+    let navigate = useNavigate();
     const [listCategory, setListCategory] = useState([]);
     const [listGender, setListGenre] = useState([]);
     const [listCountry, setlistCountry] = useState([]);
@@ -26,6 +28,8 @@ function SeriesMovie() {
         // storing input name
         sessionStorage.setItem('nowIndex', JSON.stringify(nowIndex));
     }, [nowIndex]);
+
+    //call API -> get data to render UI
     useEffect(() => {
         const fetchHomeApi = async () => {
             try {
@@ -42,6 +46,10 @@ function SeriesMovie() {
         };
         fetchHomeApi();
     }, []);
+
+    const selectValue = (object) => {
+        return navigate('/newmovie', { ...object });
+    };
 
     const handleClick = (param) => {
         setIsList(param);
@@ -64,6 +72,7 @@ function SeriesMovie() {
                 listCountry={listCountry}
                 handleClick={handleClick}
                 isList={isList}
+                selectValue={selectValue}
             />
             {!isList ? <FilmBlock films={films} /> : <ListFilm films={films} />}
             <Pagination nowIndex={nowIndex} handleClickPage={handleClickPage} />

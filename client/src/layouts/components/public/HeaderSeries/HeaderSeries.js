@@ -12,19 +12,79 @@ function HeaderSeries({
     listCountry,
     handleClick,
     isList,
+    selectValue,
 }) {
+    const getSelectValueCategory = () => {
+        const selectedValueCategory =
+            document.getElementById('list-category').value;
+        let nameCategory = document
+            .getElementById('list-category')
+            .getAttribute('name');
+        let obj = {};
+        if (selectedValueCategory !== '-1')
+            obj[nameCategory] = selectedValueCategory;
+        else delete obj[nameCategory];
+        selectValue(obj);
+    };
+
+    const getSelectValueGenre = () => {
+        const selectedValueGenre = document.getElementById('list-genre').value;
+        let nameGenre = document
+            .getElementById('list-genre')
+            .getAttribute('name');
+        let obj = {};
+        if (selectedValueGenre !== '-1') obj[nameGenre] = selectedValueGenre;
+        else delete obj[nameGenre];
+        selectValue(obj);
+    };
+
+    const getSelectValueCountry = () => {
+        const selectedValueCountry =
+            document.getElementById('list-country').value;
+        let nameCountry = document
+            .getElementById('list-country')
+            .getAttribute('name');
+        let obj = {};
+        if (selectedValueCountry !== '-1')
+            obj[nameCountry] = selectedValueCountry;
+        else delete obj[nameCountry];
+        selectValue(obj);
+    };
+
+    const getSelectValueYear = () => {
+        const selectedValueYear = document.getElementById('year').value;
+        let nameYear = document.getElementById('year').getAttribute('name');
+        let obj = {};
+        if (selectedValueYear !== '-1') obj[nameYear] = selectedValueYear;
+        else delete obj[nameYear];
+        selectValue(obj);
+    };
+
+    const getSelectValueSorted = () => {
+        const selectedValueSorted = document.getElementById('order').value;
+        let nameSort = document.getElementById('order').getAttribute('name');
+        let obj = {};
+        if (selectedValueSorted !== '-1') obj[nameSort] = selectedValueSorted;
+        else delete obj[nameSort];
+        selectValue(obj);
+    };
     return (
         <div className={cx('wrapper', 'grid')}>
             <div className={cx('row', 'block')}>
                 <div className={cx('column', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Loại phim</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select
+                            id="list-category"
+                            name="categoryID"
+                            className={cx('list')}
+                            onChange={getSelectValueCategory}
+                        >
                             <option className={cx('item')}>-- Tất cả --</option>
                             {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={item.name}
+                                    value={item.id}
                                     key={index}
                                 >
                                     {item.name}
@@ -36,12 +96,17 @@ function HeaderSeries({
                 <div className={cx('column', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Thể loại</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select
+                            id="list-genre"
+                            name="genreId"
+                            className={cx('list')}
+                            onChange={getSelectValueGenre}
+                        >
                             <option className={cx('item')}>-- Tất cả --</option>
                             {listGender.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={item.name}
+                                    value={item.id}
                                     key={index}
                                 >
                                     {item.name}
@@ -53,12 +118,17 @@ function HeaderSeries({
                 <div className={cx('column', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Quốc gia</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select
+                            id="list-country"
+                            name="countryId"
+                            className={cx('list')}
+                            onChange={getSelectValueCountry}
+                        >
                             <option className={cx('item')}>-- Tất cả --</option>
                             {listCountry.map((item, index) => (
                                 <option
                                     className={cx('item')}
-                                    value={item.name}
+                                    value={item.id}
                                     key={index}
                                 >
                                     {item.name}
@@ -70,8 +140,16 @@ function HeaderSeries({
                 <div className={cx('column', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Năm</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select
+                            id="year"
+                            name="year"
+                            className={cx('list')}
+                            onChange={getSelectValueYear}
+                        >
                             <option className={cx('item')}>-- Tất cả --</option>
+                            <option value="2023" className={cx('item')}>
+                                2023
+                            </option>{' '}
                             <option value="2022" className={cx('item')}>
                                 2022
                             </option>
@@ -105,7 +183,12 @@ function HeaderSeries({
                 <div className={cx('column', 'type', 'm-4', 'c-6')}>
                     <label className={cx('title')}>Sắp xếp</label>
                     <div className={cx('control')}>
-                        <select className={cx('list')}>
+                        <select
+                            id="order"
+                            name="order"
+                            className={cx('list')}
+                            onChange={getSelectValueSorted}
+                        >
                             <option className={cx('item')}>
                                 Ngày cập nhật
                             </option>

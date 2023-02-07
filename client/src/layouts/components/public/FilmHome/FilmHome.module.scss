@@ -12,7 +12,6 @@
     width: 100%;
     margin: 0 !important; // bo margin cua row
     .item {
-        // height: var(--item-height);
         height: auto;
         padding: 8px;
         background-color: rgb(23, 31, 39);
@@ -26,7 +25,7 @@
 
     .avata {
         // the a
-        height: auto;
+        height: 300px;
         width: 100%;
 
         .image {
@@ -57,12 +56,10 @@
 .name,
 .English-name {
     overflow: hidden;
-    // Ba cham sau chu
     display: block;
-    /* tác động lên số dòng bn -> dòng bn thì có 3 chấm */
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
-    white-space: nowrap; // (*)
+    white-space: nowrap;
 }
 
 @media (max-width: 768px) {

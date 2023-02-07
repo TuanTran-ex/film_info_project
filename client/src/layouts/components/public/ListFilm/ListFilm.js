@@ -24,7 +24,10 @@ function ListFilm({ films }) {
                             )}
                         >
                             <Image
-                                src="https://image.tmdb.org/t/p/w342/wCQBzTOigP5eCyBAjQGlWYNo5DR.jpg"
+                                src={
+                                    films[0].image ??
+                                    'https://image.tmdb.org/t/p/w342/wCQBzTOigP5eCyBAjQGlWYNo5DR.jpg'
+                                }
                                 alt={films[0].name}
                                 className={cx('image')}
                             />
@@ -108,7 +111,10 @@ function ListFilm({ films }) {
                                 )}
                             >
                                 <Image
-                                    src="https://image.tmdb.org/t/p/w342/kb64uk8TU1KGQF5lshgr6Y5qQgq.jpg"
+                                    src={
+                                        item.image ??
+                                        'https://image.tmdb.org/t/p/w342/kb64uk8TU1KGQF5lshgr6Y5qQgq.jpg'
+                                    }
                                     alt={item.name}
                                     className={cx('image')}
                                 />
