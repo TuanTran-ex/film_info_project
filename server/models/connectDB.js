@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 const { sqlConfig } = require('../configs');
+const logger = require('../helpers/logger');
 
 const sequelize = new Sequelize(
   sqlConfig.database,
@@ -9,6 +10,7 @@ const sequelize = new Sequelize(
   {
     host: sqlConfig.host,
     dialect: 'mysql',
+    logging: false,
     operatorsAliases: false,
     pool: {
       max: sqlConfig.pool.max,
@@ -22,10 +24,10 @@ const sequelize = new Sequelize(
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
+    logger.info('Connection has been established successfully.');
   })
   .catch((error) => {
-    console.error('Unable to connect to the database: ', error);
+    logger.error('Unable to connect to the database: ', error);
   });
 
 module.exports = sequelize;

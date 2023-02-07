@@ -6,6 +6,7 @@ const Genre = require('../models/genre.model');
 const Country = require('../models/country.model');
 const Person = require('../models/person.model').Person;
 const Trailer = require('../models/trailer.model');
+const { PersonImage } = require('../models/person.model');
 
 const CATEGORY_TV_FILM_STR = 'Phim Bộ';
 const CATEGORY_MOVIE_STR = 'Phim Lẻ';
@@ -125,7 +126,13 @@ class FilmRepo {
 
   async getDetail(filmId) {
     const film = await Film.findByPk(filmId, {
-      include: [Genre, Person, Trailer, Category, Country],
+      include: [
+        Genre,
+        { model: Person, include: [PersonImage] },
+        Trailer,
+        Category,
+        Country,
+      ],
     });
     return film;
   }
