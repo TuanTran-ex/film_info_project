@@ -21,7 +21,7 @@
 
     .avata {
         // the a
-        height: 300px;
+        height: 380px;
         width: 100%;
 
         .image {
@@ -58,4 +58,11 @@
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     white-space: nowrap; // (*)
+}
+
+@media (max-width: 480px) {
+    .list .avata {
+        // the a
+        height: 260px;
+    }
 }

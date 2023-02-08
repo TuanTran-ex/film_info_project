@@ -80,7 +80,9 @@ function HeaderSeries({
                             className={cx('list')}
                             onChange={getSelectValueCategory}
                         >
-                            <option className={cx('item')}>-- Tất cả --</option>
+                            <option value={-1} className={cx('item')}>
+                                -- Tất cả --
+                            </option>
                             {listCategory.map((item, index) => (
                                 <option
                                     className={cx('item')}
@@ -102,7 +104,9 @@ function HeaderSeries({
                             className={cx('list')}
                             onChange={getSelectValueGenre}
                         >
-                            <option className={cx('item')}>-- Tất cả --</option>
+                            <option value={-1} className={cx('item')}>
+                                -- Tất cả --
+                            </option>
                             {listGender.map((item, index) => (
                                 <option
                                     className={cx('item')}
@@ -124,7 +128,9 @@ function HeaderSeries({
                             className={cx('list')}
                             onChange={getSelectValueCountry}
                         >
-                            <option className={cx('item')}>-- Tất cả --</option>
+                            <option value={-1} className={cx('item')}>
+                                -- Tất cả --
+                            </option>
                             {listCountry.map((item, index) => (
                                 <option
                                     className={cx('item')}
@@ -146,7 +152,9 @@ function HeaderSeries({
                             className={cx('list')}
                             onChange={getSelectValueYear}
                         >
-                            <option className={cx('item')}>-- Tất cả --</option>
+                            <option value={-1} className={cx('item')}>
+                                -- Tất cả --
+                            </option>
                             <option value="2023" className={cx('item')}>
                                 2023
                             </option>{' '}

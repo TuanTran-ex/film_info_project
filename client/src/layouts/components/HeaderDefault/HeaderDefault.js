@@ -220,7 +220,7 @@ function Header() {
                                 setIsShow(false);
                             }}
                         >
-                            Phim mới
+                            Phim Mới
                         </Link>
                     </li>
                 </div>

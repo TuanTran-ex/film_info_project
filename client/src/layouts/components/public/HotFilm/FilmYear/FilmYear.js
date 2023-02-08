@@ -14,7 +14,7 @@ function FilmYear({ data }) {
                 {data.map((item) => (
                     <div
                         key={item.id}
-                        className={cx('column', 'l-2-4', 'm-4', 'c-6')}
+                        className={cx('column', 'l-2-4', 'm-3', 'c-6')}
                     >
                         <div className={cx('item')}>
                             <a

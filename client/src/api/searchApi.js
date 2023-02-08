@@ -2,8 +2,8 @@ import axiosClient from './axiosClient';
 
 class SearchPageAPI {
     getAll = (params) => {
-        const url = 'pages/search';
-        return axiosClient.get(url, { params });
+        const url = 'pages/browse';
+        return axiosClient.get(url, { perPage: 99999 });
     };
 }
 

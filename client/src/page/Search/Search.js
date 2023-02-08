@@ -52,7 +52,7 @@ function Search() {
             try {
                 const response = await searchPageApi.getAll();
                 const { data } = response;
-                setFilmData(data);
+                setFilmData(data.films);
             } catch (error) {
                 console.log('Failed to fetch product list: ', error);
             }

@@ -25,7 +25,7 @@
 
     .avata {
         // the a
-        height: 300px;
+        height: 380px;
         width: 100%;
 
         .image {
@@ -62,5 +62,9 @@
     white-space: nowrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .list .avata {
+        // the a
+        height: 260px;
+    }
 }

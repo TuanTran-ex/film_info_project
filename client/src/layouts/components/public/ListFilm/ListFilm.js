@@ -3,6 +3,7 @@ import styles from './ListFilm.module.scss';
 // LIBRARY
 import Image from '../../../../components/image/Images';
 import routes from '../../../../config/routes';
+import config from '../../../../config';
 const cx = classNames.bind(styles);
 function ListFilm({ films }) {
     const array = films.slice(1, films.length);
@@ -25,8 +26,9 @@ function ListFilm({ films }) {
                         >
                             <Image
                                 src={
-                                    films[0].image ??
-                                    'https://image.tmdb.org/t/p/w342/wCQBzTOigP5eCyBAjQGlWYNo5DR.jpg'
+                                    films[0].image.includes('/images')
+                                        ? `${config.urlAPI}${films[0].image}`
+                                        : films[0].image
                                 }
                                 alt={films[0].name}
                                 className={cx('image')}
@@ -63,7 +65,9 @@ function ListFilm({ films }) {
                             </div>
                             <div className={cx('meta')}>
                                 <p className={cx('time')}>
-                                    {films[0].time} phút
+                                    {films[0].time
+                                        ? `${films[0].time} phút`
+                                        : ''}
                                 </p>
                                 <a href="/country" className={cx('country')}>
                                     {films[0].countryName}
@@ -112,8 +116,9 @@ function ListFilm({ films }) {
                             >
                                 <Image
                                     src={
-                                        item.image ??
-                                        'https://image.tmdb.org/t/p/w342/kb64uk8TU1KGQF5lshgr6Y5qQgq.jpg'
+                                        item.image.includes('/images')
+                                            ? `${config.urlAPI}${item.image}`
+                                            : item.image
                                     }
                                     alt={item.name}
                                     className={cx('image')}
@@ -156,7 +161,7 @@ function ListFilm({ films }) {
                                 </div>
                                 <div className={cx('meta')}>
                                     <p className={cx('time')}>
-                                        {item.time} phút
+                                        {item.time ? `${item.time} phút` : ''}
                                     </p>
                                     <a
                                         href={routes.moviedetails.replace(

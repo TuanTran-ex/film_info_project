@@ -38,6 +38,7 @@
 
 .nav-left {
     display: flex;
+    height: 100%;
 }
 .brand {
     display: flex;
@@ -67,7 +68,7 @@
 }
 
 .search {
-    height: 56px;
+    height: 100%;
     min-width: var(--search-width);
     margin-left: 10px;
     padding-left: 8px;
@@ -234,13 +235,16 @@
 
 @media (max-width: 575px) {
     .nav-left .search {
-        width: 60px;
+        min-width: 48px;
         padding-right: 6px;
         span {
             justify-content: flex-end;
         }
         .search-item {
             display: none;
+        }
+        .search-icon {
+            font-size: 2.8rem;
         }
     }
 }
@@ -268,13 +272,6 @@
         }
     }
     //end
-
-    .search {
-        width: 110px;
-        // .search-icon {
-        //     font-size: 40px;
-        // }
-    }
 
     //start: nav-right
     .nav-menu {
@@ -344,10 +341,4 @@
         }
     }
     // end
-}
-
-@media (max-width: 575px) {
-    .search .search-icon {
-        font-size: 30px;
-    }
 }
