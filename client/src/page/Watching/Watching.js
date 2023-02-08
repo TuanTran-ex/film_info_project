@@ -17,12 +17,14 @@ import TheatersTwoToneIcon from '@mui/icons-material/TheatersTwoTone';
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
 import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import ThumbDownAltTwoToneIcon from '@mui/icons-material/ThumbDownAltTwoTone';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Watching() {
     const id = window.location.href.split('/')[4];
     const [indexChoiceEn, setIndexChoiceEn] = useState();
     const [indexChoiceVn, setIndexChoiceVn] = useState();
     const [data, setData] = useState([]);
+    const getUserName = localStorage.getItem('account');
     useEffect(() => {
         const fetchWatchMovies = async () => {
             try {
@@ -210,7 +212,7 @@ function Watching() {
                         Phim không có tiếng / mất tiếng nhân vật / âm thanh bị
                         rè?
                     </p>
-                    <a href="#">Xem hướng dẫn</a>
+                    <Link to="#">Xem hướng dẫn</Link>
                 </div>
                 <div className={cx('section')}>
                     <div className={cx('detail')}>
@@ -226,18 +228,18 @@ function Watching() {
                                                 {data?.film?.englishName}
                                             </p>
 
-                                            <a href="#">
+                                            <Link to="#">
                                                 (
                                                 {data?.film?.premierDate.slice(
                                                     0,
                                                     4,
                                                 )}
                                                 )
-                                            </a>
+                                            </Link>
                                         </span>
                                     </div>
                                     <div className={cx('button')}>
-                                        <a href="#" className={cx('fb')}>
+                                        <Link to="#" className={cx('fb')}>
                                             <FacebookIcon
                                                 className={cx(
                                                     'icon-fb',
@@ -245,9 +247,13 @@ function Watching() {
                                                 )}
                                             />
                                             <p>Chia sẻ</p>
-                                        </a>
-                                        <a
-                                            href="#"
+                                        </Link>
+                                        <Link
+                                            to={
+                                                getUserName
+                                                    ? routes.collection
+                                                    : routes.login
+                                            }
                                             className={cx('collection')}
                                         >
                                             <AddOutlinedIcon
@@ -257,8 +263,8 @@ function Watching() {
                                                 )}
                                             />
                                             <p>Bộ sưu tập</p>
-                                        </a>
-                                        <a href="#" className={cx('similar')}>
+                                        </Link>
+                                        <Link to="#" className={cx('similar')}>
                                             <TheatersTwoToneIcon
                                                 className={cx(
                                                     'icon-film',
@@ -266,7 +272,7 @@ function Watching() {
                                                 )}
                                             />
                                             <p>Phim tương tự</p>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className={cx('row-right')}>
@@ -299,14 +305,14 @@ function Watching() {
                             <div>
                                 Bạn cũng có thể upload file phụ đề của riêng
                                 bạn:
-                                <a href="#" className={cx('click-here')}>
+                                <Link to="#" className={cx('click-here')}>
                                     Click vào đây!
-                                </a>
+                                </Link>
                             </div>
                             <div className={cx('find-sub')}>
-                                <a href="https://subscene.com/subtitles/smile-2022">
+                                <Link to="https://subscene.com/subtitles/smile-2022">
                                     Tìm phụ đề cho phim này trên Subscene
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className={cx('row-subtitle')}>
@@ -584,7 +590,7 @@ function Watching() {
                         </div>
                         <div className={cx('submit-cmt')}>
                             Để gửi bình luận phim, vui lòng
-                            <a href={routes.login}>Đăng nhập</a>
+                            <Link to={routes.login}>Đăng nhập</Link>
                         </div>
                     </div>
                 </div>

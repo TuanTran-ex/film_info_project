@@ -9,6 +9,7 @@ import Image from '../../../../components/image/Images';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import config from '../../../../config';
+import routes from '../../../../config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -135,7 +136,12 @@ function FoundSimilar({ data }) {
                 >
                     {array.map((item) => (
                         <li key={item.id} className={cx('item')}>
-                            <a href="/">
+                            <a
+                                href={routes.moviedetails.replace(
+                                    ':id',
+                                    item.id,
+                                )}
+                            >
                                 <Image
                                     src={
                                         item.image.includes('/images')

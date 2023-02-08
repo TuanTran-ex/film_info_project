@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 // --- LIBRARY --
 import routes from '../../../../config/routes';
 import './14_LIBRARY.css';
-import MovieDetails from '../../../../page/MovieDetails';
 import styles from './FilmHome.module.scss';
 import Image from '../../../../components/image/Images';
 

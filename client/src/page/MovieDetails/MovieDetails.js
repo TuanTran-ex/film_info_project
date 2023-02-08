@@ -266,7 +266,7 @@ function MovieDetails() {
                                                 />
 
                                                 <p
-                                                    // to={routes.collection}
+                                                  
                                                     className={cx('text')}
                                                 >
                                                     Bộ sưu tập
@@ -378,14 +378,6 @@ function MovieDetails() {
                                     ) : (
                                         <div></div>
                                     )}
-
-                                    <Link to="/" className={cx('item')}>
-                                        Hài hước - giật gân
-                                    </Link>
-
-                                    <Link to="/" className={cx('item')}>
-                                        Ngôn tình
-                                    </Link>
                                 </div>
                             </div>
                             <div className={cx('info')}>
