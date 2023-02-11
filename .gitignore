@@ -102,3 +102,15 @@ dist
 
 # TernJS port file
 .tern-port
+
+# API Test folder 
+test
+
+# next.js build output
+.next
+
+# VS Code
+.vscode
+
+# image film
+server/public/images

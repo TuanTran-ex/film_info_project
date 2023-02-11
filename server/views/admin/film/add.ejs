@@ -1,0 +1,177 @@
+<div class="container pt-3 pb-3">
+  <h2 class="mb-3">Thêm Phim</h2>
+  <form action="/admin/films" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Thêm phim</h3>
+
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-tool"
+                data-card-widget="collapse"
+                title="Collapse"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputName">Tên phim</label>
+              <input
+                type="text"
+                id="inputName"
+                name="name"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputNameEng">Tên phim tiếng Anh</label>
+              <input
+                type="text"
+                id="inputNameEng"
+                name="englishName"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label>Ngày phát hành</label>
+              <div
+                class="input-group date"
+                id="reservationdate"
+                data-target-input="nearest"
+              >
+                <input
+                  type="text"
+                  class="form-control datetimepicker-input"
+                  data-target="#reservationdate"
+                  data-inputmask-alias="datetime"
+                  data-inputmask-inputformat="mm/dd/yyyy"
+                  data-mask
+                  id="inputPremierDate"
+                  name="premierDate"
+                />
+                <div
+                  class="input-group-append"
+                  data-target="#reservationdate"
+                  data-toggle="datetimepicker"
+                >
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputTimeDuration">Thời lượng</label>
+              <input
+                type="number"
+                id="inputTimeDuration"
+                name="time"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputImdbPoint">Điểm imdb</label>
+              <input
+                type="number"
+                id="inputImdbPoint"
+                step="0.1"
+                name="imdbPoint"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputDescription">Miêu tả</label>
+              <textarea
+                id="inputDescription"
+                class="form-control"
+                name="description"
+                rows="6"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="inputStatus">Trạng thái</label>
+              <select
+                id="inputStatus"
+                class="form-control select2"
+                name="isProcessing"
+              >
+                <option selected disabled>Lựa chọn</option>
+                <option value="1">Đang xử lý</option>
+                <option value="0">Đã xử lý</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Loại phim</label>
+              <select
+                id="inputCategory"
+                class="form-control select2"
+                name="categoryId"
+                style="width: 100%"
+              >
+                <% for( item of categories ) { %>
+                <option value="<%=item.id %>"><%=item.name %></option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputCountry">Quốc gia</label>
+              <select
+                id="inputCountry"
+                class="form-control select2"
+                name="countryId"
+                data-placeholder="Lựa chọn thể loại"
+              >
+                <% for( item of countries ) { %>
+                <option value="<%=item.id %>"><%=item.name %></option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputGenre">Thể loại</label>
+              <select
+                id="inputGenre"
+                class="form-control select2"
+                name="genreId"
+                multiple="multiple"
+                data-placeholder="Lựa chọn thể loại"
+              >
+                <% for( item of genres ) { %>
+                <option value="<%=item.id %>"><%=item.name %></option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group d-flex flex-column">
+              <label for="inputImage">Ảnh</label>
+              <input type="file" id="inputImage" name="image" />
+            </div>
+            <div class="form-group d-flex flex-column">
+              <label for="inputBackgroundImage">Ảnh Background</label>
+              <input
+                type="file"
+                id="inputBackgroundImage"
+                name="backgroundImage"
+              />
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a href="#" class="btn btn-secondary">Quay lại</a>
+        <input
+          type="submit"
+          value="Tạo phim mới"
+          class="btn btn-success float-right"
+        />
+      </div>
+    </div>
+  </form>
+</div>
