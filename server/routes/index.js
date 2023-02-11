@@ -1,13 +1,13 @@
 const { errorHandling } = require('../utils/errorHandling');
 
-const AdminRoute = require('./admin');
+// const AdminRoute = require('./admin');
 const ClientRoute = require('./client');
 
 function route(app) {
   app.get('/health', (req, res) => {
     res.send('OK');
   });
-  AdminRoute(app);
+  // AdminRoute(app);
   ClientRoute(app);
 
   /**
