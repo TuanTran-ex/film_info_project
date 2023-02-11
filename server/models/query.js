@@ -103,7 +103,6 @@ exports.qAddFilm = ({
   categoryId,
   countryId,
 }) => {
-  console.log(typeof premierDate);
   premierDate = premierDate.replaceAll('/', '-');
   return `INSERT INTO Film (name, englishName, image, backgroundImage, time, premierDate, description, imdbPoint, isProcessing, categoryId, countryOfProduction) 
   VALUES('${name}', '${englishName}', '${image}', '${backgroundImage}', ${

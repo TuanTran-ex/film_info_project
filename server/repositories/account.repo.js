@@ -35,16 +35,12 @@ class AccountRepo {
     return res;
   }
   async addFilmToCollection(filmId, accountId, type) {
-    try {
-      const detailCollections = await FilmCollection.create({
-        filmId,
-        accountId,
-        type,
-      });
-      return detailCollections;
-    } catch (err) {
-      console.log(err);
-    }
+    const detailCollections = await FilmCollection.create({
+      filmId,
+      accountId,
+      type,
+    });
+    return detailCollections;
   }
 }
 

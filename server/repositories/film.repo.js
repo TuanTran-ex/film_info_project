@@ -70,7 +70,6 @@ class FilmRepo {
     perPage = 20,
   }) {
     let films = [];
-    console.log(page);
     let orderCondition;
     if (order) {
       switch (order) {
