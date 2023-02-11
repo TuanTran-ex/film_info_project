@@ -84,9 +84,9 @@ function Casts() {
     ];
 
     //ffc
-    let getIdImage;
+    // let getIdImage;
     const handleClickImage = (id) => {
-        getIdImage = id;
+        // getIdImage = id;
         if (isClickImage === true) {
             setIsClickImage(false);
         } else setIsClickImage(true);

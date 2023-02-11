@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Pagination({ handleClickPage, nowIndex }) {
     //1 //nowIndex = 6
     const totalPage = 35;
-    const [page, setPage] = useState(1);
+    // const [page, setPage] = useState(1);
     const [count, setCount] = useState(nowIndex);
     const tmp = [];
     for (let i = nowIndex; i <= nowIndex + 3 && i <= totalPage; i++) {
@@ -18,7 +18,7 @@ function Pagination({ handleClickPage, nowIndex }) {
 
     const handleClick = (index) => {
         handleClickPage(index);
-        setPage(index); //page thay doi
+        // setPage(index); //page thay doi
         setCount(index); //count thay doi theo index
     };
 
@@ -38,7 +38,7 @@ function Pagination({ handleClickPage, nowIndex }) {
             }
             setArray(tmp);
         }
-        setPage(nextNumber); //setPage -> active
+        // setPage(nextNumber); //setPage -> active
         handleClickPage(nextNumber); // count = count + 1 -> render nextpage
     };
 
@@ -48,7 +48,7 @@ function Pagination({ handleClickPage, nowIndex }) {
         //hien thi 4 item trước
         if (prevNumber % 4 === 0)
             setArray([count - 4, count - 3, count - 2, count - 1]);
-        setPage(prevNumber); //setPage -> active
+        // setPage(prevNumber); //setPage -> active
         handleClickPage(prevNumber);
     };
 

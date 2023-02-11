@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Type.module.scss';
 import WebFont from 'webfontloader';

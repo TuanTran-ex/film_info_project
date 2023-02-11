@@ -101,9 +101,7 @@ function MovieDetails() {
     const [array, setArray] = useState([]); // useState(castData.slice(number, value));
     const [option1, setOption1] = useState(false);
     const [option2, setOption2] = useState(false);
-    const [season, setSeason] = useState(true); //display : Season or FoundSimilar
     const [temp, setTemp] = useState(0);
-    let arrayCastsName, lastChild;
 
     //--setItem for Casts
     useEffect(() => {
@@ -187,7 +185,11 @@ function MovieDetails() {
 
             <div className={cx('background')}>
                 <Image
-                    src={`${config.urlAPI}${data?.film?.backgroundImage}`}
+                    src={
+                        data?.film?.image?.includes('/images/')
+                            ? `${config.urlAPI}${data.film?.backgroundImage}`
+                            : data.film?.backgroundImage
+                    }
                     alt="image"
                     className={cx('image')}
                 />
@@ -199,7 +201,11 @@ function MovieDetails() {
                         <div className={cx('column-left')}>
                             <div className={cx('film-image')}>
                                 <Image
-                                    src={`${config.urlAPI}${data?.film?.image}`}
+                                    src={
+                                        data?.film?.image?.includes('/images/')
+                                            ? `${config.urlAPI}${data.film?.image}`
+                                            : data.film?.image
+                                    }
                                     alt="image"
                                     className={cx('image')}
                                 />
