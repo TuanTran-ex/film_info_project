@@ -1,6 +1,6 @@
 // --LIBRARY
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './OddMovie.module.scss';
 import { useNavigate } from 'react-router-dom';
