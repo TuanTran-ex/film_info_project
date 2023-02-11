@@ -70,6 +70,7 @@ class FilmRepo {
     perPage = 20,
   }) {
     let films = [];
+    console.log(page);
     let orderCondition;
     if (order) {
       switch (order) {
@@ -117,7 +118,7 @@ class FilmRepo {
       ],
       where: where,
       order: orderCondition ? [orderCondition] : [['id', 'DESC']],
-      offset: parseInt(page) - 1,
+      offset: (parseInt(page) - 1) * parseInt(perPage),
       limit: parseInt(perPage),
     });
 
