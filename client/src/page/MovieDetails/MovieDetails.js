@@ -38,7 +38,9 @@ function MovieDetails() {
             try {
                 const response = await movieDetailsApi.getAll(id);
                 const { data } = response;
+
                 setData(data);
+                console.log('data <<: ', data);
                 setTemp(data.film.People.length);
                 //cast
                 setPeople(data.film.People);
@@ -101,6 +103,7 @@ function MovieDetails() {
     const [option2, setOption2] = useState(false);
     const [season, setSeason] = useState(true); //display : Season or FoundSimilar
     const [temp, setTemp] = useState(0);
+    let arrayCastsName, lastChild;
 
     //--setItem for Casts
     useEffect(() => {
@@ -265,10 +268,7 @@ function MovieDetails() {
                                                     className={cx('icon')}
                                                 />
 
-                                                <p
-                                                  
-                                                    className={cx('text')}
-                                                >
+                                                <p className={cx('text')}>
                                                     Bộ sưu tập
                                                 </p>
                                             </Link>
@@ -383,12 +383,15 @@ function MovieDetails() {
                             <div className={cx('info')}>
                                 <span className={cx('establish')}>
                                     <p> SÁNG LẬP</p>
-                                    <Link to="/">George R. R. Martin</Link>,
-                                    <Link to="/">Ryan Condal</Link>
+                                    <div className={cx('founder-name')}>
+                                        <Link to="#">Craig Mazin,</Link>
+
+                                        <Link to="#">Druckmann</Link>
+                                    </div>
                                 </span>
                                 <span className={cx('country')}>
                                     <p> QUỐC GIA</p>
-                                    <Link to="/">Mỹ</Link>
+                                    <Link to="#">Mỹ</Link>
                                 </span>
                                 <span className={cx('premiere')}>
                                     <p>KHỞI CHIẾU</p>
@@ -409,7 +412,7 @@ function MovieDetails() {
                                                 className={
                                                     temp <= value
                                                         ? cx('none')
-                                                        : number === 0 //(cast.length > 6 and if(number = 0, dk dung) -> disable)
+                                                        : number === 0 //(cast.length > 6 and if(number = 0, true) -> disable)
                                                         ? cx(
                                                               'disable',
                                                               'icon-left',

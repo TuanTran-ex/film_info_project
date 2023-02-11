@@ -107,10 +107,10 @@
     display: flex;
     margin: 24px 0;
     .fb,
-    .collection,
     .similar {
         display: flex;
         align-items: center;
+        min-width: 100px;
         padding: 6px 10px;
         margin-right: 8px;
         border-radius: 2px;
@@ -132,15 +132,107 @@
     }
     .collection {
         background-color: transparent;
-        border: 1px solid #3e8ed0;
+        margin-right: 8px;
+        padding: 0;
+        position: relative;
 
-        p {
-            color: #3e8ed0;
+        a {
+            display: flex;
+            align-items: center;
         }
-        &:hover {
-            p {
-                color: #dcf836;
+
+        .item {
+            font-size: 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            padding: 6px 14px;
+            min-width: 110px;
+
+            .icon {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
             }
+            .text {
+                flex-basis: auto;
+                flex-grow: 1;
+                flex-shrink: 0;
+            }
+        }
+
+        .album {
+            min-width: 110px;
+            position: relative;
+            background-color: transparent;
+            border: 1px solid #3e8ed0;
+            color: #3e8ed0;
+            cursor: pointer;
+            &:hover {
+                a,
+                .icon {
+                    color: #dcf836;
+                }
+                p {
+                    color: #dcf836;
+                }
+            }
+        }
+
+        .option1,
+        .option2 {
+            border: none;
+            color: #fff;
+            .icon-check,
+            .icon-eye {
+                width: 23px;
+                height: 23px;
+                color: #fff;
+                margin-right: 8px;
+            }
+            &:hover {
+                color: #fff;
+            }
+            &:hover ~ .add-collection {
+                display: block;
+            }
+        }
+        .option1 {
+            background-color: #203f76;
+        }
+
+        .option2 {
+            background-color: #df5d4d;
+        }
+
+        .add-collection {
+            position: absolute;
+            min-width: 240px;
+            font-size: 1.4rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+            display: none;
+
+            .watched {
+                line-height: 30px;
+                color: #000;
+                b {
+                    margin-left: 6px;
+                }
+                &:hover {
+                    background-color: #f5f5f5;
+                }
+            }
+        }
+        .album:hover ~ .add-collection {
+            display: block;
+        }
+
+        .add-collection:hover {
+            display: block;
         }
     }
 

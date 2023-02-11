@@ -8,7 +8,6 @@ const cx = classNames.bind(styles);
 function ListFilm({ films }) {
     const array = films.slice(1, films.length);
     const getYear = (day) => {
-        // const year = day.slice(day.length - 4, day.length);
         const year = day.slice(0, 4);
         return year;
     };
@@ -80,10 +79,10 @@ function ListFilm({ films }) {
                         </div>
                         <div className={cx('row-3')}>
                             <div className={cx('document')}>
-                                <a href="/document">Tài liệu</a>
-                                <a href="/document">Kinh dị</a>
-                                <a href="/document">Hài kịch & Sân khấu</a>
-                                <a href="/document">Tâm lí</a>
+                                <a href="#">Tài liệu</a>
+                                <a href="#">Kinh dị</a>
+                                <a href="#">Hài kịch & Sân khấu</a>
+                                <a href="#">Tâm lí</a>
                             </div>
                             <div className={cx('IMDh')}>
                                 <svg
