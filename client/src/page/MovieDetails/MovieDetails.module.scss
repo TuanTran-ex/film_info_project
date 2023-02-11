@@ -129,7 +129,7 @@
         display: flex;
         align-items: center;
         font-size: 1.6rem;
-        font-weight: 500;
+        font-weight: 600;
         margin-bottom: 20px;
         .icon {
             width: 42px;
@@ -187,6 +187,9 @@
                     .icon {
                         color: #dcf836;
                     }
+                    p {
+                        color: #dcf836;
+                    }
                 }
             }
 
@@ -212,7 +215,6 @@
             .option1 {
                 background-color: #203f76;
             }
-            //df5d4d
 
             .option2 {
                 background-color: #df5d4d;
@@ -281,10 +283,21 @@
         }
 
         a {
-            margin-left: 3px;
+            margin-left: 4px;
+
             &:hover {
                 text-decoration: underline;
             }
+        }
+    }
+
+    .establish {
+        .founder-name {
+            width: calc(100% - 140px);
+            display: flex;
+            flex-wrap: wrap;
+            line-height: 2.4rem;
+            font-weight: 600;
         }
     }
 

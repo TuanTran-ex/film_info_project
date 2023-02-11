@@ -11,20 +11,24 @@ import Footer from '../../layouts/components/Footer';
 import watchPageApi from '../../api/watchApi';
 
 //icon
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import TheatersTwoToneIcon from '@mui/icons-material/TheatersTwoTone';
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
 import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import ThumbDownAltTwoToneIcon from '@mui/icons-material/ThumbDownAltTwoTone';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Watching() {
     const id = window.location.href.split('/')[4];
+    const getUserName = localStorage.getItem('account');
     const [indexChoiceEn, setIndexChoiceEn] = useState();
     const [indexChoiceVn, setIndexChoiceVn] = useState();
     const [data, setData] = useState([]);
-    const getUserName = localStorage.getItem('account');
+    const [option1, setOption1] = useState(false);
+    const [option2, setOption2] = useState(false);
     useEffect(() => {
         const fetchWatchMovies = async () => {
             try {
@@ -248,7 +252,7 @@ function Watching() {
                                             />
                                             <p>Chia sẻ</p>
                                         </Link>
-                                        <Link
+                                        {/* <Link
                                             to={
                                                 getUserName
                                                     ? routes.collection
@@ -263,7 +267,134 @@ function Watching() {
                                                 )}
                                             />
                                             <p>Bộ sưu tập</p>
-                                        </Link>
+                                        </Link> */}
+
+                                        <div className={cx('collection')}>
+                                            {option1 === false &&
+                                            option2 === false ? (
+                                                <Link
+                                                    to={
+                                                        getUserName
+                                                            ? routes.collection
+                                                            : routes.login
+                                                    }
+                                                    className={cx(
+                                                        'item',
+                                                        'album',
+                                                    )}
+                                                >
+                                                    <AddOutlinedIcon
+                                                        className={cx(
+                                                            'icon',
+                                                            'icon-add',
+                                                        )}
+                                                    />
+
+                                                    <p className={cx('text')}>
+                                                        Bộ sưu tập
+                                                    </p>
+                                                </Link>
+                                            ) : option1 ? (
+                                                <div
+                                                    className={cx(
+                                                        'item',
+                                                        'option1',
+                                                    )}
+                                                >
+                                                    <CheckOutlinedIcon
+                                                        className={cx(
+                                                            'icon-check',
+                                                        )}
+                                                    />
+
+                                                    <p className={cx('text')}>
+                                                        Đã xem
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <div
+                                                    className={cx(
+                                                        'item',
+                                                        'option2',
+                                                    )}
+                                                >
+                                                    <RemoveRedEyeOutlinedIcon
+                                                        className={cx(
+                                                            'icon-eye',
+                                                        )}
+                                                    />
+                                                    <p className={cx('text')}>
+                                                        Muốn xem
+                                                    </p>
+                                                </div>
+                                            )}
+
+                                            {getUserName ? ( //Login
+                                                <div
+                                                    className={cx(
+                                                        'add-collection',
+                                                    )}
+                                                >
+                                                    {!option1 ? (
+                                                        <div
+                                                            className={cx(
+                                                                'watched',
+                                                            )}
+                                                            onClick={() =>
+                                                                setOption1(true)
+                                                            }
+                                                        >
+                                                            Thêm vào danh sách
+                                                            <b>Đã xem</b>
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            className={cx(
+                                                                'watched',
+                                                            )}
+                                                            onClick={() =>
+                                                                setOption1(
+                                                                    false,
+                                                                )
+                                                            }
+                                                        >
+                                                            Loại khỏi danh sách
+                                                            <b>Đã xem</b>
+                                                        </div>
+                                                    )}
+
+                                                    {!option2 ? (
+                                                        <div
+                                                            className={cx(
+                                                                'watched',
+                                                            )}
+                                                            onClick={() =>
+                                                                setOption2(true)
+                                                            }
+                                                        >
+                                                            Thêm vào danh sách
+                                                            <b>Muốn xem</b>
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            className={cx(
+                                                                'watched',
+                                                            )}
+                                                            onClick={() =>
+                                                                setOption2(
+                                                                    false,
+                                                                )
+                                                            }
+                                                        >
+                                                            Loại khỏi danh sách
+                                                            <b> Muốn xem</b>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </div>
                                         <Link to="#" className={cx('similar')}>
                                             <TheatersTwoToneIcon
                                                 className={cx(
