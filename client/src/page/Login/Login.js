@@ -1,12 +1,11 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//Components;
+
 import authApi from '../../api/authApi';
 import routes from '../../config/routes';
 import styles from './Login.module.scss';
-// import loginPageApi from '../../api/loginApi';
-//Icons
+
 import GoogleIcon from '@mui/icons-material/Google';
 const cx = classNames.bind(styles);
 function Login() {

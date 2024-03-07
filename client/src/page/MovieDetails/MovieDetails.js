@@ -32,7 +32,6 @@ function MovieDetails() {
     const [listFilmSuggest, setListFilmSuggest] = useState([]);
     const premierYear = data?.film?.premierDate.slice(0, 4);
 
-    //Call API to get data
     useEffect(() => {
         const fetchMovieDetails = async () => {
             try {
@@ -40,17 +39,16 @@ function MovieDetails() {
                 const { data } = response;
 
                 setData(data);
-                console.log('data <<: ', data);
                 setTemp(data.film.People.length);
-                //cast
+
                 setPeople(data.film.People);
                 setArray(data.film.People.slice(number, value));
-                //trailer
+
                 setTrailer(data.film.Trailers);
                 setArray2(data.film.Trailers.slice(index, valueofT));
-                //genres
+
                 setGenres(data.film.Genres);
-                //listFilmSuggest
+
                 setListFilmSuggest(data.listFilmSuggest);
             } catch (error) {
                 console.log('Failed to fetch product list: ', error);
@@ -77,7 +75,6 @@ function MovieDetails() {
     const isTablet = viewPort.width <= 1024;
     const inTheMiddle = viewPort.width >= 1025 && viewPort.width <= 1200;
 
-    //set value when change viewPort (casts)
     const [value, setValue] = useState(() => {
         let temp;
         if (isTablet) temp = 4;
@@ -85,7 +82,7 @@ function MovieDetails() {
         else temp = 6;
         return temp;
     });
-    // (trailer)
+
     const [valueofT, setValueofT] = useState(() => {
         let n;
         if (isTablet) n = 2;
@@ -98,12 +95,11 @@ function MovieDetails() {
     const [index, setIndex] = useState(0);
     const [number, setNumber] = useState(0);
     const [array2, setArray2] = useState([]);
-    const [array, setArray] = useState([]); // useState(castData.slice(number, value));
+    const [array, setArray] = useState([]);
     const [option1, setOption1] = useState(false);
     const [option2, setOption2] = useState(false);
     const [temp, setTemp] = useState(0);
 
-    //--setItem for Casts
     useEffect(() => {
         if (people) {
             if (isMobile && value !== 2) {
@@ -126,7 +122,6 @@ function MovieDetails() {
         }
     }, [isTablet, viewPort.width, people, value, inTheMiddle]);
 
-    //setItem for Trailer
     useEffect(() => {
         if (trailer) {
             if (isTablet && valueofT !== 2) {
@@ -143,14 +138,12 @@ function MovieDetails() {
         }
     }, [isTablet, viewPort.width, trailer]);
 
-    //Hanle lick next - prev casts
     const handleNext = () => {
-        const nowIndex = number + value; //6
+        const nowIndex = number + value;
         setNumber(nowIndex);
-        //sau khi set -> chay het ffc nay moi re-render Comp App -> number = nowIndex
-        nowIndex + value <= temp //6 + 6 = 12
-            ? setArray(people.slice(nowIndex, nowIndex + value)) //cd new array = 6;
-            : setArray(people.slice(nowIndex, temp)); // cd  new array < 6
+        nowIndex + value <= temp
+            ? setArray(people.slice(nowIndex, nowIndex + value))
+            : setArray(people.slice(nowIndex, temp));
     };
 
     const handlePrev = () => {
@@ -159,7 +152,6 @@ function MovieDetails() {
         setArray(people.slice(nowIndex, number));
     };
 
-    //Handle click next TRAILER
     const handleTrailerNext = () => {
         const nowIndex = index + valueofT;
         setIndex(nowIndex);
@@ -168,14 +160,11 @@ function MovieDetails() {
             : setArray2(trailer.slice(nowIndex, trailer.length));
     };
 
-    // Hanle click prev TRAILER
     const handleTrailerPrev = () => {
         const nowIndex = index - valueofT;
         setIndex(nowIndex);
         setArray2(trailer.slice(nowIndex, index));
     };
-
-    // -- END
 
     return (
         <div className={cx('wrapper')}>

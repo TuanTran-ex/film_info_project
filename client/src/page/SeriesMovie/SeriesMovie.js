@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-//COMPONENTS
 import BrowseAPI from '../../api/browseApi';
 import styles from './SeriesMovie.module.scss';
 import Title from '../../layouts/components/public/Title';
@@ -25,11 +24,9 @@ function SeriesMovie() {
             : 1,
     );
     useEffect(() => {
-        // storing input name
         sessionStorage.setItem('nowIndex', JSON.stringify(nowIndex));
     }, [nowIndex]);
 
-    //call API -> get data to render UI
     useEffect(() => {
         const fetchHomeApi = async () => {
             try {

@@ -13,7 +13,7 @@ const routes = {
     register: '/register',
     search: '/search',
     seriesmovie: '/seriesmovie',
-    settings: '/setting', //setting accoount
+    settings: '/setting', //setting account
     user: '/user',
     watching: '/watching/:id',
 };

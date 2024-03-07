@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 import styles from './Casts.module.scss';
-
-//LIBRARY
-import Header from '../../layouts/components/HeaderDefault';
-import Footer from '../../layouts/components/Footer';
 import Image from '../../components/image/Images';
+import Footer from '../../layouts/components/Footer';
+import Header from '../../layouts/components/HeaderDefault';
 import './CastsResponsive.css';
 const cx = classNames.bind(styles);
 
@@ -83,10 +81,7 @@ function Casts() {
         },
     ];
 
-    //ffc
-    // let getIdImage;
     const handleClickImage = (id) => {
-        // getIdImage = id;
         if (isClickImage === true) {
             setIsClickImage(false);
         } else setIsClickImage(true);

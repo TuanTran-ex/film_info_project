@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import styles from './NewMovie.module.scss';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import BrowseAPI from '../../api/browseApi';
-// --LIBRARY
-import Title from '../../layouts/components/public/Title';
-import Header from '../../layouts/components/public/Header';
+import styles from './NewMovie.module.scss';
 import FilmBlock from '../../layouts/components/public/FilmBlock';
+import Header from '../../layouts/components/public/Header';
 import ListFilm from '../../layouts/components/public/ListFilm';
 import Pagination from '../../layouts/components/public/Pagination/Pagination';
+import Title from '../../layouts/components/public/Title';
 const cx = classNames.bind(styles);
 function NewMovie() {
     const location = useLocation();
@@ -45,13 +44,11 @@ function NewMovie() {
         fetchHomeApi();
     }, []);
 
-    //khi select item trong header thi set lai ParamFilter => lay lai thong tin film theo dk loc
     useEffect(() => {
         fetchHomeApi(paramFilter);
     }, [paramFilter]);
 
     useEffect(() => {
-        // storing input name
         sessionStorage.setItem('nowIndex', JSON.stringify(nowIndex));
     }, [nowIndex]);
 

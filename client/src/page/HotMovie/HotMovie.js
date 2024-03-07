@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HotMovie.module.scss';
-// Components
 import BrowseAPI from '../../api/browseApi';
 import FilmDay from '../../layouts/components/public/HotFilm/FilmDay';
 import FilmMonth from '../../layouts/components/public/HotFilm/FilmMonth';
