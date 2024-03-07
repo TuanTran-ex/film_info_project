@@ -1,20 +1,18 @@
 import config from '../config';
-
-//Cau hinh router
 import Casts from '../page/Casts/Casts';
-import Collection from '../page/logged/Collection';
 import Home from '../page/Home';
 import HotMovie from '../page/HotMovie';
 import Login from '../page/Login';
-import NewMovie from '../page/NewMovie';
 import MovieDetails from '../page/MovieDetails';
+import NewMovie from '../page/NewMovie';
 import OddMovie from '../page/OddMovie';
 import Register from '../page/Register';
 import Search from '../page/Search';
 import SeriesMovie from '../page/SeriesMovie';
-import Settings from '../page/logged/Settings';
 import User from '../page/User';
 import Watching from '../page/Watching/Watching';
+import Collection from '../page/logged/Collection';
+import Settings from '../page/logged/Settings';
 
 const publicRoutes = [
     { path: config.routes.collection, component: Collection },
@@ -46,7 +44,6 @@ const publicRoutes = [
     },
 ];
 
-//Dang nhap: Login
 const privateRoutes = [];
 
 export { privateRoutes, publicRoutes };

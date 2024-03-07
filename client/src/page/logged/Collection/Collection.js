@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Collection.module.scss';
 
-//
 import FilmBlock from '../../../layouts/components/public/FilmBlock';
 
 const cx = classNames.bind(styles);

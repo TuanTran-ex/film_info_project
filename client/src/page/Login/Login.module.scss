@@ -55,7 +55,6 @@
     }
 }
 
-//Btn Dang Nhap
 .btn-submit {
     width: 100%;
     height: 50px;
@@ -82,7 +81,6 @@
     text-align: center;
 }
 
-//Tao bien gia
 .divider::after {
     background: #fff;
     color: #a17a7a;
@@ -93,8 +91,6 @@
     transform: translateY(-50%);
     text-align: center;
 }
-
-//Google-login
 
 .btn-google-login {
     display: flex;
@@ -123,7 +119,6 @@
     }
 }
 
-//other
 .other {
     margin-top: 24px;
     color: #428bca;
@@ -149,14 +144,12 @@
     }
 }
 
-//Large
 @media screen and (max-width: 1200px) {
     .block {
         width: 50%;
     }
 }
 
-//Medium
 @media screen and (max-width: 768px) {
     .block {
         width: 90%;

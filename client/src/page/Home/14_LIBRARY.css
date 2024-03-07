@@ -16,7 +16,6 @@
     margin-right: -4px;
 }
 
-/* bỏ đi gutters cho colum or row */
 .row.no-gutters {
     margin-left: 0;
     margin-right: 0;

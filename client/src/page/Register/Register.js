@@ -1,11 +1,10 @@
+import GoogleIcon from '@mui/icons-material/Google';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Register.module.scss';
-import GoogleIcon from '@mui/icons-material/Google';
-import routes from '../../config/routes';
-///register
 import authApi from '../../api/authApi';
+import routes from '../../config/routes';
+import styles from './Register.module.scss';
 
 const cx = classNames.bind(styles);
 function Login() {
@@ -27,9 +26,6 @@ function Login() {
             tlds: { allow: ['com', 'net'] },
         }),
     });
-    // .with('username', 'birth_year')
-    // .xor('password', 'access_token')
-    // .with('password', 'repeat_password');
 
     const checkValue = schema.validate({
         Email: email,
@@ -45,7 +41,6 @@ function Login() {
         const regex =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        //check email validity
         if (!regex.test(email)) {
             alert('Hãy điền địa chỉ email hợp lệ!');
             return;
@@ -67,7 +62,6 @@ function Login() {
                 const err = response.data.error;
 
                 if (!err) {
-                    //save email: register
                     localStorage.setItem(
                         'account',
                         JSON.stringify({
@@ -77,7 +71,6 @@ function Login() {
                     return navigate('/login');
                 }
             } catch (error) {
-                console.log(error);
                 alert('Thông tin đăng ký không hợp lệ!', error);
             }
         };

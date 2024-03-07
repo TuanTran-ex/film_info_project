@@ -1,25 +1,20 @@
-//Libary
-import { useState, useEffect } from 'react';
-import classNames from 'classnames/bind';
-import styles from './Watching.module.scss';
-import WebFont from 'webfontloader';
-
-//Components
-import routes from '../../config/routes';
-import Header from '../../layouts/components/HeaderDefault';
-import Footer from '../../layouts/components/Footer';
-import watchPageApi from '../../api/watchApi';
-
-//icon
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import TheatersTwoToneIcon from '@mui/icons-material/TheatersTwoTone';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
-import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
-import ThumbDownAltTwoToneIcon from '@mui/icons-material/ThumbDownAltTwoTone';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import TheatersTwoToneIcon from '@mui/icons-material/TheatersTwoTone';
+import ThumbDownAltTwoToneIcon from '@mui/icons-material/ThumbDownAltTwoTone';
+import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
+import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import WebFont from 'webfontloader';
+import watchPageApi from '../../api/watchApi';
+import routes from '../../config/routes';
+import Footer from '../../layouts/components/Footer';
+import Header from '../../layouts/components/HeaderDefault';
+import styles from './Watching.module.scss';
 const cx = classNames.bind(styles);
 function Watching() {
     const id = window.location.href.split('/')[4];
@@ -42,7 +37,6 @@ function Watching() {
         fetchWatchMovies();
     }, []);
 
-    //pointLike / dispoinDisLike - en
     const [poinLike, setPoinLike] = useState(
         sessionStorage.getItem('poin')
             ? JSON.parse(sessionStorage.getItem('poin')).poinLike
@@ -53,7 +47,7 @@ function Watching() {
             ? JSON.parse(sessionStorage.getItem('poin')).poinDisLike
             : -1,
     );
-    // vn
+
     const [poinLikeVn, setPoinLikeVn] = useState(
         sessionStorage.getItem('poin')
             ? JSON.parse(sessionStorage.getItem('poin')).poinLikeVn
@@ -65,7 +59,6 @@ function Watching() {
             : -1,
     );
 
-    //save poin
     useEffect(() => {
         sessionStorage.setItem(
             'poin',
@@ -78,7 +71,6 @@ function Watching() {
         );
     }, [poinLike, poinDisLike, poinLikeVn, poinDisLikeVn]);
 
-    // let index = 1;
     useEffect(() => {
         WebFont.load({
             google: {
@@ -135,7 +127,6 @@ function Watching() {
         },
     ];
 
-    //FUNCTION
     const handleClickTickEn = (index) => {
         setIndexChoiceEn();
     };

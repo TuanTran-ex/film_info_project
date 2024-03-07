@@ -1,16 +1,13 @@
-// --LIBRARY
-import { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './OddMovie.module.scss';
 import { useNavigate } from 'react-router-dom';
-//COMPONENTS
+import styles from './OddMovie.module.scss';
 import BrowseAPI from '../../api/browseApi';
-import Header from '../../layouts/components/public/Header';
 import FilmBlock from '../../layouts/components/public/FilmBlock';
+import Header from '../../layouts/components/public/Header';
 import ListFilm from '../../layouts/components/public/ListFilm';
-import Title from '../../layouts/components/public/Title';
 import Pagination from '../../layouts/components/public/Pagination/Pagination';
+import Title from '../../layouts/components/public/Title';
 
 const cx = classNames.bind(styles);
 
@@ -50,7 +47,6 @@ function OddMovie() {
     };
 
     useEffect(() => {
-        // storing input name
         sessionStorage.setItem('nowIndex', JSON.stringify(nowIndex));
     }, [nowIndex]);
 
@@ -65,7 +61,6 @@ function OddMovie() {
         setNowIndex(page);
         setFilms(films);
     };
-    //chia perpage
 
     return (
         <div className={cx('wrapper')}>

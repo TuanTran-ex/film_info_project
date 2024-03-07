@@ -51,9 +51,7 @@
     transition: all 0.3s ease;
 }
 
-//Medium
 @media screen and (max-width: 768px) {
-    //change font-size title
     .header {
         .title {
             font-size: 2rem;
